@@ -4,7 +4,7 @@ def seed_products():
     product1 = Product(
         owner_id = 1,
         name = 'Knited Scarf',
-        decription = 'Hand knitted wool scarf',
+        description = 'Hand knitted wool scarf',
         price = 4,
         quantity = 7
     )
@@ -12,7 +12,7 @@ def seed_products():
     product2 = Product(
         owner_id = 2,
         name = 'Bucket Hat',
-        decription = 'Premium Hat',
+        description = 'Premium Hat',
         price = 7,
         quantity = 23
     )
@@ -20,7 +20,7 @@ def seed_products():
     product3 = Product(
         owner_id = 3,
         name = 'Shell earrings',
-        decription = "You won't regret buying this",
+        description = "You won't regret buying this",
         price = 50,
         quantity = 1
     )
