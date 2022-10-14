@@ -10,3 +10,5 @@ class Review(db.Model):
     users = db.relationship('User', back_populates = 'reviews')
     products = db.relationship('Product', back_populates = 'reviews')
     images = db.relationship('Image', back_populates = 'reviews')
+    created_at = db.Column(db.Date)
+    updated_at = db.Column(db.Date)

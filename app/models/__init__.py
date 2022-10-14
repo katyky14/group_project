@@ -3,3 +3,4 @@ from .user import User
 from .product import Product
 from .images import Image
 from .reviews import Review
+from .shopping_cart import Cart
