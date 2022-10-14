@@ -10,3 +10,4 @@ class Image(db.Model):
     image_url = db.Column(db.String, nullable=False)
     users = db.relationship('User', back_populates = 'images')
     products = db.relationship('Product', back_populates = 'images')
+    reviews = db.relationship('Review', back_populates = 'images')
