@@ -1,18 +1,18 @@
 from flask import Blueprint, jsonify
-from ..forms import ProductForm,EditProductForm
+from ..forms.product_form import ProductForm,EditProductForm
 # from ..models import Product
 
 
-product_routes = Blueprint('products', __name__,url_prefix="/api")
+product_routes = Blueprint('products', __name__)
 
 #Get all products
-@product_routes.route('/products')
+@product_routes.route('/')
 def get_all_products():
     # allProducts = Product.query.all()
     return "Hello World"
 
 #Get product by id
-@product_routes.route('/products/<int:id>')
+@product_routes.route('/<int:id>')
 def get_product_id(id):
 #    user = User.query.get(id)
 #     return user.to_dict()
@@ -22,7 +22,7 @@ def get_product_id(id):
 #Get product by the current owner
 
 #Add a product
-@product_routes.route('/products',methods=["POST"])
+@product_routes.route('/',methods=["POST"])
 def post_all_products():
     pass
     # form = ProductForm()
@@ -35,7 +35,7 @@ def post_all_products():
 
 
 #Edit a product listing
-@product_routes.route("/products/<int:id>",methods=["PUT"])
+@product_routes.route("/<int:id>",methods=["PUT"])
 def update_product():
      # form = EditProductForm()
     # if form.validate_on_submit():
@@ -47,6 +47,6 @@ def update_product():
 
 
 #Delete a product
-@product_routes.route("/products/<int:id>",methods=["DELETE"])
+@product_routes.route("/<int:id>",methods=["DELETE"])
 def delete_product():
     pass
