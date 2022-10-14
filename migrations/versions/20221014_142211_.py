@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: 32d5d4bc50f7
-Revises: 
+Revises:
 Create Date: 2022-10-14 14:22:11.728325
 
 """
@@ -36,8 +36,6 @@ def upgrade():
     sa.Column('description', sa.String(length=255), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.Date(), nullable=True),
-    sa.Column('updated_at', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

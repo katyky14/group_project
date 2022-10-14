@@ -9,8 +9,6 @@ class Product(db.Model):
     description = db.Column(db.String(255), nullable=False)
     price = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    created_at = db.Column(db.Date)
-    updated_at = db.Column(db.Date)
     owner = db.relationship('User', back_populates = 'products')
     images = db.relationship('Image', back_populates = 'products')
     reviews = db.relationship('Review', back_populates = 'products')
