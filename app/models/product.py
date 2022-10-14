@@ -1,0 +1,14 @@
+from enum import Flag
+from .db import db
+
+class Product(db.Model):
+    __tablename__ = "products"
+    id = db.Column(db.Integer, nullable=False, primary_key=True)
+    owner_id = db.Column(db.Integer, db.ForiegnKey('users.id'), nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(255), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.Date)
+    updated_at = db.Column(db.Date)
+    owner = db.relationship('User', back_populates = 'products')
