@@ -27,7 +27,7 @@ def post_all_products():
     pass
     # form = ProductForm()
     # if form.validate_on_submit():
-    #     # data = 
+    #     # data =
     #     form.populate_obj(data):
     #     db.session.add(data)
     #     db.session.commit()
@@ -39,7 +39,7 @@ def post_all_products():
 def update_product():
      # form = EditProductForm()
     # if form.validate_on_submit():
-    #     # data = 
+    #     # data =
     #     form.populate_obj(data):
     #     db.session.add(data)
     #     db.session.commit()
@@ -49,4 +49,11 @@ def update_product():
 #Delete a product
 @product_routes.route("/<int:id>",methods=["DELETE"])
 def delete_product():
+    pass
+
+
+#Get comments for product
+@product_routes.route('/<int:product_id>/reviews')
+def get_all_comments_product():
+    # allProducts = Product.query.all()
     pass
