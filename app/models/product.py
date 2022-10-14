@@ -4,7 +4,7 @@ from .db import db
 class Product(db.Model):
     __tablename__ = "products"
     id = db.Column(db.Integer, nullable=False, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForiegnKey('users.id'), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     price = db.Column(db.Float, nullable=False)
