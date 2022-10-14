@@ -12,3 +12,5 @@ class Product(db.Model):
     created_at = db.Column(db.Date)
     updated_at = db.Column(db.Date)
     owner = db.relationship('User', back_populates = 'products')
+    images = db.relationship('Image', back_populates = 'products')
+    reviews = db.relationship('Review', back_populates = 'products')
