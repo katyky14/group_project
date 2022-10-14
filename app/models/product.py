@@ -12,3 +12,26 @@ class Product(db.Model):
     owner = db.relationship('User', back_populates = 'products')
     images = db.relationship('Image', back_populates = 'products')
     reviews = db.relationship('Review', back_populates = 'products')
+
+
+    def to_dict_product(self):
+        return {
+          "id": self.id,
+          "ownerId": self.owner_id,
+          "name": self.name,
+          "description": self.description,
+          "price": self.price,
+          "quantity": self.quantity,
+        }
+    def to_dict_relationship(self):
+        return {
+          "id": self.id,
+          "ownerId": self.owner_id,
+          "name": self.name,
+          "description": self.description,
+          "price": self.price,
+          "quantity": self.quantity,
+          "owner": self.owner.to_dict(),
+          "images": self.images,
+          "reviews": self.reviews
+        }

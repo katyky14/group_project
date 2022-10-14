@@ -11,3 +11,26 @@ class Image(db.Model):
     users = db.relationship('User', back_populates = 'images')
     products = db.relationship('Product', back_populates = 'images')
     reviews = db.relationship('Review', back_populates = 'images')
+
+
+    def to_dict_images(self):
+        return {
+          "id": self.id,
+          "userId": self.user_id,
+          "productId": self.product_id,
+          "reviewId": self.review_id,
+          "mainImage": self.main_image,
+          "image_url": self.image_url,
+        }
+    def to_dict_images_rel(self):
+        return {
+          "id": self.id,
+          "userId": self.user_id,
+          "productId": self.product_id,
+          "reviewId": self.review_id,
+          "mainImage": self.main_image,
+          "image_url": self.image_url,
+          "users": self.users.to_dict(),
+          "products": self.products.to_dict_product(),
+          "reviews": self.reviews.to_dict_reviews()
+        }
