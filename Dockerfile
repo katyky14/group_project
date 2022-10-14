@@ -32,7 +32,7 @@
 
 FROM python:3.9
 
-# ENV REACT_APP_BASE_URL=https://feb-starter-app.herokuapp.com/
+ENV REACT_APP_BASE_URL=https://buy-ktsy.herokuapp.com/
 ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
