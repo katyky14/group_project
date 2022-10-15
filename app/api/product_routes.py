@@ -68,6 +68,6 @@ def delete_product(id):
 
 #Get comments for product
 @product_routes.route('/<int:product_id>/reviews')
-def get_all_comments_product():
-    # allProducts = Product.query.all()
-    pass
+def get_all_comments_product(product_id):
+    products_reviews = Review.query.filter(Review.product_id == product_id)
+    return {"Reviews": [review.to_dict_reviews() for review in products_reviews]}
