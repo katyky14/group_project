@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from ..forms.product_form import ProductForm,EditProductForm
-# from ..models import Product
+from ..models import Product, Review, Image
 
 
 product_routes = Blueprint('products', __name__)
@@ -8,8 +8,11 @@ product_routes = Blueprint('products', __name__)
 #Get all products
 @product_routes.route('/')
 def get_all_products():
-    # allProducts = Product.query.all()
-    return "Hello World"
+    all_products = Product.query.join(Image).all()
+    return {'products': [product.to_dict_relationship() for product in all_products ]}
+
+
+
 
 #Get product by id
 @product_routes.route('/<int:id>')
