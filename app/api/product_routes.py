@@ -1,4 +1,6 @@
 from flask import Blueprint, request, redirect
+
+from app.forms.images_form import ImageForm
 from ..forms.product_form import ProductForm,EditProductForm
 from ..forms.reviews_form import ReviewForm
 from ..models import Product, Review, Image, db
@@ -41,7 +43,6 @@ def post_all_products():
     return form.errors
 
 
-
 #Edit a product listing
 @product_routes.route("/<int:id>",methods=["PUT"])
 def update_product(id):
@@ -55,6 +56,24 @@ def update_product(id):
         return {"Edited product": data.to_dict_relationship()}
     return form.errors
 
+#Add Images to product
+@product_routes.route('<int:product_id>/images',methods=['POST'])
+def add_images_to_product(product_id):
+    form = ImageForm()
+    user = current_user.to_dict()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = Image(
+            user_id = user['id'],
+            product_id = product_id,
+            review_id = None,
+            main_image = form.data['main_image'],
+            image_url = form.data['image_url']
+        )
+        db.session.add(data)
+        db.session.commit()
+        return {"newImage": data.to_dict_images()}
+    return form.errors
 
 #Delete a product
 @product_routes.route("/<int:id>",methods=["DELETE"])
