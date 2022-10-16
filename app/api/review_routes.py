@@ -42,6 +42,8 @@ def update_comment(review_id):
 @review_routes.route("/<int:review_id>",methods=["DELETE"])
 def delete_comment(review_id):
     review = Review.query.get(review_id)
-    db.session.delete(review)
-    db.session.commit()
-    return "Review Has Been Deleted"
+    if review:
+        db.session.delete(review)
+        db.session.commit()
+        return "Review Has Been Deleted"
+    return "This review does not exist"
