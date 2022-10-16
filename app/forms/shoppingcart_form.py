@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField,SelectField
+from sqlalchemy import Integer
+from wtforms import SubmitField,SelectField, IntegerField
 from wtforms.validators import DataRequired,NumberRange
 
 select_quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
@@ -17,9 +18,13 @@ select_quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
           187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200]
 
 class ShoppingCartForm(FlaskForm):
-    quantity = SelectField('Quantity',choices=select_quantity) 
+    user_id = IntegerField('User_id')
+    product_id = IntegerField('Product_id')
+    quantity = SelectField('Quantity',choices=select_quantity)
     submit = SubmitField('Add to Cart')
 
 class EditShoppingCartForm(FlaskForm):
+    user_id = IntegerField('User_id')
+    product_id = IntegerField('Product_id')
     quantity = SelectField('Quantity',choices=select_quantity)
-    submit = SubmitField('Edit to Cart') 
+    submit = SubmitField('Edit to Cart')

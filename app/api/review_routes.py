@@ -21,19 +21,14 @@ def get_all_comments_user():
 @review_routes.route('/<int:review_id>',methods=["PUT"])
 def update_comment(review_id):
     form = ReviewForm()
-    review = Review.query.get(review_id).to_dict_reviews()
+    review = Review.query.get(review_id)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        user = current_user.to_dict()
-        data = Review(
-            user_id = user['id'],
-            product_id = review['productId'],
-            rating = form.data['rating'],
-            comment = form.data['comment']
-        )
-        db.session.add(data)
+        review.comment = form.data['comment']
+        review.rating = form.data['rating']
+
         db.session.commit()
-        return {"Edited_Review": data.to_dict_reviews()}
+        return {"Edited_Review": review.to_dict_reviews()}
     if form.errors:
         return form.errors
 
