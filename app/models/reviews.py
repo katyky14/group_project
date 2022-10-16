@@ -1,4 +1,6 @@
+from email.policy import default
 from .db import db
+from datetime import date
 
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -10,8 +12,8 @@ class Review(db.Model):
     users = db.relationship('User', back_populates = 'reviews')
     products = db.relationship('Product', back_populates = 'reviews')
     images = db.relationship('Image', back_populates = 'reviews')
-    created_at = db.Column(db.Date)
-    updated_at = db.Column(db.Date)
+    created_at = db.Column(db.Date, default = date.today())
+    updated_at = db.Column(db.Date, default = date.today())
 
 
     def to_dict_reviews(self):

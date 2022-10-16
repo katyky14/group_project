@@ -1,6 +1,8 @@
 from flask import Blueprint, request, redirect
 from ..forms.product_form import ProductForm,EditProductForm
+from ..forms.reviews_form import ReviewForm
 from ..models import Product, Review, Image, db
+from flask_login import current_user
 
 
 product_routes = Blueprint('products', __name__)
@@ -71,3 +73,22 @@ def delete_product(id):
 def get_all_comments_product(product_id):
     products_reviews = Review.query.filter(Review.product_id == product_id)
     return {"Reviews": [review.to_dict_reviews() for review in products_reviews]}
+
+#Add comment for product
+@product_routes.route('/<int:product_id>/reviews',methods=["POST"])
+def add_comment(product_id):
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user = current_user.to_dict()
+        data = Review(
+            user_id = user['id'],
+            product_id = product_id,
+            rating = form.data['rating'],
+            comment = form.data['comment']
+        )
+        db.session.add(data)
+        db.session.commit()
+        return {"Data": data.to_dict_reviews()}
+    if form.errors:
+        return form.errors
