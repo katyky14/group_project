@@ -19,19 +19,29 @@ def get_all_comments_user():
 
 #Edit comment for product
 @review_routes.route('/<int:review_id>',methods=["PUT"])
-def update_comment():
-    pass
-    # form = EditReviewForm()
-    # if form.validate_on_submit():
-    #     # data =
-    #     form.populate_obj(data):
-    #     db.session.add(data)
-    #     db.session.commit()
-    # return "ADD FORM"
-    pass
+def update_comment(review_id):
+    form = ReviewForm()
+    review = Review.query.get(review_id).to_dict_reviews()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user = current_user.to_dict()
+        data = Review(
+            user_id = user['id'],
+            product_id = review['productId'],
+            rating = form.data['rating'],
+            comment = form.data['comment']
+        )
+        db.session.add(data)
+        db.session.commit()
+        return {"Edited_Review": data.to_dict_reviews()}
+    if form.errors:
+        return form.errors
 
 
 #Delete a comment
 @review_routes.route("/<int:review_id>",methods=["DELETE"])
-def delete_comment():
-    pass
+def delete_comment(review_id):
+    review = Review.query.get(review_id)
+    db.session.delete(review)
+    db.session.commit()
+    return "Review Has Been Deleted"

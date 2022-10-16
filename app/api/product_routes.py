@@ -89,6 +89,6 @@ def add_comment(product_id):
         )
         db.session.add(data)
         db.session.commit()
-        return {"Data": data.to_dict_reviews()}
+        return {"Review": data.to_dict_reviews()}
     if form.errors:
         return form.errors
