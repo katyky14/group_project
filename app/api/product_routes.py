@@ -63,9 +63,11 @@ def update_product(id):
 @product_routes.route("/<int:id>",methods=["DELETE"])
 def delete_product(id):
     selected_product = Product.query.get(id)
-    db.session.delete(selected_product)
-    db.session.commit()
-    return "Deleted Successfully"
+    if selected_product:
+        db.session.delete(selected_product)
+        db.session.commit()
+        return "Product has been removed"
+    return "This product does not exist"
 
 
 #Get comments for product
