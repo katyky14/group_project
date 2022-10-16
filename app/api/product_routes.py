@@ -30,7 +30,6 @@ def get_product_id(id):
 #Add a product
 @product_routes.route('',methods=["POST"])
 def post_all_products():
-
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -38,9 +37,8 @@ def post_all_products():
         form.populate_obj(data)
         db.session.add(data)
         db.session.commit()
-        return "Added product"
-
-    return "ERRORS"
+        return {"product": data.to_dict_relationship()}
+    return form.errors
 
 
 
@@ -54,9 +52,8 @@ def update_product(id):
         form.populate_obj(data)
         db.session.add(data)
         db.session.commit()
-        return "Edited a product"
-
-    return "error"
+        return {"Edited product": data.to_dict_relationship()}
+    return form.errors
 
 
 #Delete a product
