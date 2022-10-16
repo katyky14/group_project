@@ -38,18 +38,16 @@ def add_item_to_cart(cart_itemid):
 def update_item_to_cart(cart_itemid):
     form = ShoppingCartForm()
     user = current_user.to_dict()
-    cart_item = Cart.query(Cart.user_id == user['id'] and Cart.product_id == cart_itemid)
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        data = Cart(
-            user_id = user['id'],
-            product_id = cart_itemid,
-            quantity = form.data['quantity']
-        )
-        db.session.add(data)
-        db.session.commit()
-        return {'shoppingCart': data.to_dict_cart_rel()}
-    return form.errors
+    cart_item = Cart.query.filter(Cart.user_id == user['id']).filter(Cart.product_id == cart_itemid)
+    if [item.to_dict_cart() for item in cart_item]:
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            cart_item[0].quantity = form.data['quantity']
+
+            db.session.commit()
+            return {'shoppingCart': [item.to_dict_cart() for item in cart_item]}
+        return form.errors
+    return "No such item in your cart"
 
 #Delete a product
 @shopping_routes.route("/<int:cart_itemid>",methods=["DELETE"])
