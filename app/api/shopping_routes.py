@@ -51,5 +51,11 @@ def update_item_to_cart(cart_itemid):
 
 #Delete a product
 @shopping_routes.route("/<int:cart_itemid>",methods=["DELETE"])
-def delete_product():
-    pass
+def delete_product(cart_itemid):
+    user = current_user.to_dict()
+    cart_item = Cart.query.filter(Cart.user_id == user['id']).filter(Cart.product_id == cart_itemid)
+    if [item.to_dict_cart() for item in cart_item]:
+        db.session.delete(cart_item[0])
+        db.session.commit()
+        return "Item has been removed from shopping cart"
+    return "No such item in your cart"
