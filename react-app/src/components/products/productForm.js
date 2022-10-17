@@ -12,12 +12,12 @@ function CreateProductForm() {
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [mainImage, setMainImage] = useState(true);
-    const [imageUrl, setImageUrl] = useState("")
+    const [imageUrls, setImageUrls] = useState([])
     const [quantity, setQuantity] = useState(1);
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [preview, setPreview] = useState(false);
-    const [files, setFiles] = useState([])
+    const [counter, setCount] = useState(0)
 
     const ownerObj = useSelector(state => state.session.user)
 
@@ -34,10 +34,11 @@ function CreateProductForm() {
             price,
             description,
             mainImage,
-            imageUrl,
+            imageUrls,
             quantity,
-            files
         }
+
+
 
         let createdProduct = await dispatch(addProductThunk(productInformation))
         console.log('the product', createdProduct)
@@ -73,19 +74,24 @@ function CreateProductForm() {
 
         setValidationErrors(errors)
 
-    }, [price, quantity, imageUrl])
+    }, [price, quantity, imageUrls])
 
     const updatePreview = (e) => setPreview(!preview);
 
-    const handleSliderImages = (e) => {
-        console.log("EVENT e: ", e)
-        console.log("FILES BEFORE: ", files)
-        setFiles({ imageUrl, slider_images: [...e.target.value] });
-        console.log("FILES AFTER: ", files)
+    let counterArr = []
+    for (let i = 1; i <= counter; i++) {
+        counterArr.push(i)
+    }
 
-        console.log("Update slider images", files);
-    };
+    const addImageUrls = index => e => {
+        console.log('index: ' + index);
+        console.log('property name: ' + e.target.name);
+        let newArr = [...imageUrls]; // copying the old datas array
+        // a deep copy is not needed as we are overriding the whole object below, and not setting a property of it. this does not mutate the state.
+        newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to
 
+        setImageUrls(newArr);
+    }
 
     return (
         <div>
@@ -120,48 +126,25 @@ function CreateProductForm() {
                     onChange={(e) => setDescription(e.target.value)}
                     required
                 />
-                <div >
-                    <p>Preview Main Image</p>
-                    <label for="preview">
-                        <input
-                            type="checkbox"
-                            name='preview'
-                            placeholder="preview"
-                            // required={true}
-                            value={preview}
-                            // checked={mainImage === true}
-                            onChange={updatePreview}
 
-                        />
-                        Yes
-                    </label>
-                </div>
-                {/* <div>
-                    <label>
-                        <input type="radio"
-                            id='false'
-                            name='false'
-                            value={false}
-                            checked={mainImage === false}
-                            onChange={e => setMainImage(e.target.value)} />
-                        false
-                    </label>
-                </div> */}
                 <input
-                    placeholder="Image"
+                    placeholder="Preview Image Url"
                     type="text"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                // required
+                    value={imageUrls}
+                    onChange={addImageUrls(0)}
                 />
-                <label for="slider_images">Slider Images</label>
-                <input
-                    multiple
-                    type="file"
-                    id="slider_images"
-                    name="slider_images"
-                    onChange={handleSliderImages}
-                />
+
+                {
+                    !!counter && counterArr.map(i => (
+                        <input
+                            placeholder="Additional Image Url"
+                            type="text"
+                            value={imageUrls}
+                            onChange={addImageUrls(i)}
+                        />
+                    ))
+                }
+                <button onClick={() => setCount((preCounter) => preCounter + 1)}>Push for additional image</button>
 
                 <input
                     placeholder="Quantity"
