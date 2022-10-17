@@ -2,6 +2,7 @@
 
 // TYPES
 const GET_PRODUCTS = "Products/getProducts"
+const Get_PRODUCT_BY_ID = "Products/getProductByID"
 const ADD_PRODUCTS = "products/addProducts"
 const EDIT_PRODUCT = "product/editProduct"
 const DELETE_PRODUCT = "product/deleteProduct"
@@ -10,6 +11,13 @@ const DELETE_PRODUCT = "product/deleteProduct"
 const getAllProducts = payload => {
     return {
         type: GET_PRODUCTS,
+        payload
+    }
+}
+
+const getThisProduct = payload => {
+    return {
+        type: Get_PRODUCT_BY_ID,
         payload
     }
 }
@@ -45,6 +53,16 @@ export const getAllProductsThunk = () => async dispatch => {
         dispatch(getAllProducts(data.products))
     }
 }
+
+// GET A PRODUCT'S DETAILS THUNK
+export const getAProduct = (id) => async (dispatch) => {
+    const response = await fetch(`/api/products/${id}`);
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getThisProduct(data.oneProduct))
+        return { ...data };
+    }
+};
 
 // ADD A PRODUCT THUNK
 export const addProductThunk = (productData) => async (dispatch) => {
@@ -94,7 +112,7 @@ export const editProductThunk = productData => async (dispatch) => {
 
 // DELETE PRODUCT THUNK
 export const deleteProductThunk = (productId) => async dispatch => {
-    const response = await csrfFetch(`/api/products/${productId}`, {
+    const response = await fetch(`/api/products/${productId}`, {
         method: 'DELETE',
     });
 
@@ -110,13 +128,19 @@ export const deleteProductThunk = (productId) => async dispatch => {
 // REDUCER
 const productReducer = (state = {}, action) => {
     switch (action.type) {
-        case GET_PRODUCTS:
+        case GET_PRODUCTS: {
             const allProducts = {}
             action.payload.forEach(product => {
                 allProducts[product.id] = product
             })
-            newState = { ...state, allProducts }
+            const newState = { ...state, allProducts }
             return allProducts
+        }
+        case Get_PRODUCT_BY_ID: {
+            const newState = {};
+            newState[action.payload.id] = action.payload
+            return newState;
+        }
 
         // case ADD_PRODUCTS:
         //     if (!state[action.payload.id]) {
