@@ -84,8 +84,7 @@ export const addProductThunk = (productData) => async (dispatch) => {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                "main_image": productData.mainImage,
-                "image_url": productData.files
+                "image_url": productData.ImageUrls
             })
         })
 

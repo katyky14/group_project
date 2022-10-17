@@ -11,13 +11,11 @@ function CreateProductForm() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
-    const [mainImage, setMainImage] = useState(true);
     const [imageUrls, setImageUrls] = useState([])
     const [quantity, setQuantity] = useState(1);
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    const [preview, setPreview] = useState(false);
-    const [counter, setCount] = useState(0)
+
 
     const ownerObj = useSelector(state => state.session.user)
 
@@ -33,7 +31,6 @@ function CreateProductForm() {
             name,
             price,
             description,
-            mainImage,
             imageUrls,
             quantity,
         }
@@ -76,14 +73,11 @@ function CreateProductForm() {
 
     }, [price, quantity, imageUrls])
 
-    const updatePreview = (e) => setPreview(!preview);
 
-    let counterArr = []
-    for (let i = 1; i <= counter; i++) {
-        counterArr.push(i)
-    }
+
 
     const addImageUrls = index => e => {
+        e.preventDefault()
         console.log('index: ' + index);
         console.log('property name: ' + e.target.name);
         let newArr = [...imageUrls]; // copying the old datas array
@@ -135,16 +129,17 @@ function CreateProductForm() {
                 />
 
                 {
-                    !!counter && counterArr.map(i => (
+                    imageUrls.length > 1 && imageUrls.map((data, i) => (
                         <input
+                            key={i}
                             placeholder="Additional Image Url"
                             type="text"
-                            value={imageUrls}
+                            value={data}
                             onChange={addImageUrls(i)}
                         />
                     ))
                 }
-                <button onClick={() => setCount((preCounter) => preCounter + 1)}>Push for additional image</button>
+                <button onClick={() => setImageUrls((preImageUrls) => [...preImageUrls, ""])}>Push for additional image</button>
 
                 <input
                     placeholder="Quantity"
@@ -153,7 +148,7 @@ function CreateProductForm() {
                     onChange={(e) => setQuantity(e.target.value)}
                     required
                 />
-                <button>Add Listing</button>
+                <button type="submit">Add Listing</button>
             </form>
         </div>
     )

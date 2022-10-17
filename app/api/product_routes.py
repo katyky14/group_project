@@ -63,13 +63,32 @@ def add_images_to_product(product_id):
     user = current_user.to_dict()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        data = Image(
-            user_id = user['id'],
-            product_id = product_id,
-            review_id = None,
-            main_image = form.data['main_image'],
-            image_url = form.data['image_url']
+        if len(form.data['image_url']) == 1:
+            data = Image(
+                user_id = user['id'],
+                product_id = product_id,
+                review_id = None,
+                main_image = True,
+                image_url = form.data['image_url'][0]
         )
+        else:
+            for i in range(len(form.data['image_url'])):
+                if i == 0:
+                    data = Image(
+                        user_id = user['id'],
+                        product_id = product_id,
+                        review_id = None,
+                        main_image = True,
+                        image_url = form.data['image_url'][0]
+                    )
+                elif i > 0:
+                    data = Image(
+                        user_id = user['id'],
+                        product_id = product_id,
+                        review_id = None,
+                        main_image = False,
+                        image_url = form.data['image_url'][i]
+                    )
         db.session.add(data)
         db.session.commit()
         return {"newImage": data.to_dict_images()}
