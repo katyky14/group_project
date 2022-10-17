@@ -36,6 +36,7 @@ export const loadProductReviews = (product_id) =>async (dispatch) =>{
 
     if(response.ok){
         const list = await response.json();
+        console.log("LIST",list)
         dispatch(getProductReview(list))
     }
     return response;
@@ -55,8 +56,11 @@ const reviewsReducer = (state = {}, action) => {
         }
         case GET_PRODUCT_REVIEWS:{
             const newState ={};
-            
+            action.reviews.forEach(review => (newState[review.id] = review))
+            return newState
         }
+
+        
         default: {
             return state
         }
