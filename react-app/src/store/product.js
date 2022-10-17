@@ -84,9 +84,23 @@ export const addProductThunk = (productData) => async (dispatch) => {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                "image_url": productData.ImageUrls
+                "image_url": productData.previewImage,
+                "main_image": true
             })
         })
+        for (let i = 0; i < productData.imageUrls.length; i++) {
+            let additionalImage = await fetch(`/api/products/${data.product.id}/images`, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    "image_url": productData.imageUrls[i],
+                    "main_image": false
+                })
+            })
+        }
+        console.log('IMAGE ARRAY IN THUNK: ', [productData.previewImage, ...productData.imageUrls])
+        const imageData = await imageResponse.json();
+        console.log(imageData)
 
         dispatch(addOneProduct(data));
         return data;

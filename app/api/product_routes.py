@@ -57,41 +57,76 @@ def update_product(id):
     return form.errors
 
 #Add Images to product
-@product_routes.route('<int:product_id>/images',methods=['POST'])
+@product_routes.route('<int:product_id>/images', methods=["POST"])
 def add_images_to_product(product_id):
     form = ImageForm()
     user = current_user.to_dict()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        if len(form.data['image_url']) == 1:
-            data = Image(
-                user_id = user['id'],
-                product_id = product_id,
-                review_id = None,
-                main_image = True,
-                image_url = form.data['image_url'][0]
+        print("CONSOLE LOGS")
+        print("Form DATA:")
+        print(form.data)
+        print("image_url:")
+        print(form.data['image_url'])
+        print("additional_url:")
+        print(form.data['additional_urls'])
+        data = Image(
+            user_id = user['id'],
+            product_id = product_id,
+            review_id = None,
+            main_image = form.data['main_image'],
+            image_url = form.data['image_url']
         )
-        else:
-            for i in range(len(form.data['image_url'])):
-                if i == 0:
-                    data = Image(
-                        user_id = user['id'],
-                        product_id = product_id,
-                        review_id = None,
-                        main_image = True,
-                        image_url = form.data['image_url'][0]
-                    )
-                elif i > 0:
-                    data = Image(
+        db.session.add(data)
+        db.session.commit()
+        if len(form.data['additional_urls']) == 0:
+            return {"newImage": data.to_dict_images()}
+        # return {"newImage": data.to_dict_images()}
+        # if len(form.data['additional_urls']) == 1:
+        #     data = Image(
+        #         user_id = user['id'],
+        #         product_id = product_id,
+        #         review_id = None,
+        #         main_image = True,
+        #         image_url = form.data['image_url'][0]
+        #     )
+        #     db.session.add(data)
+        #     db.session.commit()
+        #     return {"newImage": data.to_dict_images()}
+        if len(form.data['additional_urls']) >= 1:
+            for i in range(len(form.data['additional_urls'])):
+                imgList = [data.to_dict_images()]
+                data = Image(
                         user_id = user['id'],
                         product_id = product_id,
                         review_id = None,
                         main_image = False,
-                        image_url = form.data['image_url'][i]
+                        image_url = form.data['additional_urls'][i]
                     )
-        db.session.add(data)
+                db.session.add(data)
+                imgList.append(data.to_dict_images())
+                # if i == 0:
+                #     data = Image(
+                #         user_id = user['id'],
+                #         product_id = product_id,
+                #         review_id = None,
+                #         main_image = True,
+                #         image_url = form.data['additional_urls'][0]
+                #     )
+                #     db.session.add(data)
+                #     imgList.append(data.to_dict_images())
+                # elif i > 0:
+                #     data = Image(
+                #         user_id = user['id'],
+                #         product_id = product_id,
+                #         review_id = None,
+                #         main_image = False,
+                #         image_url = form.data['additional_urls'][i]
+                #     )
+                #     db.session.add(data)
+                #     imgList.append(data.to_dict_images())
         db.session.commit()
-        return {"newImage": data.to_dict_images()}
+        return {"newImage": imgList}
     return form.errors
 
 #Delete a product

@@ -11,7 +11,8 @@ function CreateProductForm() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
-    const [imageUrls, setImageUrls] = useState([])
+    const [previewImage, setPreviewImage] = useState('');
+    const [imageUrls, setImageUrls] = useState([]);
     const [quantity, setQuantity] = useState(1);
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -31,6 +32,7 @@ function CreateProductForm() {
             name,
             price,
             description,
+            previewImage,
             imageUrls,
             quantity,
         }
@@ -79,7 +81,7 @@ function CreateProductForm() {
     const addImageUrls = index => e => {
         e.preventDefault()
         console.log('index: ' + index);
-        console.log('property name: ' + e.target.name);
+        console.log('property name: ' + e.target.value);
         let newArr = [...imageUrls]; // copying the old datas array
         // a deep copy is not needed as we are overriding the whole object below, and not setting a property of it. this does not mutate the state.
         newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to
@@ -124,12 +126,12 @@ function CreateProductForm() {
                 <input
                     placeholder="Preview Image Url"
                     type="text"
-                    value={imageUrls}
-                    onChange={addImageUrls(0)}
+                    value={previewImage}
+                    onChange={(e) => setPreviewImage(e.target.value)}
                 />
 
                 {
-                    imageUrls.length > 1 && imageUrls.map((data, i) => (
+                    imageUrls.length > 0 && imageUrls.map((data, i) => (
                         <input
                             key={i}
                             placeholder="Additional Image Url"
@@ -139,7 +141,7 @@ function CreateProductForm() {
                         />
                     ))
                 }
-                <button onClick={() => setImageUrls((preImageUrls) => [...preImageUrls, ""])}>Push for additional image</button>
+                <button onClick={(e) => {e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""])}}>Push for additional image</button>
 
                 <input
                     placeholder="Quantity"
