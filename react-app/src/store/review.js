@@ -1,6 +1,8 @@
 // TYPE
 const GET_USER_REVIEWS = "Reviews/getUserReview"
+const GET_PRODUCT_REVIEWS = "Reviews/getProductReview"
 
+/************************************************************************************ */
 // ACTION
 export const getUserReviews = (reviews) => {
     return {
@@ -8,6 +10,16 @@ export const getUserReviews = (reviews) => {
         reviews
     }
 }
+
+
+export const getProductReview = (reviews)=>{
+    return {
+        type: GET_PRODUCT_REVIEWS,
+        reviews
+    }
+}
+
+/************************************************************************************ */
 
 // THUNK ACTION CREATORS
 export const loadUserReviews = () => async (dispatch) => {
@@ -19,6 +31,20 @@ export const loadUserReviews = () => async (dispatch) => {
     }
 }
 
+export const loadProductReviews = (product_id) =>async (dispatch) =>{
+    const response = await fetch(`/api/products/${product_id}/reviews`);
+
+    if(response.ok){
+        const list = await response.json();
+        dispatch(getProductReview(list))
+    }
+    return response;
+}
+
+/**************************************************************************************** */
+
+
+
 // REVIEWS REDUCER
 const reviewsReducer = (state = {}, action) => {
     switch (action.type) {
@@ -26,6 +52,10 @@ const reviewsReducer = (state = {}, action) => {
             const newState = {};
             action.reviews.forEach((review) => (newState[review.id] = review))
             return newState
+        }
+        case GET_PRODUCT_REVIEWS:{
+            const newState ={};
+            
         }
         default: {
             return state
