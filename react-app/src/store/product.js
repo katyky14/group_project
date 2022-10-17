@@ -1,5 +1,8 @@
+
+
 // TYPES
 const GET_PRODUCTS = "Products/getProducts"
+const ADD_PRODUCTS = "products/addProducts"
 
 // ACTIONS
 const getAllProducts = payload => {
@@ -8,6 +11,14 @@ const getAllProducts = payload => {
         payload
     }
 }
+
+const addOneProduct = payload => {
+    return {
+        type: ADD_PRODUCTS,
+        payload
+    }
+}
+
 
 // THUNK ACTION CREATOR
 export const getAllProductsThunk = () => async dispatch => {
@@ -18,6 +29,34 @@ export const getAllProductsThunk = () => async dispatch => {
     }
 }
 
+
+export const addProductThunk = (productData) => async (dispatch) => {
+
+    const response = await fetch('/api/products', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(productData)
+    });
+
+
+
+    if (response.ok) {
+        const data = await response.json();
+        const imageResponse = await fetch(`/api/products/${data.id}/images`, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                "main_image": productData.main_image,
+                "image_url": productData.image_url
+            })
+        })
+
+        dispatch(addOneProduct(data));
+        return data;
+    }
+
+    // return response.json()
+}
 
 // REDUCER
 const productReducer = (state = {}, action) => {
@@ -30,6 +69,30 @@ const productReducer = (state = {}, action) => {
             })
             newState = { ...state, allProducts }
             return allProducts
+
+        // case ADD_PRODUCTS:
+        //     if (!state[action.payload.id]) {
+        //         const newStateForm = { ...state }
+        //         newStateForm[action.payload.id] = action.payload
+        //         return newStateForm
+        //     }
+
+        //     return {
+        //         ...state,
+        //         [action.payload.id]: {
+        //             ...state[action.payload.id],
+        //             ...action.payload
+        //         }
+        //     }
+
+        case ADD_PRODUCTS: {
+            const newProduct = {};
+            newProduct[action.payload.id] = action.payload
+            const newStateForm = { ...state, ...newProduct };
+            return newStateForm;
+        }
+
+
         default:
             return state
     }
