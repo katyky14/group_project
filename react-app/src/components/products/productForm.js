@@ -16,6 +16,8 @@ function CreateProductForm() {
     const [quantity, setQuantity] = useState(1);
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [preview, setPreview] = useState(false);
+    const [files, setFiles] = useState([])
 
     const ownerObj = useSelector(state => state.session.user)
 
@@ -33,7 +35,8 @@ function CreateProductForm() {
             description,
             mainImage,
             imageUrl,
-            quantity
+            quantity,
+            files
         }
 
         let createdProduct = await dispatch(addProductThunk(productInformation))
@@ -66,11 +69,22 @@ function CreateProductForm() {
 
         if (price < 0.20 || price > 50000) errors.push("Price must be between $0.20 and $50,000.00.")
         if (quantity < 1 || quantity > 999) errors.push("Quantity must be between 1 and 999.")
-        if (!imageUrl.match(/\.(jpg|jpeg|png)$/)) errors.push('Please provide a valid image extension [png/jpg/jpeg]')
+        // if (!imageUrl.match(/\.(jpg|jpeg|png)$/)) errors.push('Please provide a valid image extension [png/jpg/jpeg]')
 
         setValidationErrors(errors)
 
     }, [price, quantity, imageUrl])
+
+    const updatePreview = (e) => setPreview(!preview);
+
+    const handleSliderImages = (e) => {
+        console.log("EVENT e: ", e)
+        console.log("FILES BEFORE: ", files)
+        setFiles({ imageUrl, slider_images: [...e.target.value] });
+        console.log("FILES AFTER: ", files)
+
+        console.log("Update slider images", files);
+    };
 
 
     return (
@@ -107,35 +121,46 @@ function CreateProductForm() {
                     required
                 />
                 <div >
-                    <p>Main Image</p>
-                    <label>
+                    <p>Preview Main Image</p>
+                    <label for="preview">
                         <input
-                        type="radio"
-                        name='true'
-                        value='true'
-                        checked={mainImage === true}
-                        onChange={e  => setMainImage(e.target.value)}
+                            type="checkbox"
+                            name='preview'
+                            placeholder="preview"
+                            // required={true}
+                            value={preview}
+                            // checked={mainImage === true}
+                            onChange={updatePreview}
+
                         />
-                       true
+                        Yes
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     <label>
                         <input type="radio"
-                        id='false'
-                        name='false'
-                        value='false'
-                        checked={mainImage === false }
-                        onChange={e  => setMainImage(e.target.value)}/>
+                            id='false'
+                            name='false'
+                            value={false}
+                            checked={mainImage === false}
+                            onChange={e => setMainImage(e.target.value)} />
                         false
                     </label>
-                </div>
+                </div> */}
                 <input
                     placeholder="Image"
                     type="text"
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
-                    required
+                // required
+                />
+                <label for="slider_images">Slider Images</label>
+                <input
+                    multiple
+                    type="file"
+                    id="slider_images"
+                    name="slider_images"
+                    onChange={handleSliderImages}
                 />
 
                 <input

@@ -42,12 +42,14 @@ export const addProductThunk = (productData) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        const imageResponse = await fetch(`/api/products/${data.id}/images`, {
+        console.log("THIS IS DATA: ", data)
+        console.log("THIS IS DATA.product.id: ", data.product.id)
+        const imageResponse = await fetch(`/api/products/${data.product.id}/images`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                "main_image": productData.main_image,
-                "image_url": productData.image_url
+                "main_image": productData.mainImage,
+                "image_url": productData.files
             })
         })
 
