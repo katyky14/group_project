@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductsThunk } from "../../store/product";
+import "./homepage.css"
 
 
 function Products() {
     const dispatch = useDispatch()
     const productObj = useSelector(state => state.productState)
     const productArr = Object.values(productObj)
-
 
 
     useEffect(() => {
@@ -17,13 +17,15 @@ function Products() {
     return !!productArr.length && (
         <div>
             <h1>Products</h1>
-            <div>
-                {productArr.map(({ id, price, images }) => (
-                    <div key={id}>
-                        <img style={{ width: 300, height: 500 }} src={images.map(image => image.mainImage ? image.image_url : null)} alt={"Preview Spot"} />
-                        <div>${price.toFixed(2)}</div>
-                    </div>
-                ))}
+            <div id="homepage">
+                <div>
+                    {productArr.map(({ id, price, images }) => (
+                        <div key={id}>
+                            <img style={{ width: 300, height: 500 }} src={images.map(image => image.mainImage ? image.image_url : null)} alt={"Preview Spot"} />
+                            <div>${price.toFixed(2)}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )
