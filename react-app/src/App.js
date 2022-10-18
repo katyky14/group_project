@@ -11,6 +11,8 @@ import { authenticate } from './store/session';
 import Products from './components/products/getProducts';
 import CreateProductForm from './components/products/productForm';
 import ProductDetail from './components/products/productDetail';
+import CartForm from './components/ShoppingCart/CartForm';
+import GetCartItems from './components/ShoppingCart/ShoppingCart';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,11 +51,20 @@ function App() {
         <ProtectedRoute path='/products/new' exact={true}>
           <CreateProductForm />
         </ProtectedRoute>
+        <ProtectedRoute path='/products/:productId/carts/new' exact={true}>
+          <CartForm />
+        </ProtectedRoute>
         <Route path="/" exact={true}>
           <Products />
         </Route>
         <Route path="/products/:productId" exact={true}>
           <ProductDetail />
+        </Route>
+        <ProtectedRoute path='/shopping-carts' exact={true}>
+          <GetCartItems/>
+        </ProtectedRoute>
+        <Route>
+          <h1>Route Not Found</h1>
         </Route>
       </Switch>
     </BrowserRouter>

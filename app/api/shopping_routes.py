@@ -17,7 +17,7 @@ def get_all_cart():
     return "No items in cart"
 
 #Add Item to cart
-@shopping_routes.route('/<int:cart_itemid>',methods=["POST"])
+@shopping_routes.route('/<int:cart_itemid>',methods=["POST"]) #productId
 def add_item_to_cart(cart_itemid):
     form = ShoppingCartForm()
     user = current_user.to_dict()
@@ -34,7 +34,7 @@ def add_item_to_cart(cart_itemid):
     return form.errors
 
 #Edit Items in cart
-@shopping_routes.route('/<int:cart_itemid>',methods=["PUT"])
+@shopping_routes.route('/<int:cart_itemid>',methods=["PUT"]) #
 def update_item_to_cart(cart_itemid):
     form = ShoppingCartForm()
     user = current_user.to_dict()

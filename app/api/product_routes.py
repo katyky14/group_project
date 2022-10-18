@@ -3,7 +3,8 @@ from flask import Blueprint, request, redirect
 from app.forms.images_form import ImageForm
 from ..forms.product_form import ProductForm,EditProductForm
 from ..forms.reviews_form import ReviewForm
-from ..models import Product, Review, Image, db
+from ..forms.shoppingcart_form import ShoppingCartForm
+from ..models import Product, Review, Image, db, Cart
 from flask_login import current_user
 
 
@@ -93,7 +94,7 @@ def get_all_comments_product(product_id):
     return {"Reviews": [review.to_dict_reviews() for review in products_reviews]}
 
 #Add comment for product
-@product_routes.route('/<int:product_id>/reviews',methods=["POST"])
+@product_routes.route('/<int:product_id>/reviews', methods=["POST"])
 def add_comment(product_id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -110,3 +111,4 @@ def add_comment(product_id):
         return {"Review": data.to_dict_reviews()}
     if form.errors:
         return form.errors
+
