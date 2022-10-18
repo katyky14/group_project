@@ -1,0 +1,41 @@
+.profile-dropdown {
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    height: 42px;
+    width: 76px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.profile-dropdown:hover {
+    cursor: pointer;
+}
+
+.profile-details {
+    position: absolute;
+    list-style: none;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 14px;
+    padding: 8px 8px;
+}
+
+.profile-details-li {
+    transition: all 0.3s ease-in 0s;
+}
+
+.profile-details-li:hover {
+    background-color: rgba(34, 34, 34, 0.075);
+}
+
+.new-product-link {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.signout-div {
+    cursor: pointer;
+}
