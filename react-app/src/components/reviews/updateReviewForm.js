@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {loadProductReviews,createReviews,deleteReview} from "../../store/review"
+import {loadProductReviews,createReviews,deleteReview,updateReview} from "../../store/review"
 import { getAProduct } from "../../store/product";
 
 
 /*********************************************************************************** */
-export const ReviewForm =()=>{
+export const UpdateReviewForm =()=>{
 const dispatch = useDispatch();
 const history = useHistory();
 
@@ -20,15 +20,17 @@ const[show,setShow]=useState(false);
 const updateReviews = (e) => setComment(e.target.value);
 const updateStars = (e) => setRating(e.target.value);
 
-let {productId} = useParams();
+let {productId,reviewId} = useParams();
+
 let allProducts = useSelector(state => Object.values(state.productState));
 // console.log("ALLPRODUCTS" ,allProducts)
 let allReviews = useSelector(state => Object.values(state.reviewState));
+console.log("ALLREVIEWS",allReviews)
 let user = useSelector(state=>state.session.user);
 
 const reviewofUser = allReviews.find(review=> user && review.userId === user.id)
 const product = allProducts.find(product => product.id === +productId)
-// console.log("PRODUCT",product)
+console.log("PRODUCT",product)
 /***************************************useEffect******************************************** */
 useEffect(() => {
     dispatch(getAProduct(productId))
@@ -54,10 +56,11 @@ useEffect(() => {
 
 const handleSubmit = async (e)=>{
     e.preventDefault();
-    const payload={comment,rating};
-    let newReview = await dispatch(createReviews(product.id,payload))
+    const payload={id:reviewId,comment,rating};
+    let newReview = await dispatch(updateReview(payload))
     dispatch(loadProductReviews(product.id))
-console.log("NEW REVIEW " , newReview)
+console.log("NEW UPDATE REVIEW " , newReview)
+console.log(payload.id.reviews,"PAYLOAD ID REVIEW")
     // if(newReview){
     //     onCancel()
     // }
