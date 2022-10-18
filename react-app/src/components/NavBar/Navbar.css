@@ -2,6 +2,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    margin: 8px 4%;
+    font-family: "Montserrat", sans-serif;
+    height: 64px;
+}
+
+li, a, button {
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
 }
 
 .login-signup {
@@ -20,9 +29,25 @@
     padding-right: 15px;
     font-weight: bold;
     display: flex;
+    transition: all 0.3s ease-in 0s;
 }
 
 .user-auth-div:hover {
     background-color: rgba(34, 34, 34, 0.075);
+    cursor: pointer;
+}
+
+.logo-div {
+    height: 100%;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.home-link {
+    text-decoration: none;
+    color: black;
     cursor: pointer;
 }

@@ -15,11 +15,27 @@
 
 .profile-details {
     position: absolute;
-    left: 8em;
-    top: 55px;
     list-style: none;
     background-color: white;
     border: 1px solid grey;
-    border-radius: 15px;
-    padding: 5px 5px;
+    border-radius: 14px;
+    padding: 8px 8px;
+}
+
+.profile-details-li {
+    transition: all 0.3s ease-in 0s;
+}
+
+.profile-details-li:hover {
+    background-color: rgba(34, 34, 34, 0.075);
+}
+
+.new-product-link {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.signout-div {
+    cursor: pointer;
 }

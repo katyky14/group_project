@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from '../../store/session';
+import './ProfileButton.css'
 
 function ProfileButton({ sessionUser }) {
     const dispatch = useDispatch();
@@ -41,13 +42,13 @@ function ProfileButton({ sessionUser }) {
             </button>
             {showMenu && sessionUser && (
                 <ul className="profile-details">
-                    <li>
+                    <li className="profile-details-li">
                         <div>{sessionUser.firstname}</div>
                     </li>
-                    <li>
-                        <NavLink to='/products/new'>Sell on ktsy</NavLink>
+                    <li className="profile-details-li">
+                        <NavLink to='/products/new' className='new-product-link'>Sell on ktsy</NavLink>
                     </li>
-                    <li>
+                    <li className="profile-details-li">
                         <div className="signout-div" onClick={loggingOut}>Sign out</div>
                     </li>
                 </ul>
