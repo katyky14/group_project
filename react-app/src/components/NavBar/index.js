@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import SignUpFormModal from './SignUpModal';
 import LoginFormModal from './SignInModal';
+import ProfileButton from './ProfileButton';
 
 function NavBar({ loaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -23,8 +24,17 @@ function NavBar({ loaded }) {
 
             </div>
             <div className='nav-right'>
-                <LoginFormModal showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />
-                <SignUpFormModal showSignUpModal={showSignUpModal} setShowSignUpModal={setShowSignUpModal} />
+                {!sessionUser && (
+                    <div>
+                        <LoginFormModal showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />
+                        <SignUpFormModal showSignUpModal={showSignUpModal} setShowSignUpModal={setShowSignUpModal} />
+                    </div>
+                )}
+                {sessionUser && (
+                    <div>
+                        <ProfileButton sessionUser={sessionUser}/>
+                    </div>
+                )}
             </div>
         </div>
     )
