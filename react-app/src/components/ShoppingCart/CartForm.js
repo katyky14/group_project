@@ -37,6 +37,7 @@ const CartForm = () => {
         if (idProduct) return dispatch(editProductThunk(cartInformation['productId'], newQuantity += 1));
         else dispatch(addCartItemThunk(cartInformation, productId));
 
+        // history.push('/shopping-carts')
 
     }
 

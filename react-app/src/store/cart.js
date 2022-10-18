@@ -83,7 +83,7 @@ export const editProductThunk = (cartData, quantity) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(updateCount(data))
-        return { ...data }
+        return data
     }
 }
 
@@ -128,12 +128,12 @@ const cartReducer = (state = {}, action) => {
 
 
         case UPDATE_COUNT:
-            const newState = { ...state }
-            newState[action.payload.id] = action.payload
+            const newState = {...state}
+            newState[action.payload.id] = {...action.payload}
             return newState
 
         case REMOVE_ITEM:
-            const newStateDelete = { ...state }
+            const newStateDelete = {...state}
             // console.log('in the reducer',action.payload)
             delete newStateDelete[action.payload];
             return newStateDelete;
