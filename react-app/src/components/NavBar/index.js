@@ -12,6 +12,10 @@ function NavBar({ loaded }) {
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
 
+    const loginButton = () => {
+
+    }
+
 
     return (
         <div className='navbar'>
@@ -27,17 +31,19 @@ function NavBar({ loaded }) {
             </div>
             <div className='nav-right'>
                 {!sessionUser && (
-                    <div>
-                        <LoginFormModal showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />
-                        <SignUpFormModal showSignUpModal={showSignUpModal} setShowSignUpModal={setShowSignUpModal} />
+                    <div className='login-signup'>
+                        <div onClick={() => setShowLoginModal(true)} className='user-auth-div'>Log In</div>
+                        <div onClick={() => setShowSignUpModal(true)} className='user-auth-div'>Sign Up</div>
                     </div>
                 )}
                 {sessionUser && (
                     <div>
-                        <ProfileButton sessionUser={sessionUser}/>
+                        <ProfileButton sessionUser={sessionUser} />
                     </div>
                 )}
             </div>
+            <LoginFormModal showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />
+            <SignUpFormModal showSignUpModal={showSignUpModal} setShowSignUpModal={setShowSignUpModal} />
         </div>
     )
 }

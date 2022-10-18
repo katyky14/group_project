@@ -16,11 +16,10 @@ const DemoUser = ({ setShowLoginModal }) => {
         const demoEmail = 'demo@aa.io';
         const demoPassword = 'password'
         let loggedInDemo = await dispatch(login(demoEmail, demoPassword))
-        if (loggedInDemo) {
-            setShowLoginModal(false);
-            history.push('/')
-        }
+        setShowLoginModal(false);
+        history.push('/')
     }
+
     return (
         <div className="demo-user-div">
             <button onClick={loginDemoUser} className='demo-user-button'>Login as demo user</button>

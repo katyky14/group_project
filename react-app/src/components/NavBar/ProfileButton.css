@@ -1,0 +1,25 @@
+.profile-dropdown {
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    height: 42px;
+    width: 76px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.profile-dropdown:hover {
+    cursor: pointer;
+}
+
+.profile-details {
+    position: absolute;
+    left: 8em;
+    top: 55px;
+    list-style: none;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 15px;
+    padding: 5px 5px;
+}
