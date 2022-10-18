@@ -1,7 +1,7 @@
 // TYPE
 const GET_USER_REVIEWS = "Reviews/getUserReview"
 export const GET_PRODUCT_REVIEWS = "Reviews/getProductReview"
-export const CREATE_ONE = "reviews/CREATE_ONE"; 
+export const CREATE_ONE = "reviews/CREATE_ONE";
 export const REMOVE_ONE = 'reviews/REMOVE_ONE';
 export const EDIT_REVIEW = "spots/EDIT_SPOT";//updating a review
 /************************************************************************************ */
@@ -14,7 +14,7 @@ export const getUserReviews = (reviews) => {
 }
 
 
-const getProductReview = (reviews)=>{
+const getProductReview = (reviews) => {
     return {
         type: GET_PRODUCT_REVIEWS,
         reviews
@@ -46,19 +46,19 @@ export const loadUserReviews = () => async (dispatch) => {
     }
 }
 
-export const loadProductReviews = (product_id) =>async (dispatch) =>{
+export const loadProductReviews = (product_id) => async (dispatch) => {
     const response = await fetch(`/api/products/${product_id}/reviews`);
 
-    if(response.ok){
+    if (response.ok) {
         const list = await response.json();
-        console.log("LIST",list)
+        console.log("LIST", list)
         dispatch(getProductReview(list.Reviews))
     }
     return response;
 }
 
-export const createReviews = (product_id,data) => async dispatch => {
-    console.log("CREATE REVIEWS DATA",data)
+export const createReviews = (product_id, data) => async dispatch => {
+    console.log("CREATE REVIEWS DATA", data)
     const response = await fetch(`/api/products/${product_id}/reviews`, {
         method: 'POST',
         headers: {
@@ -110,41 +110,41 @@ const reviewsReducer = (state = {}, action) => {
             action.reviews.forEach((review) => (newState[review.id] = review))
             return newState
         }
-        case GET_PRODUCT_REVIEWS:{
-            const newState ={};
+        case GET_PRODUCT_REVIEWS: {
+            const newState = {};
             action.reviews.forEach(review => (newState[review.id] = review))
             return newState
         }
-        case CREATE_ONE:{     
-        if(!state[action.review.id]){
-            const newState = {...state,[action.review.id]:action.review}; 
-            return newState;
+        case CREATE_ONE: {
+            if (!state[action.review.id]) {
+                const newState = { ...state, [action.review.id]: action.review };
+                return newState;
             }
-            
+
         }
-        return {
-            ...state,
-            [action.review.id]: {
-                ...state[action.review.id],
-                ...action.review
-            }
-        };
+            return {
+                ...state,
+                [action.review.id]: {
+                    ...state[action.review.id],
+                    ...action.review
+                }
+            };
         case REMOVE_ONE:
             const newState = { ...state };
             delete newState[action.spotId];
             return newState;
-        case  EDIT_REVIEW:
-        if(!state[action.review.id]){
-                const newState = {...state,[action.review.id]:action.review}; 
+        case EDIT_REVIEW:
+            if (!state[action.review.id]) {
+                const newState = { ...state, [action.review.id]: action.review };
                 return newState;
-        }
-        return {
-            ...state,
-            [action.review.id]: {
-                ...state[action.review.id],
-                ...action.review
             }
-        };
+            return {
+                ...state,
+                [action.review.id]: {
+                    ...state[action.review.id],
+                    ...action.review
+                }
+            };
         default: {
             return state
         }

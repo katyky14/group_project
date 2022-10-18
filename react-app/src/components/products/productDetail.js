@@ -18,8 +18,10 @@ function ProductDetail() {
     let allReviews = useSelector(state => Object.values(state.reviewState));
     let user = useSelector(state => state.session.user);
     const reviewofUser = allReviews.find(review => user && review.userId === user.id)
+    console.log("reviewofUser",reviewofUser)
     const product = allProducts.find(product => product.id === +productId)
     // let allReviewsArr = Object.values(allReviews)
+    console.log("PRODUCT DETAIL",product)
     console.log("REVIEW ARR", allReviews)
 
 
@@ -53,14 +55,15 @@ function ProductDetail() {
     //     </div>
     // )
     return (
-
-        <div>
+<div>
+        <div className="left">
+            {/* <div className="previewImage">{product.images.image_url}</div> */}
             {product && <div>
                 {
                     allReviews.map((e) => {
 
                         return (
-
+                            
                             <div id="reviewList">
 
                                 <div>{e.comment}</div>
@@ -100,6 +103,24 @@ function ProductDetail() {
 
 
 
+        </div>
+        <div className="right">
+          {
+            product && 
+            <div>
+            <div className="ProductName">{product.name}</div>
+            <div className="ReviewsLink">reviewsLink</div>
+            <div className="Description">{product.description}</div>
+            <div className="Price">${product.price}</div>
+            <div className="AddToCartButton"><button>Add to Cart</button></div>
+           <div><i class="fa-duotone fa-truck"></i>Hooray! This item ships free to the US.</div>
+           <div>Cost to ship</div>
+           <div>Free</div>
+           <div>Etsy offsets carbon emissions from shipping and packaging on this purchase.</div>
+          
+            </div>
+          }
+        </div>
         </div>
     )
 }
