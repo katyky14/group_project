@@ -1,4 +1,5 @@
 from crypt import methods
+from statistics import quantiles
 from flask import Blueprint, jsonify, request
 from ..forms.shoppingcart_form import ShoppingCartForm,EditShoppingCartForm
 from ..models import db, Cart
@@ -39,11 +40,16 @@ def update_item_to_cart(cart_itemid):
     form = ShoppingCartForm()
     user = current_user.to_dict()
     cart_item = Cart.query.filter(Cart.user_id == user['id']).filter(Cart.product_id == cart_itemid)
+    # print('in cart item', cart_itemid)
+    # print('form data', form.data['quantity'])
     if [item.to_dict_cart() for item in cart_item]:
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             cart_item[0].quantity = form.data['quantity']
-
+            # print('form ', form.data['quantity'])
+            # print('cart item', cart_item[0].quantity)
+            # print('the form data items', form.data['quantity'])
+            db.session.add(cart_item[0])
             db.session.commit()
             return {'shoppingCart': [item.to_dict_cart() for item in cart_item]}
         return form.errors

@@ -9,13 +9,14 @@ const CartForm = () => {
     const { productId } = useParams()
     const [quantity, setQuantity] = useState(1)
     const history = useHistory()
-    const [count, setCount] = useState(0)
+
 
     const user = useSelector(state => state.session.user)
     const cartObj = useSelector(state => state.cartState)
     const cartArr = Object.values(cartObj);
     const idProduct = cartArr.find(item => item.productId === +productId)
     const quantityValue = cartArr.find(item => item.quantity)
+    console.log('idProduct', idProduct)
     console.log('the quantity in cart form', quantityValue)
     const id = Number(productId)
 
@@ -23,9 +24,9 @@ const CartForm = () => {
     //     <div> No items in the cart. Select items to purchase</div>
     // )
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+        let newQuantity = idProduct?.quantity+ 1
 
         const cartInformation = {
             userId: user.id,
@@ -33,8 +34,8 @@ const CartForm = () => {
             quantity
         }
 
-        if (idProduct) return dispatch(editProductThunk(cartInformation['productId'], idProduct.quantity += 1));
-        dispatch(addCartItemThunk(cartInformation, productId));
+        if (idProduct) return dispatch(editProductThunk(cartInformation['productId'], newQuantity += 1));
+        else dispatch(addCartItemThunk(cartInformation, productId));
 
 
     }

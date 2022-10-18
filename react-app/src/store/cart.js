@@ -52,7 +52,7 @@ export const getCartItemThunk = () => async dispatch => {
 
 
 export const addCartItemThunk = (cartData, productId) => async dispatch => {
-    console.log('the cart', cartData)
+    // console.log('the cart', cartData)
     const response = await fetch(`/api/cart/${productId}`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -71,10 +71,11 @@ export const addCartItemThunk = (cartData, productId) => async dispatch => {
 
 
 export const editProductThunk = (cartData, quantity) => async (dispatch) => {
-    // console.log('in thunk cartData',(cartData))
-    // console.log('thunk quantity ',(quantity))
+    console.log('in thunk cartData',(cartData))
+    console.log('thunk quantity ',(quantity))
     const response = await fetch(`/api/cart/${cartData}`, {
         method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             "quantity": quantity
         }),
@@ -135,7 +136,6 @@ const cartReducer = (state = {}, action) => {
             const newStateDelete = { ...state }
             // console.log('in the reducer',action.payload)
             delete newStateDelete[action.payload];
-
             return newStateDelete;
 
         default:

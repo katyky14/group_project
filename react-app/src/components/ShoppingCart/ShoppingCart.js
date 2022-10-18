@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getCartItemThunk, removeItemThunk, editProductThunk } from "../../store/cart";
 import { getAllProductsThunk, getAProduct } from "../../store/product";
 
 
 const GetCartItems = () => {
     const dispatch = useDispatch()
-
+    const history = useHistory()
     const cartObj = useSelector(state => state.cartState)
     // const user = useSelector(state => state.session.user)
     const cartArr = Object.values(cartObj);
@@ -14,9 +15,7 @@ const GetCartItems = () => {
     // console.log('in the component for all cart items', cartArr)
     const products = useSelector(state => state.productState)
     const productArr = Object.values(products)
-    // const find =( productArr.find(p => p.id === 1))
-    // console.log('the product ', find?.quanity)
-    // const filter = cartArr.filter(item => item.userId === user.id)
+
 
 
     useEffect(() => {
@@ -30,7 +29,7 @@ const GetCartItems = () => {
                 {cartArr.map(item => (
 
                     <div key={item.id}>
-
+                        {console.log('item id', item.productId)}
                         <div>Product ID {item.productId} </div>
                         <div>Item Id {item.id} </div>
                         <div> {item.quantity}</div>
@@ -47,13 +46,14 @@ const GetCartItems = () => {
                   </button>
                   <button
                   disabled={item.quantity === 0}
-                    onClick={() => dispatch(editProductThunk(item.productId, item.quantity--))}
-                  >
-                    -
+                    onClick={() => dispatch(editProductThunk(item.productId, item.quantity-=1))}
+                  > -
                   </button>
                   <button
-                    onClick={() => {dispatch(removeItemThunk(item.productId))}}
-                  >
+                    onClick={() =>
+                     { dispatch(removeItemThunk(item.productId))
+                        // history.push(`/shopping-carts`)
+                    }}>
                     Remove
                   </button>
                   </div>
