@@ -7,7 +7,7 @@ const SignUpForm = ({ setShowSignUpModal }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [firstname, setFirstname] = useState('');
-  const [lastname, setlastname] = useState('');
+  const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -17,7 +17,7 @@ const SignUpForm = ({ setShowSignUpModal }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, firstname, lastname));
       if (data) {
         setErrors(data)
       }
@@ -70,6 +70,24 @@ const SignUpForm = ({ setShowSignUpModal }) => {
           name='email'
           onChange={updateEmail}
           value={email}
+        ></input>
+      </div>
+      <div>
+        <label>First Name</label>
+        <input
+          type='text'
+          name='firstname'
+          onChange={(e) => setFirstname(e.target.value)}
+          value={firstname}
+        ></input>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input
+          type='text'
+          name='lastname'
+          onChange={(e) => setLastname(e.target.value)}
+          value={lastname}
         ></input>
       </div>
       <div>

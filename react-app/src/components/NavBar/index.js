@@ -32,8 +32,12 @@ function NavBar({ loaded }) {
             <div className='nav-right'>
                 {!sessionUser && (
                     <div className='login-signup'>
-                        <div onClick={() => setShowLoginModal(true)} className='user-auth-div'>Log In</div>
-                        <div onClick={() => setShowSignUpModal(true)} className='user-auth-div'>Sign Up</div>
+                        <div onClick={() => setShowLoginModal(true)} className='user-auth-div'>
+                            <p className='user-auth-text'>Log In</p>
+                        </div>
+                        <div onClick={() => setShowSignUpModal(true)} className='user-auth-div'>
+                            <p className='user-auth-text'>Sign Up</p>
+                        </div>
                     </div>
                 )}
                 {sessionUser && (
