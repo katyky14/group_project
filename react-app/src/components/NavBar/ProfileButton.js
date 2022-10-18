@@ -3,7 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from '../../store/session';
 
-function ProfileButton({sessionUser}) {
+function ProfileButton({ sessionUser }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
@@ -33,24 +33,24 @@ function ProfileButton({sessionUser}) {
 
     return (
         <>
-        <div className="profile-dropdown">
-            <div>
-                <i className="fas fa-user-circle"/>
+            <div className="profile-dropdown">
+                <div>
+                    <i className="fas fa-user-circle" />
+                </div>
             </div>
-        </div>
-        {showMenu && sessionUser && (
-            <ul className="profile-details">
-                <li>
-                    <div>{sessionUser.firstname}</div>
-                </li>
-                <li>
-                    <NavLink to='/products/new'>Sell on ktsy</NavLink>
-                </li>
-                <li>
-                    <div className="signout-div" onClick={loggingOut}>Sign out</div>
-                </li>
-            </ul>
-        )}
+            {showMenu && sessionUser && (
+                <ul className="profile-details">
+                    <li>
+                        <div>{sessionUser.firstname}</div>
+                    </li>
+                    <li>
+                        <NavLink to='/products/new'>Sell on ktsy</NavLink>
+                    </li>
+                    <li>
+                        <div className="signout-div" onClick={loggingOut}>Sign out</div>
+                    </li>
+                </ul>
+            )}
         </>
     )
 }
