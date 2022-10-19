@@ -1,0 +1,16 @@
+.demo-user-div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.demo-user-button {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    width: 90%;
+    height: 2em;
+    border-radius: 20px;
+}

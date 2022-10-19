@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css'
 
 const SignUpForm = ({ setShowSignUpModal }) => {
   const [errors, setErrors] = useState([]);
@@ -52,61 +53,67 @@ const SignUpForm = ({ setShowSignUpModal }) => {
       <form onSubmit={onSignUp} className='signup-form'>
         <div className='signup-header'>
           <h3 className='signup-header-text'>Create your account</h3>
-          <h4 className='signup-subheader-text'>Registration is easy.</h4>
+          <h5 className='signup-subheader-text'>Registration is easy.</h5>
         </div>
         <div className='signup-errors-container'>
           {errors.map((error, ind) => (
             <div key={ind} className='signup-errors-line'>{error}</div>
           ))}
         </div>
-        <div>
-          <label>User Name</label>
+        <div className='signup-row'>
+          <label className='signup-form-label'>User Name</label>
           <input
+            className='signup-form-input'
             type='text'
             name='username'
             onChange={updateUsername}
             value={username}
           ></input>
         </div>
-        <div>
-          <label>Email</label>
+        <div className='signup-row'>
+          <label className='signup-form-label'>Email</label>
           <input
+            className='signup-form-input'
             type='text'
             name='email'
             onChange={updateEmail}
             value={email}
           ></input>
         </div>
-        <div>
-          <label>First Name</label>
+        <div className='signup-row'>
+          <label className='signup-form-label'>First Name</label>
           <input
+            className='signup-form-input'
             type='text'
             name='firstname'
             onChange={(e) => setFirstname(e.target.value)}
             value={firstname}
           ></input>
         </div>
-        <div>
-          <label>Last Name</label>
+        <div className='signup-row'>
+          <label className='signup-form-label'>Last Name</label>
           <input
+            className='signup-form-input'
             type='text'
             name='lastname'
             onChange={(e) => setLastname(e.target.value)}
             value={lastname}
           ></input>
         </div>
-        <div>
-          <label>Password</label>
+        <div className='signup-row'>
+          <label className='signup-form-label'>Password</label>
           <input
+            className='signup-form-input'
             type='password'
             name='password'
             onChange={updatePassword}
             value={password}
           ></input>
         </div>
-        <div>
-          <label>Repeat Password</label>
+        <div className='signup-row'>
+          <label className='signup-form-label'>Repeat Password</label>
           <input
+            className='signup-form-input'
             type='password'
             name='repeat_password'
             onChange={updateRepeatPassword}
@@ -114,7 +121,9 @@ const SignUpForm = ({ setShowSignUpModal }) => {
             required={true}
           ></input>
         </div>
-        <button type='submit'>Sign Up</button>
+        <div className='signup-button-container'>
+          <button type='submit' className='signup-submit-button'>Register</button>
+        </div>
       </form>
     </div>
   );

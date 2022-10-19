@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css'
 
-const LoginForm = ({setShowLoginModal}) => {
+const LoginForm = ({ setShowLoginModal }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,34 +35,40 @@ const LoginForm = ({setShowLoginModal}) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-      </div>
-    </form>
+    <div className='login-form-container'>
+      <form onSubmit={onLogin} className='login-form'>
+        <div className='login-errors-container'>
+          {errors.map((error, ind) => (
+            <div key={ind} className='login-errors-line'>{error}</div>
+          ))}
+        </div>
+        <div className='login-row'>
+          <label htmlFor='email' className='login-form-label'>Email</label>
+          <input
+            className='login-form-input'
+            name='email'
+            type='text'
+            placeholder='Email'
+            value={email}
+            onChange={updateEmail}
+          />
+        </div>
+        <div className='login-row'>
+          <label htmlFor='password' className='login-form-label'>Password</label>
+          <input
+            className='login-form-input'
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={updatePassword}
+          />
+          <div className='login-button-container'>
+            <button type='submit' className='login-submit-button'>Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 

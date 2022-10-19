@@ -1,0 +1,35 @@
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    max-width: 384px;
+    width: 22vw;
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-right: 30px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-submit-button {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    width: 90%;
+    height: 2em;
+    border-radius: 20px;
+    margin-top: 10px;
+}

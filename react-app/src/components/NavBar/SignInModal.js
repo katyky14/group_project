@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Modal } from '../../context/Modal'
 import LoginForm from '../auth/LoginForm'
 import DemoUser from "./DemoUser";
+import './SignInModal.css'
 
 function LoginFormModal({ showLoginModal, setShowLoginModal }) {
 

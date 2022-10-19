@@ -1,0 +1,37 @@
+.signup-form-container {
+    display: flex;
+    justify-content: center;
+    max-width: 384px;
+    width: 22vw;
+    padding: 30px;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.signup-header-text {
+    font-size: 20px;
+}
+
+.signup-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.signup-submit-button {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    width: 90%;
+    height: 2em;
+    border-radius: 20px;
+    margin-top: 10px;
+}
