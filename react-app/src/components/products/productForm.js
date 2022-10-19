@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 
 import { addProductThunk } from "../../store/product";
 
+import './productForm.css'
+
 function CreateProductForm() {
     const dispatch = useDispatch();
     const history = useHistory()
@@ -90,22 +92,130 @@ function CreateProductForm() {
     }
 
     return (
-        <div>
-            <h1>Add Listing</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="main-container-product-form">
+            <h1 className="h1-add-new-listing">Add a new Listing</h1>
+            <form className="form-product" onSubmit={handleSubmit}>
                 {hasSubmitted && validationErrors.length > 0 && (
                     <ul>
                         {validationErrors.map((error, index) => <li key={index}>{error}</li>)}
                     </ul>
                 )}
 
-                <input
-                    placeholder="Name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
+                <div className="first-block-product-form">
+
+                    <div>
+
+                        <h3>Photos</h3>
+
+                        <p>Add as many as you can so buyers can see every detail.</p>
+
+                        <div className="info-image-main-container">
+
+                            <div className="info-container">
+
+                                <ul className="ul-info-product">
+                                    <li className="info-1 tips">Tips</li>
+                                    <li className="info-1">Use natural light and no flash</li>
+                                    <li className="info-1">Include a common object for scale.</li>
+                                    <li className="info-1">Show the item being held, worn, or used</li>
+                                </ul>
+                            </div>
+
+                            <div className="img-input-container">
+
+                                <input
+                                    className="product-img-preview product-img"
+                                    placeholder="Preview Image Url"
+                                    type="text"
+                                    value={previewImage}
+                                    onChange={(e) => setPreviewImage(e.target.value)}
+                                />
+
+                                {
+                                    imageUrls.length > 0 && imageUrls.map((data, i) => (
+                                        <input
+                                            className="product-img-additionals product-img"
+                                            key={i}
+                                            placeholder="Additional Image Url"
+                                            type="text"
+                                            value={data}
+                                            onChange={addImageUrls(i)}
+                                        />
+                                    ))
+                                }
+                                <button className="img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}>
+                                    <div className="camera-icon-product">
+                                        <span className="icon-fa-camera"> <i class="fa-solid fa-camera"></i></span> Add additional images
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div className="first-block-product-form">
+                    <div>
+
+                        <h3>Listing details</h3>
+                        <p >Tell the world all about your item and why they’ll love it.</p>
+
+                        <div className="listing-details-main">
+
+                            <div className="label-input-separator">
+
+                                <div>
+
+                                    <label className="label-listing-product">Title</label>
+                                </div>
+
+
+
+                                <div>
+                                    <input
+                                        className="input-details-product title-input"
+                                        placeholder=""
+                                        type="text"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        required
+                                    />
+                                    <p className="listing-info1">Include keywords that buyers would see to search for your item</p>
+                                </div>
+
+                            </div>
+                            <div className="label-input-separator">
+                                <div>
+
+                                    <label className="label-listing-product">Description</label>
+                                </div>
+                                <div>
+
+                                    <input
+                                        className="input-details-product description-input"
+                                        placeholder=""
+                                        type="textarea"
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        required
+                                        />
+                                    <div>
+                                        <p className="listing-info1">Start with a brief overview that describes your item's finest features'</p>
+                                        <p className="listing-info1">Not sure what else to say? Shoppers also like hearing about your process, and the story behind this item.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
 
                 <input
                     placeholder="Price"
@@ -114,34 +224,6 @@ function CreateProductForm() {
                     onChange={(e) => setPrice(e.target.value)}
                     required
                 />
-
-                <input
-                    placeholder="Description"
-                    type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    required
-                />
-
-                <input
-                    placeholder="Preview Image Url"
-                    type="text"
-                    value={previewImage}
-                    onChange={(e) => setPreviewImage(e.target.value)}
-                />
-
-                {
-                    imageUrls.length > 0 && imageUrls.map((data, i) => (
-                        <input
-                            key={i}
-                            placeholder="Additional Image Url"
-                            type="text"
-                            value={data}
-                            onChange={addImageUrls(i)}
-                        />
-                    ))
-                }
-                <button onClick={(e) => {e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""])}}>Push for additional image</button>
 
                 <input
                     placeholder="Quantity"

@@ -1,0 +1,144 @@
+.main-container-product-form {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.form-product {
+    /* border: 1px solid green; */
+    width: 70%;
+    overflow: hidden;
+}
+
+.h1-add-new-listing {
+    align-self: flex-start;
+    padding-left: 280px;
+}
+
+.first-block-product-form {
+    border: 1px solid rgb(225, 221, 221);
+    padding-bottom: 40px;
+    margin-bottom: 30px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+
+.product-img {
+    width: 200px;
+    height: 80px;
+    margin-left: 15px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+
+.img-product-button {
+    width: 200px;
+    height: 85px;
+    margin-left: 15px;
+
+    cursor: pointer;
+}
+
+.camera-icon-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 15px;
+}
+
+.icon-fa-camera {
+    font-size: 25px;
+}
+
+
+
+.info-image-main-container {
+    display: flex;
+    /* border: 1px solid brown; */
+}
+
+
+.ul-info-product {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.info-1 {
+    font-size: 15px;
+    padding-left: 0;
+    margin-left: 15px;
+}
+
+.tips {
+    list-style: none;
+}
+
+
+
+/* listing details css */
+.listing-details-main {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid green; */
+}
+
+.label-input-separator {
+    /* border: 1px solid blue; */
+    margin: 10px;
+}
+
+.input-details-product {
+    box-sizing: border-box;
+    width: 75%;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    font-size: 14px;
+    border-width: 1px;
+    text-align: left;
+    display: inline-block;
+    float: right;
+    /* border: 1px solid red; */
+    margin-top: -30px;
+}
+
+.title-input {
+    height: 38px;
+}
+
+.description-input {
+    height: 130px;
+}
+
+.label-listing-product {
+    /* font-size: 14px;
+    margin-right: 10px;
+    text-align: right;
+    float: left;
+    display: inline-block; */
+    box-sizing: border-box;
+    display: block;
+    margin-top: 20px;
+
+}
+
+
+.listing-info1 {
+    /* float: left;
+    text-align: right;
+    margin-top: -10px;
+    max-width: 100px; */
+
+    font-size: 14px;
+    color: #8d8585;
+}
