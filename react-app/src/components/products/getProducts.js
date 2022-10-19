@@ -18,11 +18,6 @@ function Products() {
         dispatch(getAllProductsThunk())
     }, [dispatch])
 
-    const redirect = () => {
-
-        return <Redirect to={{ pathname: 'https://github.com/KatyKy14' }} />
-    }
-
     return !!productArr.length && (
         <div id="homepage">
             <div id="header-container">
