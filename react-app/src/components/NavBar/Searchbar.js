@@ -41,6 +41,10 @@ function Searchbar() {
         e.preventDefault();
     }
 
+    const isEmptyObject = (obj) => {
+        return JSON.stringify(obj) === '{}';
+    }
+
     return (
         <>
             <form className='search-form'>
@@ -64,7 +68,7 @@ function Searchbar() {
                     ))}
                 </ul>
             )}
-            {search && !searchResults && search.length > 0 && (
+            {search && isEmptyObject(searchResults) && search.length > 0 && (
                 <ul className='search-results-container'>
                     <li className='search-results-line'>No results found</li>
                 </ul>
