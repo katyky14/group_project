@@ -35,11 +35,15 @@ function ProductDetail() {
         dispatch(getAProduct(productId))
         dispatch((loadProductReviews(productId)));
 
-    }, dispatch);
+
+    }, [dispatch, productId]);
+
     return (
         <div>
             <div className="left">
                 <img className="previewImage" src={product.images[0].image_url} />
+
+
 
 
                 <div className="stars">{allReviews.length}<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
@@ -95,6 +99,8 @@ function ProductDetail() {
                 </div>
 
                 }
+
+
 
 
 
