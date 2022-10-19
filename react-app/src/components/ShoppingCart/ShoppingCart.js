@@ -26,12 +26,26 @@ const GetCartItems = () => {
     dispatch(getAllProductsThunk()).then(() => setIsLoaded(true))
   }, [dispatch])
 
+  const options = (max) => {
+    let optionsArr = []
+    for (let i = 1; i <= max; i++) {
+      optionsArr.push(<option value={i}>{i}</option>)
+    }
+    return optionsArr
+  }
+
+  const selectQuantity = async (productId, itemQuantity) => {
+    console.log("SELECT QUANTITY FUNC PRODUCT ID: ", productId)
+    console.log("SELECT QUANTITY FUNC E TARGET VALUE: ", itemQuantity)
+    await dispatch(editProductThunk(productId, itemQuantity))
+  }
+
   return isLoaded && (
     <div id="shoppingCartPage">
       <div>
         <div>
           {!!cartArr.length && (
-            <h2 id="shoppingCarth2">{cartArr[0].quantity} {console.log(cartArr)}{cartArr[0].quantity === 1 ? "item" : "items"} in your cart</h2>
+            <h2 id="shoppingCarth2">{cartArr.length} {cartArr.length === 1 ? "item" : "items"} in your cart</h2>
           )}
         </div>
         <div id="protection">
@@ -59,6 +73,11 @@ const GetCartItems = () => {
                 </div>
                 <div>
                   QUANTITY: {item.quantity}
+                  <div>
+                    <select onChange={selectQuantity(product.id, (e => e.target.value))}>
+                      {options(product.quantity)}
+                    </select>
+                  </div>
                   <div><br />
                     <button
                       disabled={item.quantity === productArr.find(product => product.id === item.productId)?.quantity}
