@@ -16,8 +16,8 @@ const CartForm = () => {
     const cartArr = Object.values(cartObj);
     const idProduct = cartArr.find(item => item.productId === +productId)
     const quantityValue = cartArr.find(item => item.quantity)
-    console.log('idProduct', idProduct)
-    console.log('the quantity in cart form', quantityValue)
+    // console.log('idProduct', idProduct)
+    // console.log('the quantity in cart form', quantityValue)
     const id = Number(productId)
 
     // if (!cartArr || !cartArr.length) return (
@@ -34,8 +34,9 @@ const CartForm = () => {
             quantity
         }
 
-        if (idProduct) return dispatch(editProductThunk(cartInformation['productId'], newQuantity += 1));
-        else dispatch(addCartItemThunk(cartInformation, productId));
+        await dispatch(getCartItemThunk())
+        if (idProduct) return dispatch(editProductThunk(cartInformation['productId'], newQuantity));
+        else  return dispatch(addCartItemThunk(cartInformation, productId));
 
         // history.push('/shopping-carts')
 

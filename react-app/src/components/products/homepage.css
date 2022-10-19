@@ -1,7 +1,32 @@
 #homepage {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#orange-banner {
+    width: 100%;
+    height: 150px;
+    background-color: #F8EBE6;
+}
+
+#Welcome {
+    position: absolute;
+    padding-top: 30px;
+    font-size: 34px;
+    font-family: Cambria, serif;
+}
+
+#white-space-div {
+    height: 120px;
 }
 
 #product-container {
@@ -11,6 +36,7 @@
     height: 350px;
     width: 1328px;
     gap: 15px;
+    padding-bottom: 120px;
 }
 
 .homepage-products {

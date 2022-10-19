@@ -41,18 +41,21 @@ const removeItem = payload => {
 //thunk action
 
 export const getCartItemThunk = () => async dispatch => {
+    // console.log('1 hello in thunk GET ALL do you see me?')
     const response = await fetch('/api/cart/')
-
+    // console.log('2 hello in thunk GET ALL do you see me?')
     if (response.ok) {
         const data = await response.json();
-        console.log('all cart items in thunk', data.shoppingCart)
+        // console.log('3 hello in thunk GET ALL do you see me?')
+        // console.log('all cart items in thunk', data.shoppingCart)
         dispatch(getAllCartItem(data.shoppingCart));
     }
 }
 
 
 export const addCartItemThunk = (cartData, productId) => async dispatch => {
-    // console.log('the cart', cartData)
+    console.log('1 hello in thunk do you see me?')
+    console.log('the cart', cartData)
     const response = await fetch(`/api/cart/${productId}`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -60,10 +63,11 @@ export const addCartItemThunk = (cartData, productId) => async dispatch => {
             "quantity": cartData.quantity
         })
     });
-
+    console.log('2  hello in thunk do you see me?')
     if (response.ok) {
         const data = await response.json();
         dispatch(addOneCartItem(data));
+        console.log('3 hello in thunk do you see me?')
         console.log('the data in cart thunk', data)
         return data;
     }
@@ -71,8 +75,8 @@ export const addCartItemThunk = (cartData, productId) => async dispatch => {
 
 
 export const editProductThunk = (cartData, quantity) => async (dispatch) => {
-    console.log('in thunk cartData',(cartData))
-    console.log('thunk quantity ',(quantity))
+    // console.log('in thunk cartData',(cartData))
+    // console.log('thunk quantity ',(quantity))
     const response = await fetch(`/api/cart/${cartData}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -89,15 +93,18 @@ export const editProductThunk = (cartData, quantity) => async (dispatch) => {
 
 
 export const removeItemThunk = (id) => async dispatch => {
+
+    // console.log('in front', id)
     const response = await fetch(`/api/cart/${id}`, {
         method: 'DELETE',
         headers: { "Content-Type": "application/json" }
     });
-
+    console.log('2 hello in thunk do you see me?')
     if (response.ok) {
         const data = await response.json();
-        console.log('the data in thunk', data)
-        dispatch(removeItem(id))
+        // console.log('3 hello in thunk do you see me?')
+        // console.log('the data in thunk', data)
+        dispatch(removeItem(data.id))
     }
 }
 
@@ -109,33 +116,44 @@ const cartReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_CART_ITEMS:
             const allCartProduct = {};
+            // console.log('get all cart action payload', action.payload)
             // allCartProduct[action.payload.id] = action.payload
             action.payload.forEach(item => {
+                // console.log('inside for each', item.id)
                 allCartProduct[item.id] = item
             })
-
+            //console.log('the allCartProduct in get all cart items reducer', allCartProduct)
             return allCartProduct
 
 
 
         case ADD_ONE_ITEM:
             const newItem = {};
-            newItem[action.payload.id] = action.payload
+            console.log('action payload in reducer', action.payload)
+            newItem[action.payload.shoppingCart.id] = action.payload.shoppingCart
+            console.log('the new item in add one item', newItem)
             const newStateForm = { ...state, ...newItem };
-            // console.log('in the reducer', newStateForm)
+            console.log('in the reducer new state', newStateForm)
             return newStateForm
 
 
 
         case UPDATE_COUNT:
             const newState = {...state}
-            newState[action.payload.id] = {...action.payload}
+            // console.log('update in reducer', action.payload.shoppingCart)
+            // console.log('the new state before', newState)
+            newState[action.payload.shoppingCart[0].id] = action.payload.shoppingCart[0]
+
+            // console.log('the new state', newState)
             return newState
 
         case REMOVE_ITEM:
             const newStateDelete = {...state}
-            // console.log('in the reducer',action.payload)
+            console.log('4 hello in thunk do you see me?')
+            console.log('the state before delete', newStateDelete)
+            console.log('in the reducer',action.payload)
             delete newStateDelete[action.payload];
+            console.log('the delete state', newStateDelete)
             return newStateDelete;
 
         default:

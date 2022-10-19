@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { getAllProductsThunk } from "../../store/product";
+import Footer from '../Footer/footer.js';
 import "./homepage.css"
 
 
@@ -10,6 +11,7 @@ function Products() {
     const history = useHistory();
     const productObj = useSelector(state => state.productState)
     const productArr = Object.values(productObj)
+    const user = useSelector(state => state.session)
 
 
     useEffect(() => {
@@ -18,6 +20,13 @@ function Products() {
 
     return !!productArr.length && (
         <div id="homepage">
+            <div id="header-container">
+                <div id="orange-banner"></div>
+                {user && (
+                    <div id="Welcome">Welcome to Buy Ktsy {user.firstname}</div>
+                )}
+                <div id="white-space-div"></div>
+            </div>
             <div id="product-container">
                 {productArr.map(({ id, name, price, images }) => (
                     <div key={id} onClick={() => history.push(`/products/${id}`)} className="homepage-products">
@@ -26,7 +35,8 @@ function Products() {
                     </div>
                 ))}
             </div>
-        </div>
+            <Footer />
+        </div >
     )
 
 }
