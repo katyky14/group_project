@@ -200,7 +200,7 @@ function CreateProductForm() {
                                         value={description}
                                         onChange={(e) => setDescription(e.target.value)}
                                         required
-                                        />
+                                    />
                                     <div>
                                         <p className="listing-info1">Start with a brief overview that describes your item's finest features'</p>
                                         <p className="listing-info1">Not sure what else to say? Shoppers also like hearing about your process, and the story behind this item.</p>
@@ -215,23 +215,39 @@ function CreateProductForm() {
 
 
 
+                <div className="first-block-product-form">
 
 
-                <input
-                    placeholder="Price"
-                    type="number"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                    required
-                />
+                    <div>
+                            <h3>Inventory and Pricing</h3>
 
-                <input
-                    placeholder="Quantity"
-                    type="number"
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                    required
-                />
+                    <input
+                        placeholder="Price"
+                        type="number"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        required
+                        />
+
+                    <input
+                        placeholder="Quantity"
+                        type="number"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                        required
+                        />
+
+
+
+
+                        </div>
+
+                </div>
+
+
+
+
+
                 <button type="submit">Add Listing</button>
             </form>
         </div>
