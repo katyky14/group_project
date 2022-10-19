@@ -64,3 +64,17 @@
     align-items: center;
     width: 100%;
 }
+
+.search-results-container {
+    position: absolute;
+    z-index: 100;
+    background: white;
+    list-style: none;
+    text-decoration: none;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.search-results-line {
+    text-decoration: none;
+}

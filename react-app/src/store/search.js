@@ -6,3 +6,10 @@ const getSearchProducts = (payload) => {
         payload
     }
 }
+
+export const getSearchProductsThunk = (query) => async dispatch => {
+    const responce = await fetch('/api/search');
+    if (responce.ok) {
+        const data = await responce.json();
+    }
+}
