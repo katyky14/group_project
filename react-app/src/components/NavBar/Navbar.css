@@ -51,3 +51,7 @@ li, a, button {
     color: black;
     cursor: pointer;
 }
+
+.searchbar-container {
+    width: 50%;
+}

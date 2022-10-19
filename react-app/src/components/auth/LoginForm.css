@@ -61,3 +61,7 @@
 .login-form-input:hover {
     border-color: rgba(34, 34, 34, 0.5);
 }
+
+.login-errors-line {
+    color: red;
+}

@@ -11,14 +11,17 @@ const LoginForm = ({ setShowLoginModal }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  if (user) {
+    setShowLoginModal(false)
+    return <Redirect to='/' />;
+  }
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
+      console.log(data)
       setErrors(data);
-    }
-    if (errors.length === 0) {
-      setShowLoginModal(false)
     }
   };
 
@@ -29,10 +32,6 @@ const LoginForm = ({ setShowLoginModal }) => {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-
-  if (user) {
-    return <Redirect to='/' />;
-  }
 
   return (
     <div className='login-form-container'>

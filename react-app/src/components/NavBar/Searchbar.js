@@ -1,8 +1,10 @@
-import {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import './Searchbar.css'
 
 function Searchbar() {
     const [search, setSearch] = useState('');
+    const [showSearches, setShowSearches] = useState(false);
     const dispatch = useDispatch();
 
     const submitSearch = async (e) => {
@@ -10,18 +12,19 @@ function Searchbar() {
     }
 
     return (
-        <div className='search-div'>
-            <form className='search-form'>
+        <form className='search-form'>
+            <div className='search-div'>
                 <input className='search-input'
-                name='searchbar'
-                placeholder='Search for anything'
-                type='search'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                    name='searchbar'
+                    placeholder='Search for anything'
+                    type='search'
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                 ></input>
                 <button className='search-button'></button>
-            </form>
-        </div>
+            </div>
+        </form>
+
     )
 }
 

@@ -26,7 +26,7 @@ function NavBar({ loaded }) {
                     </div>
                 </NavLink>
             </div>
-            <div className='searchbar-div'>
+            <div className='searchbar-container'>
                 <Searchbar />
             </div>
             <div className='nav-right'>

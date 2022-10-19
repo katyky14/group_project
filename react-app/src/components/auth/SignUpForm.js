@@ -15,7 +15,10 @@ const SignUpForm = ({ setShowSignUpModal }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  if (user) return <Redirect to='/' />;
+  if (user) {
+    setShowSignUpModal(false)
+    return <Redirect to='/' />;
+  }
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -27,9 +30,7 @@ const SignUpForm = ({ setShowSignUpModal }) => {
       if (data) {
         setErrors(data)
       }
-      if (errors.length === 0) {
-        setShowSignUpModal(false);
-      }
+      return;
     }
     return setErrors(['Password fields must match'])
   };
@@ -49,10 +50,6 @@ const SignUpForm = ({ setShowSignUpModal }) => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
-
-  if (user) {
-    return <Redirect to='/' />;
-  }
 
   return (
     <div className='signup-form-container'>
