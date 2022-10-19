@@ -39,6 +39,7 @@ function Searchbar() {
 
     const submitSearch = async (e) => {
         e.preventDefault();
+        // TODO: submitting search from button
     }
 
     const isEmptyObject = (obj) => {
@@ -63,7 +64,7 @@ function Searchbar() {
                 <ul className='search-results-container'>
                     {searchResults.map(result => (
                         <li className='search-results-line' key={result.id}>
-                            <NavLink to={`/products/${result.id}`} className='result-link' onClick={() => setSearch('')}>{result.name}</NavLink>
+                            <NavLink to={`/products/${result.id}`} className='result-link' onClick={() => setSearch('')}><p className='result-p'>{result.name}</p></NavLink>
                         </li>
                     ))}
                 </ul>
