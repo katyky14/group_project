@@ -1,7 +1,32 @@
 #homepage {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#orange-banner {
+    width: 100%;
+    height: 150px;
+    background-color: #F8EBE6;
+}
+
+#Welcome {
+    position: absolute;
+    padding-top: 30px;
+    font-size: 34px;
+    font-family: Cambria, serif;
+}
+
+#white-space-div {
+    height: 120px;
 }
 
 #product-container {
@@ -11,6 +36,7 @@
     height: 350px;
     width: 1328px;
     gap: 15px;
+    padding-bottom: 120px;
 }
 
 .homepage-products {
@@ -38,4 +64,43 @@
     position: relative;
     bottom: 40px;
     left: 10px;
+}
+
+.footer {
+    width: 100%;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#power-statement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+    width: 100%;
+    background-color: #4D6BC6;
+}
+
+#globe {
+    font-size: 28px;
+}
+
+#statement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    font-family: Helvetica, sans-serif;
+}
+
+#repos {
+    height: 60%;
+    width: 100%;
+    background-color: #2F466C;
+    color: white;
+    display: flex;
+    justify-content: space-around;
 }
