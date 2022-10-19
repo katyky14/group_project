@@ -26,17 +26,21 @@ const GetCartItems = () => {
     dispatch(getAllProductsThunk()).then(() => setIsLoaded(true))
   }, [dispatch])
 
-  const options = (max) => {
+  const options = (max, amountCarted) => {
     let optionsArr = []
     for (let i = 1; i <= max; i++) {
-      optionsArr.push(<option value={i}>{i}</option>)
+      if (i !== amountCarted) {
+        optionsArr.push(<option value={i}>{i}</option>)
+      }
+      else if (i === amountCarted) {
+        optionsArr.push(<option value={i} selected={true}>{i}</option>)
+      }
+
     }
     return optionsArr
   }
 
   const selectQuantity = async (productId, itemQuantity) => {
-    console.log("SELECT QUANTITY FUNC PRODUCT ID: ", productId)
-    console.log("SELECT QUANTITY FUNC E TARGET VALUE: ", itemQuantity)
     await dispatch(editProductThunk(productId, itemQuantity))
   }
 
@@ -49,7 +53,7 @@ const GetCartItems = () => {
           )}
         </div>
         <div id="protection">
-          Buy ktsy Purchase Protection: Shop confidently on Buy ktsy knowing if something goes wrong with an order, we've got your back.
+          <span id="protect-Bold">Buy ktsy Purchase Protection:</span> &nbsp; Shop confidently on Buy ktsy knowing if something goes wrong with an order, we've got your back.
         </div>
         <div id="emptyCart">
           {!cartArr.length && (
@@ -61,7 +65,7 @@ const GetCartItems = () => {
             {productArr.filter(product => product.id === item.productId)?.map(product =>
               <div key={product.id} className="cartItemDescriptions">
                 <img className="cartItemImage" src={product.images[0]?.image_url} />
-                <div>
+                <div id="itemNameContainer">
                   {product.name}<br /><br />
                   {product.description}<br /><br /><br /><br />
                   <p id="remove"
@@ -72,13 +76,15 @@ const GetCartItems = () => {
                   </p>
                 </div>
                 <div>
-                  QUANTITY: {item.quantity}
                   <div>
-                    <select onChange={selectQuantity(product.id, (e => e.target.value))}>
-                      {options(product.quantity)}
+                    <select
+                      id="quantitySelect"
+                      onChange={(e) => selectQuantity(product.id, +e.target.value)}
+                    >
+                      {options(product.quantity, item.quantity)}
                     </select>
                   </div>
-                  <div><br />
+                  {/* <div><br />
                     <button
                       disabled={item.quantity === productArr.find(product => product.id === item.productId)?.quantity}
                       onClick={async () => await dispatch(editProductThunk(item.productId, item.quantity + 1))}>
@@ -89,9 +95,16 @@ const GetCartItems = () => {
                       onClick={async () => await dispatch(editProductThunk(item?.productId, item.quantity - 1))}
                     > -
                     </button>
+                  </div> */}
+                </div>
+                <div id="priceContainer">
+                  <div id="cartItemPrice">
+                    ${item.quantity === 1 ? product.price.toFixed(2) : (product.price * item.quantity).toFixed(2)}
+                  </div>
+                  <div id="priceEach">
+                    (${product.price.toFixed(2)} each)
                   </div>
                 </div>
-                <div id="cartItemPrice">${product.price.toFixed(2)}</div>
               </div>
             )}
             <hr></hr>
