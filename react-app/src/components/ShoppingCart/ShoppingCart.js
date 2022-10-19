@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getCartItemThunk, removeItemThunk, editProductThunk } from "../../store/cart";
 import { getAllProductsThunk } from "../../store/product";
+import CartForm from "./CartForm";
 
 
 const GetCartItems = () => {
@@ -16,14 +17,15 @@ const GetCartItems = () => {
   const products = useSelector(state => state.productState)
   const productArr = Object.values(products)
 
+  const [isLoaded, setIsLoaded] = useState(false)
 
 
   useEffect(() => {
-    dispatch(getCartItemThunk())
-    dispatch(getAllProductsThunk())
+    dispatch(getCartItemThunk()).then(() => setIsLoaded(true))
+    dispatch(getAllProductsThunk()).then(() => setIsLoaded(true))
   }, [dispatch])
 
-  return (
+  return isLoaded && (
     <div>
       <div>
         {cartArr.map(item => (
@@ -42,17 +44,17 @@ const GetCartItems = () => {
             )}
             <button
               disabled={item.quantity === productArr.find(product => product.id === item.productId)?.quantity}
-              onClick={() => dispatch(editProductThunk(item.productId, item.quantity + 1))}>
+              onClick={async() => await dispatch(editProductThunk(item.productId, item.quantity + 1))}>
               +
             </button>
             <button
               disabled={item.quantity === 0}
-              onClick={() => dispatch(editProductThunk(item.productId, item.quantity - 1))}
+              onClick={async() => await dispatch(editProductThunk(item?.productId, item.quantity - 1))}
             > -
             </button>
             <button type="submit"
-              onClick={() =>
-                dispatch(removeItemThunk(item.productId))
+              onClick={async() =>
+                await dispatch(removeItemThunk(item.productId))
                 // history.push(`/shopping-carts`)
               }>
               Remove
