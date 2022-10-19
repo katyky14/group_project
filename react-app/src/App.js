@@ -15,6 +15,9 @@ import { ReviewForm } from './components/reviews/reviewform';
 import {UpdateReviewForm} from './components/reviews/updateReviewForm';
 import CartForm from './components/ShoppingCart/CartForm';
 import GetCartItems from './components/ShoppingCart/ShoppingCart';
+import UpdatedProductForm from './components/products/EditProductForm';
+
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -70,6 +73,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/:productId/review/:reviewId/update' exact={true}>
           <UpdateReviewForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/products/:productId/edit'>
+          <UpdatedProductForm />
         </ProtectedRoute>
         <Route>
           <h1>Route Not Found</h1>
