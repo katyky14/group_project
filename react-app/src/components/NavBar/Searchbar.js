@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import './Searchbar.css'
 
 function Searchbar() {
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    const [showSearches, setShowSearches] = useState(false);
+    // const [showSearches, setShowSearches] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,7 +19,7 @@ function Searchbar() {
                 body: JSON.stringify({ search })
             })
             const dataJson = await data.json()
-            console.log(dataJson)
+            // console.log(dataJson)
             if (isSubscribed) {
                 setSearchResults(dataJson.products)
             }
@@ -26,12 +27,12 @@ function Searchbar() {
 
         fetchData(search)
         console.log('search results: ', searchResults)
-        if (search) {
-            setShowSearches(true)
-        }
-        else {
-            setShowSearches(false)
-        }
+        // if (search) {
+        //     setShowSearches(true)
+        // }
+        // else {
+        //     setShowSearches(false)
+        // }
 
         return () => isSubscribed = false;
     }, [search, dispatch])
@@ -51,17 +52,19 @@ function Searchbar() {
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     ></input>
-                    <button className='search-button'></button>
+                    <button className='search-button' onClick={submitSearch}><i className='fa-solid fa-magnifying-glass'></i></button>
                 </div>
             </form>
-            {showSearches && searchResults && searchResults.length > 0 && (
+            {search && searchResults && searchResults.length > 0 && (
                 <ul className='search-results-container'>
                     {searchResults.map(result => (
-                        <li className='search-results-line' key={result.id}>{result.name}</li>
+                        <li className='search-results-line' key={result.id}>
+                            <NavLink to={`/products/${result.id}`} className='result-link' onClick={() => setSearch('')}>{result.name}</NavLink>
+                        </li>
                     ))}
                 </ul>
             )}
-            {showSearches && searchResults && searchResults.length === 0 && (
+            {search && !searchResults && search.length > 0 && (
                 <ul className='search-results-container'>
                     <li className='search-results-line'>No results found</li>
                 </ul>

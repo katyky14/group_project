@@ -33,7 +33,7 @@ function ProductDetail() {
         dispatch(getAProduct(productId))
         dispatch((loadProductReviews(productId)));
 
-    }, dispatch);
+    }, [dispatch, productId]);
 
     // return !product && (
     //     <div>
@@ -63,7 +63,7 @@ function ProductDetail() {
                     allReviews.map((e) => {
 
                         return (
-                            
+
                             <div id="reviewList">
 
                                 <div>{e.comment}</div>
@@ -106,7 +106,7 @@ function ProductDetail() {
         </div>
         <div className="right">
           {
-            product && 
+            product &&
             <div>
             <div className="ProductName">{product.name}</div>
             <div className="ReviewsLink">reviewsLink</div>
@@ -117,7 +117,7 @@ function ProductDetail() {
            <div>Cost to ship</div>
            <div>Free</div>
            <div>Etsy offsets carbon emissions from shipping and packaging on this purchase.</div>
-          
+
             </div>
           }
         </div>

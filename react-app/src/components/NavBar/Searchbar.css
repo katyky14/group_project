@@ -48,6 +48,11 @@
     border-top-right-radius: 96px;
     border-bottom-right-radius: 96px;
     border-left: 0;
+    transition: all 0.3s ease-in 0s;
+}
+
+.search-button:hover {
+    background: rgba(34, 34, 34, 0.15);
 }
 
 .search-form {
@@ -77,4 +82,8 @@
 
 .search-results-line {
     text-decoration: none;
+}
+
+.result-link {
+    color: black;
 }
