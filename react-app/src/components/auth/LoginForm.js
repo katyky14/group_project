@@ -37,6 +37,9 @@ const LoginForm = ({ setShowLoginModal }) => {
   return (
     <div className='login-form-container'>
       <form onSubmit={onLogin} className='login-form'>
+        <div className='login-header'>
+          <h3 className='login-header-text'>Sign in</h3>
+        </div>
         <div className='login-errors-container'>
           {errors.map((error, ind) => (
             <div key={ind} className='login-errors-line'>{error}</div>
@@ -48,7 +51,6 @@ const LoginForm = ({ setShowLoginModal }) => {
             className='login-form-input'
             name='email'
             type='text'
-            placeholder='Email'
             value={email}
             onChange={updateEmail}
           />
@@ -59,7 +61,6 @@ const LoginForm = ({ setShowLoginModal }) => {
             className='login-form-input'
             name='password'
             type='password'
-            placeholder='Password'
             value={password}
             onChange={updatePassword}
           />

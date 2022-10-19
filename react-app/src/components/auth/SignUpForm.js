@@ -15,8 +15,13 @@ const SignUpForm = ({ setShowSignUpModal }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  if (user) return <Redirect to='/' />;
+
   const onSignUp = async (e) => {
     e.preventDefault();
+    if (!email.includes('@')) {
+      return setErrors(['Please provide a valid email'])
+    }
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password, firstname, lastname));
       if (data) {
@@ -26,6 +31,7 @@ const SignUpForm = ({ setShowSignUpModal }) => {
         setShowSignUpModal(false);
       }
     }
+    return setErrors(['Password fields must match'])
   };
 
   const updateUsername = (e) => {
