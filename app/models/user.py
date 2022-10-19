@@ -1,3 +1,4 @@
+from tkinter import CASCADE
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -9,7 +10,13 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    firstname = db.Column(db.String(40), nullable=False)
+    lastname = db.Column(db.String(40), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+    products = db.relationship('Product', back_populates='owner', cascade='all, delete')
+    images = db.relationship('Image', back_populates='users', cascade='all, delete')
+    reviews = db.relationship('Review', back_populates='users', cascade='all, delete')
+    cart = db.relationship('Cart', back_populates='users', cascade='all, delete')
 
     @property
     def password(self):
@@ -26,5 +33,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'firstname': self.firstname,
+            'lastname': self.lastname
         }
