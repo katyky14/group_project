@@ -151,10 +151,18 @@
 
 .title-input {
     height: 38px;
+    letter-spacing: 1px;
 }
 
 .description-input {
     height: 130px;
+
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-align: left;
+    outline: none;
+    resize: none;
+    overflow: auto;
 
 }
 
@@ -255,6 +263,16 @@
     background-color: rgba(36, 34, 34);
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2);
-
-
 }
+
+
+.error-product-form {
+    font-size: 14px;
+    color: rgb(221, 111, 111);
+}
+
+/* input:invalid {
+    background-color: rgb(196, 110, 110, 0.2);
+    outline: 2px solid red;
+    accent-color: red;
+} */

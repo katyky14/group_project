@@ -97,11 +97,12 @@ function CreateProductForm() {
                 <h1 className="h1-add-new-listing">Add a new Listing</h1>
             </div>
             <form className="form-product" onSubmit={handleSubmit}>
-                {hasSubmitted && validationErrors.length > 0 && (
+                {/* {hasSubmitted && validationErrors.length > 0 && (
                     <ul>
-                        {validationErrors.map((error, index) => <li key={index}>{error}</li>)}
+
+                        {validationErrors.map((error, index) => <li key={index}>  {error}</li>)}
                     </ul>
-                )}
+                )} */}
 
                 <div className="first-block-product-form">
 
@@ -196,7 +197,8 @@ function CreateProductForm() {
                                 </div>
                                 <div>
 
-                                    <input
+                                    <textarea
+                                        cols="30" rows="5"
                                         className="input-details-product description-input"
                                         placeholder=""
                                         type="textarea"
@@ -244,6 +246,7 @@ function CreateProductForm() {
                                                 onChange={(e) => setPrice(e.target.value)}
                                                 required
                                             />
+                                            {hasSubmitted && validationErrors.length > 0 && ( <p className="error-product-form">{validationErrors[0]}</p>)}
                                         </div>
                                         <div>
                                             <p className="listing-info1">Remember to factor in the costs of materials, labor, and other business expenses.</p>
@@ -262,13 +265,14 @@ function CreateProductForm() {
                                         <div className="price-border-input">
 
                                             <input
-                                                className="input-price-product"
-                                                placeholder="Quantity"
+                                                className="input-price-product quanity"
+                                                placeholder=""
                                                 type="number"
                                                 value={quantity}
                                                 onChange={(e) => setQuantity(e.target.value)}
                                                 required
                                             />
+                                            { hasSubmitted && validationErrors.length > 0 && ( <p className="error-product-form">{validationErrors[1]}</p>)}
                                         </div>
                                         <div>
                                             <p className="listing-info1">Let your customers know how many of these you made. </p>
@@ -282,10 +286,10 @@ function CreateProductForm() {
 
                 <div className="button-container-product">
 
-                <button
-                className="product-form-submit-button"
-                type="submit">Add Listing
-                </button>
+                    <button
+                        className="product-form-submit-button"
+                        type="submit">Add Listing
+                    </button>
 
                 </div>
 
