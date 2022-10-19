@@ -2,6 +2,7 @@ import { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { getAllProductsThunk } from "../../store/product";
+import Footer from '../Footer/footer.js';
 import "./homepage.css"
 
 
@@ -39,17 +40,7 @@ function Products() {
                     </div>
                 ))}
             </div>
-            <div className="footer">
-                <div id="power-statement">
-                    <p id="statement"><span id="globe">&#127760; </span><span id="text">  Buy Ktsy is powered by Katy, Thenammai, Kevin, and Tony.</span></p>
-                </div>
-                <div id="repos">
-                    <p onClick={redirect}>Katy's Github</p>
-                    <p>https://github.com/thenunachi</p>
-                    <p>https://github.com/kmtsou</p>
-                    <p>https://github.com/TTan321</p>
-                </div>
-            </div>
+            <Footer />
         </div >
     )
 
