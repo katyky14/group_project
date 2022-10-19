@@ -93,7 +93,9 @@ function CreateProductForm() {
 
     return (
         <div className="main-container-product-form">
-            <h1 className="h1-add-new-listing">Add a new Listing</h1>
+            <div className="new-listing-div">
+                <h1 className="h1-add-new-listing">Add a new Listing</h1>
+            </div>
             <form className="form-product" onSubmit={handleSubmit}>
                 {hasSubmitted && validationErrors.length > 0 && (
                     <ul>
@@ -105,16 +107,17 @@ function CreateProductForm() {
 
                     <div>
 
-                        <h3>Photos</h3>
+                        <h3 className="h3-product-form">Photos</h3>
 
-                        <p>Add as many as you can so buyers can see every detail.</p>
+                        <p className="subtitle-info-product">Add as many as you can so buyers can see every detail.</p>
 
                         <div className="info-image-main-container">
+
 
                             <div className="info-container">
 
                                 <ul className="ul-info-product">
-                                    <li className="info-1 tips">Tips</li>
+                                    <li className="info-1 tips">Tips:</li>
                                     <li className="info-1">Use natural light and no flash</li>
                                     <li className="info-1">Include a common object for scale.</li>
                                     <li className="info-1">Show the item being held, worn, or used</li>
@@ -159,8 +162,8 @@ function CreateProductForm() {
                 <div className="first-block-product-form">
                     <div>
 
-                        <h3>Listing details</h3>
-                        <p >Tell the world all about your item and why they’ll love it.</p>
+                        <h3 className="h3-product-form">Listing details</h3>
+                        <p className="subtitle-info-product">Tell the world all about your item and why they’ll love it.</p>
 
                         <div className="listing-details-main">
 
@@ -218,37 +221,74 @@ function CreateProductForm() {
                 <div className="first-block-product-form">
 
 
-                    <div>
-                            <h3>Inventory and Pricing</h3>
-
-                    <input
-                        placeholder="Price"
-                        type="number"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        required
-                        />
-
-                    <input
-                        placeholder="Quantity"
-                        type="number"
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                        required
-                        />
+                    <div className="listing-details-main">
+                        <h3 className="h3-product-form">Inventory and Pricing</h3>
 
 
+                        <div>
+                            <div>
+                                <div className="label-input-separator">
+
+                                    <div>
+                                        <label className="price-listing-product">Price</label>
+                                    </div>
+
+                                    <div>
+                                        <div className="price-border-input">
+
+                                            <input
+                                                className="input-price-product"
+                                                placeholder="$0"
+                                                type="number"
+                                                value={price}
+                                                onChange={(e) => setPrice(e.target.value)}
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <p className="listing-info1">Remember to factor in the costs of materials, labor, and other business expenses.</p>
+                                        </div>
+                                    </div>
+                                </div>
 
 
+                                <div className="label-input-separator">
+
+                                    <div>
+                                        <label className="price-listing-product" >Quantity</label>
+                                    </div>
+
+                                    <div>
+                                        <div className="price-border-input">
+
+                                            <input
+                                                className="input-price-product"
+                                                placeholder="Quantity"
+                                                type="number"
+                                                value={quantity}
+                                                onChange={(e) => setQuantity(e.target.value)}
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <p className="listing-info1">Let your customers know how many of these you made. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+                <div className="button-container-product">
+
+                <button
+                className="product-form-submit-button"
+                type="submit">Add Listing
+                </button>
 
                 </div>
 
-
-
-
-
-                <button type="submit">Add Listing</button>
             </form>
         </div>
     )
