@@ -50,6 +50,11 @@
     width: 194px;
     height: 155px;
     border-radius: 15px;
+    cursor: pointer;
+}
+
+#item-texts {
+    cursor: pointer;
 }
 
 #remove {
@@ -78,6 +83,7 @@
     font-family: sans-serif;
     font-size: 15px;
     padding-left: 5px;
+    cursor: pointer;
 }
 
 #priceContainer {

@@ -64,10 +64,12 @@ const GetCartItems = () => {
           <div className="cartItemsContainer" key={item.id}>
             {productArr.filter(product => product.id === item.productId)?.map(product =>
               <div key={product.id} className="cartItemDescriptions">
-                <img className="cartItemImage" src={product.images[0]?.image_url} />
+                <img className="cartItemImage" src={product.images[0]?.image_url} onClick={() => history.push(`/products/${product.id}`)} />
                 <div id="itemNameContainer">
-                  {product.name}<br /><br />
-                  {product.description}<br /><br /><br /><br />
+                  <div id="item-texts" onClick={() => history.push(`/products/${product.id}`)}>
+                    {product.name}<br /><br />
+                    {product.description}<br /><br /><br /><br />
+                  </div>
                   <p id="remove"
                     onClick={async () =>
                       await dispatch(removeItemThunk(item.productId))
