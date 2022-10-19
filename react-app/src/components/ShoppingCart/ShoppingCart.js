@@ -31,7 +31,7 @@ const GetCartItems = () => {
       <div>
         <div>
           {!!cartArr.length && (
-            <h2 id="shoppingCarth2">{cartArr.length} {cartArr.length === 1 ? "item" : "items"} in your cart</h2>
+            <h2 id="shoppingCarth2">{cartArr[0].quantity} {console.log(cartArr)}{cartArr[0].quantity === 1 ? "item" : "items"} in your cart</h2>
           )}
         </div>
         <div id="protection">
