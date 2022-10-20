@@ -6,6 +6,10 @@ import { deleteProductThunk, getAllProductsThunk } from "../../store/product";
 import './userProducts.css'
 import EditProductFormModal from './EditProductFormModal'
 
+const StyledNavLink3 = (props) => {
+    return <NavLink {...props} className={`${props.className} my-navlink-style3`} />
+}
+
 function UserProducts() {
     const dispatch = useDispatch()
     const history = useHistory()
@@ -15,40 +19,49 @@ function UserProducts() {
     console.log('images', ownerImages)
 
     return (
-        <div className="user-listing-main">
-
-            <h1 className="h1-your-listing"> Manage Your Listings</h1>
-            <div className="user-listing-container">
+        <>
+            <div className="user-listing-main">
+                <div className="h1-your-listing">
+                    <h1> Manage Your Listings</h1>
+                </div>
 
                 <div className="user-listings">
                     {owner.map(({ id, name, price, quantity }) => (
-                        <div className="listing-container" key={id}>
-                            <div>Product Id: {id} </div>
-                            <img
-                                className="listing-img"
-                                src={ ownerImages[id]?.image_url.length ? ownerImages[id]?.image_url : "https://cdn.pixabay.com/photo/2016/11/29/03/07/crown-1866986_960_720.jpg"} alt="img"></img>
+                        <div key={id}>
+                            <div className="listing-container" >
+                                <div>Product Id: {id} </div>
+                                <img
+                                    className="listing-img"
+                                    src={ownerImages[id]?.image_url.length ? ownerImages[id]?.image_url : "https://cdn.pixabay.com/photo/2016/11/29/03/07/crown-1866986_960_720.jpg"} alt="img"></img>
 
-                            <div>Product Name: {name}</div>
+                                <div className="listing-info-and-buttons">
+                                    <div>
+                                        <div className="title-info">{name}</div>
 
-                            <div>
-                                <div>Product Price: ${price} </div>
-                                <div>Product Quantity: {quantity} </div>
-                            </div>
+                                        <div className="span-user-main-div">
+                                            <span>{quantity} in stock </span>
+                                            <span className="span-separator-user">|</span>
+                                            <span className="price-span-user">Price: ${price} </span>
+                                        </div>
+                                    </div>
 
-                            <button className="one-button" onClick={() => history.push(`/products/${id}/edit`)}><NavLink activeClassName='active'
-                                style={{ textDecoration: 'none' }}
-                                to={`/products/${id}/edit`}> Edit Listing</NavLink></button>
-                            <button onClick={() => dispatch(deleteProductThunk(id))}>Delete</button>
-                            {/* {
+                                    <div className="button-user-listing-main">
+                                        <button className="one-button-user" onClick={() => history.push(`/products/${id}/edit`)}><StyledNavLink3
+                                            className="one-button-user"
+                                            to={`/products/${id}/edit`}> Edit Listing</StyledNavLink3></button>
+                                        <button className="one-button-user del-button-user" onClick={() => dispatch(deleteProductThunk(id))}>Delete</button>
+                                    </div>
+                                </div>
+                                {/* {
                                 <EditProductFormModal id={id}/>
                             } */}
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
-        </div>
+        </>
     )
-
 }
 
 
