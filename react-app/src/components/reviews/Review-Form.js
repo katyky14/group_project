@@ -1,32 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getAProduct } from '../../store/product';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { createReviews, loadProductReviews } from '../../store/review';
 
 import './ReviewForm.css'
 
 
-function AddReview({ setShowModal }) {
+function AddReview({ setShowModal, productId }) {
     const dispatch = useDispatch();
-    const { productId } = useParams();
-    const allReviews = useSelector(state => Object.values(state.reviewState));
-    const allProducts = useSelector(state => Object.values(state.productState));
-    const user = useSelector(state => state.session)
 
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(0);
     const [errors, setErrors] = useState([]);
-    console.log("productId", productId)
-    const reviewData = allReviews.find(review => review.userId === user.id)
-    console.log("REVIEW DATA: ", reviewData)
-    console.log("USER: ", user)
-
-    useEffect(() => {
-        dispatch(getAProduct(+productId))
-        dispatch((loadProductReviews(+productId)));
-
-    }, [dispatch]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -37,13 +21,14 @@ function AddReview({ setShowModal }) {
         await setErrors(validateErrors);
 
         const payload = {
-            review, stars, "productId": +productId
+            "comment": review, "stars": +stars, productId
         }
 
         console.log(errors.length)
-        if (review.length > 0) {
+        if (review.length > 0 && stars > 0) {
+            // console.log("THIS IS THE NEW REVIEW: ", payload)
             dispatch(createReviews(payload))
-            dispatch((loadProductReviews(+productId)));
+            dispatch((loadProductReviews(productId)));
             setShowModal(false);
         };
     };
@@ -52,8 +37,8 @@ function AddReview({ setShowModal }) {
     return (
         <form onSubmit={onSubmit} className="review-form">
             <div className='review-form-header'>
-                <i className="fas fa-times cancel-button" onClick={() => setShowModal(false)} />
-                <h2 className='review-title'>Add your review here</h2>
+                {/* <i className="fas fa-times cancel-button" onClick={() => setShowModal(false)} /> */}
+                <h2 className='review-title'>Add your review</h2>
             </div>
             <div className='star-container'>
                 <input
@@ -65,7 +50,7 @@ function AddReview({ setShowModal }) {
                     onChange={(e) => setStars(e.target.value)}
                     checked={+stars >= 5 ? true : false}
                 />
-                <label className='star-label' htmlFor="r5">&#9734;</label>
+                <label className='star-label' htmlFor="r5">&#9733;</label>
                 <input
                     className='star-inputs'
                     type="checkbox"
@@ -75,7 +60,7 @@ function AddReview({ setShowModal }) {
                     onChange={(e) => setStars(e.target.value)}
                     checked={+stars >= 4 ? true : false}
                 />
-                <label className='star-label' htmlFor="r4">&#9734;</label>
+                <label className='star-label' htmlFor="r4">&#9733;</label>
                 <input
                     className='star-inputs'
                     type="checkbox"
@@ -85,7 +70,7 @@ function AddReview({ setShowModal }) {
                     onChange={(e) => setStars(e.target.value)}
                     checked={+stars >= 3 ? true : false}
                 />
-                <label className='star-label' htmlFor="r3">&#9734;</label>
+                <label className='star-label' htmlFor="r3">&#9733;</label>
                 <input
                     className='star-inputs'
                     type="checkbox"
@@ -95,7 +80,7 @@ function AddReview({ setShowModal }) {
                     onChange={(e) => setStars(e.target.value)}
                     checked={+stars >= 2 ? true : false}
                 />
-                <label className='star-label' htmlFor="r2">&#9734;</label>
+                <label className='star-label' htmlFor="r2">&#9733;</label>
                 <input
                     className='star-inputs'
                     type="checkbox"
@@ -105,7 +90,7 @@ function AddReview({ setShowModal }) {
                     onChange={(e) => setStars(e.target.value)}
                     checked={+stars >= 1 ? true : false}
                 />
-                <label className='star-label' htmlFor="r1">&#9734;</label>
+                <label className='star-label' htmlFor="r1">&#9733;</label>
             </div>
             <div className='review-div'>
                 <label htmlFor="review" />

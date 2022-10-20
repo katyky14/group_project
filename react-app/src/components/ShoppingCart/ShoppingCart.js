@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getCartItemThunk, removeItemThunk, editProductThunk } from "../../store/cart";
 import { getAllProductsThunk } from "../../store/product";
-import CartForm from "./CartForm";
 import './ShoppingCart.css'
 
 
