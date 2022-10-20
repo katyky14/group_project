@@ -37,3 +37,13 @@ class User(db.Model, UserMixin):
             'firstname': self.firstname,
             'lastname': self.lastname
         }
+
+    def to_dict_user_rel(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'firstname': self.firstname,
+            'lastname': self.lastname,
+            'products': [p.to_dict_product() for p in self.products]
+        }

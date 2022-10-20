@@ -41,7 +41,7 @@ function ProductDetail() {
     return (
         <div>
             <div className="left">
-                <img className="previewImage" src={product.images[0].image_url} />
+                <img className="previewImage" src={product?.images[0].image_url} />
 
 
 
@@ -129,7 +129,7 @@ function ProductDetail() {
                 </div>
             </footer> */}
         </div>
-        
+
     )
 }
 

@@ -10,34 +10,29 @@ function UpdatedProductForm() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
-    const user = useSelector(state => state.session)
-    console.log('the user', user)
-
-    const productObj = useSelector(state => state.productState)
-    // console.log('the obj', productObj)
-    const productArr = Object.values(productObj)
-    const productData = productArr.find(product => String(product.id) === productId)
+    const productData = useSelector(state => state.productState[productId])
+    // if (!productData) return null
 
     const previewImg = productData?.images[0]?.image_url;
     const additionalImg = productData?.images
-    console.log('productData', productData)
-    console.log('preview image', additionalImg)
+    // console.log('productData', productData)
+    // console.log('preview image', additionalImg)
 
 
-    const [name, setName] = useState(productData?.name);
-    const [price, setPrice] = useState(productData?.price);
-    const [description, setDescription] = useState(productData?.description);
-    const [previewImage, setPreviewImage] = useState(previewImg);
-    const [imageUrls, setImageUrls] = useState([]);
-    const [quantity, setQuantity] = useState(productData?.quantity);
-    const [validationErrors, setValidationErrors] = useState(additionalImg)
+    const [name, setName] = useState(productData?.name || "");
+    const [price, setPrice] = useState(productData?.price || 0);
+    const [description, setDescription] = useState(productData?.description || "");
+    const [previewImage, setPreviewImage] = useState(previewImg || "");
+    const [imageUrls, setImageUrls] = useState(additionalImg || []);
+    const [quantity, setQuantity] = useState(productData?.quantity || 0);
+    const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false)
 
     const ownerObj = useSelector(state => state.session.user)
 
     useEffect(() => {
-        dispatch(getAProduct(productId)).then(() => setIsLoaded(true))
+        dispatch(getAProduct(+productId)).then(() => setIsLoaded(true))
     }, [dispatch, productId])
 
     const handleSubmit = async (e) => {
@@ -94,7 +89,7 @@ function UpdatedProductForm() {
         setImageUrls(newArr);
     }
 
-    if (productData == null) return null;
+    if (!productData) return null;
 
     return isLoaded && (
         <div className="edit-main-container-product-form">
@@ -153,7 +148,7 @@ function UpdatedProductForm() {
                                     ))
                                 }
                                 <button className="edit-img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}>
-                                    <div className="edit-camera-icon-product">
+                                    <div className="edit-camera-icon-product"> 
                                         <span className="edit-icon-fa-camera"> <i class="fa-solid fa-camera"></i></span> Add additional images
                                     </div>
                                 </button>
