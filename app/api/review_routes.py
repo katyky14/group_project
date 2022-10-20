@@ -40,5 +40,5 @@ def delete_comment(review_id):
     if review:
         db.session.delete(review)
         db.session.commit()
-        return "Review Has Been Deleted"
+        return {"id": review.to_dict_reviews().id}
     return "This review does not exist"
