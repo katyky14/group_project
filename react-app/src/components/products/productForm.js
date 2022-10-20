@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { addProductThunk } from "../../store/product";
+import { addProductThunk, getAllProductsThunk } from "../../store/product";
 
 import './productForm.css'
 
@@ -43,7 +43,7 @@ function CreateProductForm() {
 
         let createdProduct = await dispatch(addProductThunk(productInformation))
         console.log('the product', createdProduct)
-
+        await dispatch(getAllProductsThunk())
         if (createdProduct) {
             history.push(`/products/${createdProduct.product.id}`)
         }

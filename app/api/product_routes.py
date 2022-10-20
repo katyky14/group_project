@@ -137,8 +137,8 @@ def delete_product(id):
     if selected_product:
         db.session.delete(selected_product)
         db.session.commit()
-        return "Product has been removed"
-    return "This product does not exist"
+        return {"Message":"Product has been removed"}
+    return {"Message" :"This product does not exist"}
 
 
 #Get comments for product

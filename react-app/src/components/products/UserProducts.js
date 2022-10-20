@@ -15,8 +15,13 @@ function UserProducts() {
     const history = useHistory()
     const owner = useSelector(state => state.session.user.products)
     const ownerImages = useSelector(state => state.session.user.productsImages)
+    const product = useSelector(state=>state.productState)
 
-
+const logout = async (id)=>{
+    await dispatch(deleteProductThunk(id))
+      await dispatch(getAllProductsThunk())
+    //   return history.push(`/products/owner`)
+}
     return (
         <>
             <div className="user-listing-main">
@@ -52,7 +57,9 @@ function UserProducts() {
                                         <button className="one-button-user" onClick={() => history.push(`/products/${id}/edit`)}><StyledNavLink3
                                             className="one-button-user"
                                             to={`/products/${id}/edit`}> Edit Listing</StyledNavLink3></button>
-                                        <button className="one-button-user del-button-user" onClick={() => dispatch(deleteProductThunk(id))}>Delete</button>
+                                        <button className="one-button-user del-button-user" onClick={()=> logout(id)
+                                         
+                                        }>Delete</button>
                                     </div>
                                 </div>
                                 {/* {
