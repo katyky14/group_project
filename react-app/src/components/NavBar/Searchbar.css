@@ -94,6 +94,11 @@
     transition: all 0.3s ease-in 0s;
 }
 
+.search-results-line-none {
+    text-decoration: none;
+    padding-left: 20px;
+}
+
 .result-link {
     color: black;
     width: 100%;

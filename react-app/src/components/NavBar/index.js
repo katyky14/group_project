@@ -41,9 +41,7 @@ function NavBar({ loaded }) {
                     </div>
                 )}
                 {sessionUser && (
-                    <div>
-                        <ProfileButton sessionUser={sessionUser} />
-                    </div>
+                    <ProfileButton sessionUser={sessionUser} />
                 )}
             </div>
             <LoginFormModal showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />

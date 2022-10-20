@@ -71,7 +71,7 @@ function Searchbar() {
             )}
             {search && isEmptyObject(searchResults) && search.length > 0 && (
                 <ul className='search-results-container'>
-                    <li className='search-results-line'>No results found</li>
+                    <li className='search-results-line-none'>No results found</li>
                 </ul>
             )}
         </>
