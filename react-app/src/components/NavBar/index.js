@@ -23,7 +23,7 @@ function NavBar({ loaded }) {
             <div className='nav-left'>
                 <NavLink exact to="/" className='home-link'>
                     <div className='logo-div'>
-                    <img src={logo} />
+                    <img className="logo" src={logo} />
                     </div>
                 </NavLink>
             </div>
