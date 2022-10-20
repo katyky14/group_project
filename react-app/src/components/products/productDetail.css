@@ -20,9 +20,8 @@
     height: 400px;
 
 }
-
-.ProductName {
-    font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
+.ProductName{
+    /* font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif; */
     font-weight: 400;
     font-size: 16px;
     line-height: 28px;
@@ -31,7 +30,7 @@
 
 .Description {
     font-size: 26px;
-    font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
+    /* font-family: "Guardian-EgypTT",Charter,"Charter Bitstream",Cambria,"Noto Serif Light","Droid Serif",Georgia,serif; */
     font-weight: 300;
     letter-spacing: 0.35px;
     padding: 8px;
@@ -55,9 +54,8 @@
     padding: 8px;
     cursor: pointer;
 }
-
-.cost {
-    font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
+.cost{
+    /* font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif; */
     font-weight: 400;
     font-size: 13px;
     line-height: 18px;
@@ -66,15 +64,14 @@
 
 .free {
     font-size: 26px;
-    font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
+    /* font-family: "Guardian-EgypTT",Charter,"Charter Bitstream",Cambria,"Noto Serif Light","Droid Serif",Georgia,serif; */
     font-weight: 300;
     letter-spacing: 0.35px;
     padding: 8px;
 
 }
-
-.emission {
-    font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
+.emission{
+    /* font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif; */
     font-weight: 400;
     font-size: 13px;
     border: 2px solid #77dd77;
