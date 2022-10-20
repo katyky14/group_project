@@ -17,6 +17,7 @@ import CartForm from './components/ShoppingCart/CartForm';
 import GetCartItems from './components/ShoppingCart/ShoppingCart';
 import EditProductForm from './components/products/EditProductForm';
 import UserProducts from './components/products/UserProducts';
+import SearchProducts from './components/products/searchProducts';
 
 
 
@@ -57,6 +58,9 @@ function App() {
         <ProtectedRoute path='/products/:productId/carts/new' exact={true}>
           <CartForm />
         </ProtectedRoute>
+        <Route path='/search'>
+          <SearchProducts />
+        </Route>
         <ProtectedRoute path='/shopping-carts' exact={true}>
           <GetCartItems/>
         </ProtectedRoute>

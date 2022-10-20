@@ -83,7 +83,17 @@ function ProductDetail() {
     }
 
     return !!allProducts.length && (
-        <div id="product-detail-page">
+    //     <div id="product-detail-page">
+    //     dispatch(getAProduct(productId))
+    //     dispatch((loadProductReviews(productId)));
+
+
+    // }, [dispatch, productId]);
+
+    // if (!product) return null
+
+    // return (
+        <div>
             <div className="left">
                 <img className="previewImage" src={product.images[0].image_url} />
                 <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>

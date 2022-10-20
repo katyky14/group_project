@@ -13,9 +13,9 @@ function NavBar({ loaded }) {
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
 
-    const loginButton = () => {
+    // const loginButton = () => {
 
-    }
+    // }
 
 
     return (
@@ -42,9 +42,7 @@ function NavBar({ loaded }) {
                     </div>
                 )}
                 {sessionUser && (
-                    <div>
-                        <ProfileButton sessionUser={sessionUser} />
-                    </div>
+                    <ProfileButton sessionUser={sessionUser} />
                 )}
             </div>
             <LoginFormModal showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />

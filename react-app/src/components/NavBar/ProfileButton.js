@@ -27,19 +27,22 @@ function ProfileButton({ sessionUser }) {
     const loggingOut = async (e) => {
         e.preventDefault();
         let loggedOut = await dispatch(logout());
-        if (loggedOut) {
-            history.push('/')
-        };
+        // if (loggedOut) {
+        //     return history.push('/')
+        // };
+        return history.push('/')
     };
 
     return (
-        <>
-            <button onClick={openMenu} className="profile-dropdown">
-                <div>
-                    <i className="fas fa-user-circle" />
-                </div>
-                <div>profile button</div>
-            </button>
+        <div className="navright-profile-div">
+            <div className="profile-button-container">
+                <button onClick={openMenu} className="profile-dropdown">
+                    <div className="icon-div">
+                        <i className="fas fa-user-circle fa-2x" />
+                        <i className="fas fa-angle-down fa-2x"/>
+                    </div>
+                </button>
+            </div>
             {showMenu && sessionUser && (
                 <ul className="profile-details">
                     <li className="profile-details-li">
@@ -53,7 +56,7 @@ function ProfileButton({ sessionUser }) {
                     </li>
                 </ul>
             )}
-        </>
+        </div>
     )
 }
 

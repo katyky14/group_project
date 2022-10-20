@@ -47,7 +47,7 @@ const deleteProduct = (id) => {
 // THUNK ACTION CREATOR
 // GET ALL PRODUCTS THUNK
 export const getAllProductsThunk = () => async dispatch => {
-    const response = await fetch('/api/products')
+    const response = await fetch('/api/products/')
     if (response.ok) {
         const data = await response.json()
         dispatch(getAllProducts(data.products))
