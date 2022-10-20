@@ -33,7 +33,8 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    height: 350px;
+    /* height: 350px; */
+    height: 408px;
     width: 1328px;
     gap: 15px;
     margin-bottom: 140px;
