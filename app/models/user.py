@@ -45,5 +45,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'firstname': self.firstname,
             'lastname': self.lastname,
-            'products': [p.to_dict_product() for p in self.products]
+            'products': [p.to_dict_product() for p in self.products],
+            'productsImages': [i.to_dict_images() for i in self.images]
         }

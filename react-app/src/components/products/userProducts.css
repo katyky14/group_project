@@ -1,0 +1,35 @@
+.user-listing-main {
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
+    border: 1px solid red;
+}
+
+.h1-your-listing {
+    margin: 10px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.user-listing-container {
+    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    flex-direction: column;
+}
+
+.listing-img {
+    width: 400px;
+    height: 300px;
+    border-radius: 8px;
+}
+
+.user-listings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
