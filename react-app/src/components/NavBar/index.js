@@ -6,6 +6,7 @@ import LoginFormModal from './SignInModal';
 import ProfileButton from './ProfileButton';
 import Searchbar from './Searchbar';
 import './Navbar.css'
+import logo from './logo/Buy-Ktsy-logo.png'
 
 function NavBar({ loaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -22,7 +23,7 @@ function NavBar({ loaded }) {
             <div className='nav-left'>
                 <NavLink exact to="/" className='home-link'>
                     <div className='logo-div'>
-                        Logo goes here
+                    <img src={logo} />
                     </div>
                 </NavLink>
             </div>
