@@ -21,12 +21,12 @@ function UserProducts() {
             <div className="user-listing-container">
 
                 <div className="user-listings">
-                    {owner.map(({ id, description, name, price, quantity }) => (
-                        <div key={id}>
+                    {owner.map(({ id, name, price, quantity }) => (
+                        <div className="listing-container" key={id}>
                             <div>Product Id: {id} </div>
                             <img
                                 className="listing-img"
-                                src={ownerImages[id]?.image_url} alt="img"></img>
+                                src={ ownerImages[id]?.image_url.length ? ownerImages[id]?.image_url : "https://cdn.pixabay.com/photo/2016/11/29/03/07/crown-1866986_960_720.jpg"} alt="img"></img>
 
                             <div>Product Name: {name}</div>
 
