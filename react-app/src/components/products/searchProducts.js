@@ -8,7 +8,7 @@ function SearchProducts() {
     // const dispatch = useDispatch();
     const searchArr = useSelector(state => state.searchState)
     // const searchArr = Object.values(searchObj)
-    console.log(searchArr)
+    // console.log(searchArr)
     // useEffect(() => {
     //     // dispatch(getSearchProductsThunk())
     // }, [dispatch])
