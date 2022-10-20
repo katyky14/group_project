@@ -38,6 +38,8 @@ function ProductDetail() {
 
     }, [dispatch, productId]);
 
+    if (!product) return null
+
     return (
         <div>
             <div className="left">
@@ -129,7 +131,7 @@ function ProductDetail() {
                 </div>
             </footer> */}
         </div>
-        
+
     )
 }
 
