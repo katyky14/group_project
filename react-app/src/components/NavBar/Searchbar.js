@@ -26,7 +26,7 @@ function Searchbar() {
         };
 
         fetchData(search)
-        console.log('search results: ', searchResults)
+        // console.log('search results: ', searchResults)
         // if (search) {
         //     setShowSearches(true)
         // }

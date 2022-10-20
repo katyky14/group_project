@@ -1,0 +1,95 @@
+.user-listing-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1%;
+    font-family: sans-serif;
+    /* border: 1px solid red; */
+    height: 600px;
+}
+
+.h1-your-listing {
+    display: flex;
+    justify-content: center;
+    width: 84%;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.listing-img {
+    max-height: 245px;
+    height: 245px;
+    border-radius: 5px;
+}
+
+.user-listings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.listing-container {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 300px;
+    height: 365px;
+    padding: 0 10px;
+    /* border: 1px solid  blueviolet; */
+}
+
+.listing-info-and-buttons {
+    padding-top: 8px;
+}
+
+.title-info {
+    font-weight: 600;
+}
+
+
+.span-user-main-div {
+    font-size: 14px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.span-separator-user {
+    padding-left: 10px;
+}
+
+.price-span-user {
+    padding-left: 10px;
+}
+
+
+.one-button-user {
+    cursor: pointer;
+    text-decoration: none;
+    background-color: rgba(36, 34, 34);
+    color: white;
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+.del-button-user {
+    margin-left: 15px;
+}
+
+/* .my-navlink-style3 {
+    cursor: pointer;
+    text-decoration: none;
+    background-color: rgba(36, 34, 34);
+    color: white;
+    border-radius: 5px;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    font-family: sans-serif;
+} */
