@@ -38,7 +38,8 @@ function SearchProducts() {
                                     <img className="search-product-previewImage" src={result.images.map(image => image.mainImage ? image.image_url : null)} alt={result.name} />
                                 </div>
                                 <div className="search-products-card-text-div">
-                                    <p>{result.name}</p>
+                                    <p className="search-products-card-text-name">{result.name}</p>
+                                    <p className="search-products-card-text-price">${result.price}</p>
                                 </div>
                             </div>
                         </Link>

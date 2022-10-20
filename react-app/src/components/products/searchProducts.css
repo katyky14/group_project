@@ -51,3 +51,14 @@
     display: flex;
     justify-content: center;
 }
+
+.search-products-card-text-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.search-products-card-text-price {
+    margin-right: 5%;
+}
