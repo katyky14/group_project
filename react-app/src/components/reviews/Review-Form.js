@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createReviews, loadProductReviews } from '../../store/review';
+import { getAllProductsThunk } from '../../store/product';
+import { createReviews } from '../../store/review';
 
 import './ReviewForm.css'
 
@@ -21,14 +22,13 @@ function AddReview({ setShowModal, productId }) {
         await setErrors(validateErrors);
 
         const payload = {
-            "comment": review, "stars": +stars, productId
+            "comment": review, "rating": +stars, productId
         }
 
-        console.log(errors.length)
         if (review.length > 0 && stars > 0) {
             // console.log("THIS IS THE NEW REVIEW: ", payload)
-            dispatch(createReviews(payload))
-            dispatch((loadProductReviews(productId)));
+            await dispatch(createReviews(payload))
+            await dispatch(getAllProductsThunk())
             setShowModal(false);
         };
     };

@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateReview, loadProductReviews } from '../../store/review';
+import { updateReview } from '../../store/review';
+import { getAllProductsThunk } from '../../store/product';
 
 import './ReviewForm.css'
 
 
-function EditReviewForm({ setShowModal, productId }) {
+function EditReviewForm({ setShowModal, product }) {
     const dispatch = useDispatch();
-    let allReviews = useSelector(state => Object.values(state.reviewState));
-    const reviewData = allReviews.find(review => review.productId === productId)
-
-    const [review, setReview] = useState(reviewData.comment);
-    const [stars, setStars] = useState(reviewData.rating);
+    const user = useSelector(state => state.session.user)
+    // let allReviews = useSelector(state => Object.values(state.reviewState));
+    // const reviewData = allReviews.find(review => review.productId === productId)
+    const productReview = product.reviews.find(review => review.userId === user.id)
+    console.log("THIS IS PRODUCT REVIEW: ", productReview)
+    const [review, setReview] = useState(productReview.comment);
+    const [stars, setStars] = useState(productReview.rating);
     const [errors, setErrors] = useState([]);
 
 
@@ -24,12 +27,12 @@ function EditReviewForm({ setShowModal, productId }) {
         await setErrors(validateErrors);
 
         const payload = {
-            "comment": review, "stars": +stars, productId
+            "comment": review, "rating": +stars, "reviewId": productReview.id
         }
 
         if (review.length > 0 && stars > 0) {
-            dispatch(updateReview(payload))
-            dispatch((loadProductReviews(productId)));
+            await dispatch(updateReview(payload))
+            await dispatch(getAllProductsThunk())
             setShowModal(false);
         };
     };

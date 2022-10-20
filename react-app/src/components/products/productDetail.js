@@ -17,13 +17,13 @@ function ProductDetail() {
     const { productId } = useParams();
 
     let allProducts = useSelector(state => Object.values(state.productState));
-    let allReviews = useSelector(state => Object.values(state.reviewState));
+    // let allReviews = useSelector(state => Object.values(state.reviewState));
     let user = useSelector(state => state.session.user);
     // const reviewofUser = allReviews.find(review => user && review.userId === user.id)
     // console.log("reviewofUser", reviewofUser)
     const product = allProducts.find(product => product.id === +productId)
     // let allReviewsArr = Object.values(allReviews)
-    // console.log("PRODUCT DETAIL", product)
+    console.log("PRODUCT DETAIL", product)
     // console.log("REVIEW ARR", allReviews)
 
 
@@ -33,10 +33,10 @@ function ProductDetail() {
     // }, [dispatch, productId])
     useEffect(() => {
         dispatch((getAllProductsThunk()))
-        dispatch((loadProductReviews(productId)));
+        // dispatch((loadProductReviews(productId)));
 
 
-    }, [dispatch, productId]);
+    }, [dispatch,])// productId]);
 
     const avgRatingStars = (reviews) => {
         let sum = 0;
@@ -97,7 +97,7 @@ function ProductDetail() {
         <div id="product-detail-page">
             <div className="left">
                 <img className="previewImage" src={product.images[0].image_url} />
-                <div className="stars">{allReviews.length} reviews {avgRatingStars(product.reviews)}</div>
+                <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>
                 <div className="reviewTag">Reviews for this item
                     {/* {
 
@@ -110,7 +110,7 @@ function ProductDetail() {
 
                 {product && <div>
                     {
-                        allReviews.map((e) => {
+                        product.reviews.map((e) => {
 
                             return (
 
@@ -122,7 +122,7 @@ function ProductDetail() {
                                     </div>
                                     <div className="profile">
                                         <i class="fa-solid fa-user" />{" "}
-                                        {getDate(e.createdAt.slice(6, 17))}
+                                        {getDate(e.createdAt.slice(5, 17))}
                                     </div>
                                     {isUserReviewCreator(e, user) && <div className="buttons">
                                         <span>
@@ -141,7 +141,7 @@ function ProductDetail() {
                                         </span>
                                         <span>
                                             {
-                                                <EditReviewFormModal productId={+productId} />
+                                                <EditReviewFormModal productId={+productId} product={product} />
                                                 // <button className="updateButton" onClick={async () => {
                                                 //     return history.push(`/${productId}/review/${e.id}/update`)
                                                 // }}>Update a  Review</button>
