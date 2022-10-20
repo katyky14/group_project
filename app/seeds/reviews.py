@@ -4,7 +4,7 @@ from datetime import date
 def seed_reviews():
     review1 = Review(
         user_id = 1,
-        product_id = 2,
+        product_id = 1,
         rating = 5,
         comment = 'This is the best scraf I have ever had!',
         created_at = date.today(),
@@ -12,7 +12,7 @@ def seed_reviews():
     )
     review2 = Review(
         user_id = 3,
-        product_id = 2,
+        product_id = 1,
         rating = 3,
         comment = 'This is okay I guess...',
         created_at = date.today(),
@@ -20,7 +20,7 @@ def seed_reviews():
     )
     review3 = Review(
         user_id = 2,
-        product_id = 3,
+        product_id = 2,
         rating = 3,
         comment = 'This bucket hat is meh...',
         created_at = date.today(),
@@ -28,7 +28,7 @@ def seed_reviews():
     )
     review4 = Review(
         user_id = 1,
-        product_id = 3,
+        product_id = 2,
         rating = 5,
         comment = 'This is the drippest hat ever!',
         created_at = date.today(),
@@ -36,7 +36,7 @@ def seed_reviews():
     )
     review5 = Review(
         user_id = 3,
-        product_id = 1,
+        product_id = 3,
         rating = 2,
         comment = 'I could have made this myself...',
         created_at = date.today(),
@@ -44,7 +44,7 @@ def seed_reviews():
     )
     review6 = Review(
         user_id = 2,
-        product_id = 1,
+        product_id = 3,
         rating = 5,
         comment = 'I love this OMG!!!',
         created_at = date.today(),

@@ -1,39 +1,49 @@
 * {
     box-sizing: border-box;
-  }
-.right{
+}
+
+#product-detail-page {
+    padding: 0 150px;
+}
+
+.right {
     float: right;
     /* background: pink; */
     height: 400px;
     width: 33%;
 }
-.left{
+
+.left {
     float: left;
     width: 67%;
     /* background: yellow; */
     height: 400px;
-    
+
 }
-.ProductName{
-    font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif;
+
+.ProductName {
+    font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 28px;
     padding: 8px;
 }
-.Description{
+
+.Description {
     font-size: 26px;
-    font-family: "Guardian-EgypTT",Charter,"Charter Bitstream",Cambria,"Noto Serif Light","Droid Serif",Georgia,serif;
+    font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
     font-weight: 300;
     letter-spacing: 0.35px;
     padding: 8px;
 }
-.Price{
+
+.Price {
     font-size: 28px;
     line-height: 36px;
     padding: 8px;
 }
-.AddToCartButton{
+
+.AddToCartButton {
     background-color: #222222;
     border-width: 2px;
     border-style: solid;
@@ -43,27 +53,31 @@
     font-size: 16px;
     color: white;
     padding: 8px;
+    cursor: pointer;
 }
-.cost{
-    font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif;
+
+.cost {
+    font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
     font-weight: 400;
     font-size: 13px;
     line-height: 18px;
     padding: 8px;
 }
-.free{
+
+.free {
     font-size: 26px;
-    font-family: "Guardian-EgypTT",Charter,"Charter Bitstream",Cambria,"Noto Serif Light","Droid Serif",Georgia,serif;
+    font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
     font-weight: 300;
     letter-spacing: 0.35px;
     padding: 8px;
 
 }
-.emission{
-    font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif;
+
+.emission {
+    font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
     font-weight: 400;
     font-size: 13px;
-    border: 2px solid #77dd77 ;
+    border: 2px solid #77dd77;
     height: 48px;
     border-radius: 11px;
     /* background-color: light green; */
@@ -71,29 +85,38 @@
     padding: 8px;
 
 }
-.truck{
+
+.truck {
     margin-top: 14px;
     padding: 8px;
 }
-.previewImage{
+
+.previewImage {
     height: 442px;
     width: 795px;
     border-radius: 6px;
     margin-left: 87px;
 }
-.stars{
-    
 
+.stars {
+    padding-top: 50px;
     margin-left: 15px;
+    font-size: 22px;
 }
-.reviewTag{
+
+.reviewTag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 2px solid rgb(221, 221, 221);
     margin-left: 16px;
     margin-top: 17px;
     margin-bottom: 17px;
     width: 867px;
+    padding-bottom: 15px;
 }
-.createButton{
+
+.createButton {
 
     margin-left: 129px;
     margin-bottom: 11px;
@@ -103,13 +126,14 @@
     color: white;
     background-color: #222222;
 }
-.reviewList{
-    margin-left: 16px;
-    display: flex;
-    flex-direction: row;
 
+#reviewList {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
 }
-.delete-review{
+
+.delete-review {
     margin-right: 42px;
     margin-left: 50px;
     margin-top: 19px;
@@ -120,32 +144,35 @@
     color: white;
     background-color: #222222;
 }
-.updateButton{
+
+.updateButton {
     margin-top: 19px;
     margin-bottom: 19px;
-    
+
     width: 183px;
     height: 30px;
     border-radius: 16px;
     color: white;
     background-color: #222222;
 }
-.comments{
+
+.comments {
     margin-left: 16px;
 }
-.profile{
-    
+
+.profile {
+
 
     margin-left: 14px;
     margin-top: 12px;
 }
 
- .footerSingle{
+.footerSingle {
     /* justify-content: center;
     /* padding-top: 27px; */
     /* color: black;
-    
-    border-top:  15px solid rgb(221, 221, 221); */ 
+
+    border-top:  15px solid rgb(221, 221, 221); */
     position: fixed;
     left: 0;
     bottom: 0;
@@ -153,4 +180,4 @@
     background-color: red;
     color: white;
     text-align: center;
- }
+}
