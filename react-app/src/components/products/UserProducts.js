@@ -15,7 +15,12 @@ function UserProducts() {
     const history = useHistory()
     const owner = useSelector(state => state.session.user.products)
     const ownerImages = useSelector(state => state.session.user.productsImages)
+    const product = useSelector(state => state.productState)
 
+
+    useEffect(() => {
+        dispatch(getAllProductsThunk())
+    }, [dispatch])
 
     return (
         <>
@@ -50,7 +55,6 @@ function UserProducts() {
 
                                     <div className="button-user-listing-main">
                                         <button className="one-button-user" onClick={() => history.push(`/products/${id}/edit`)}><StyledNavLink3
-                                            className="one-button-user"
                                             to={`/products/${id}/edit`}> Edit Listing</StyledNavLink3></button>
                                         <button className="one-button-user del-button-user" onClick={() => dispatch(deleteProductThunk(id))}>Delete</button>
                                     </div>

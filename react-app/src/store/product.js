@@ -127,15 +127,16 @@ export const editProductThunk = (productData) => async (dispatch) => {
 
 // DELETE PRODUCT THUNK
 export const deleteProductThunk = (productId) => async dispatch => {
-
+    console.log('the id in thunk', productId)
     const response = await fetch(`/api/products/${productId}`, {
         method: 'DELETE',
     });
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(deleteProduct(data.id));
-        return { ...data }
+        console.log('the product', productId)
+        dispatch(deleteProduct(productId));
+        // return { ...data }
     };
 }
 
@@ -171,7 +172,11 @@ const productReducer = (state = {}, action) => {
         }
         case DELETE_PRODUCT: {
             const newState = { ...state }
+            console.log('the new state', newState)
+            console.log('1in reducer action', action.id)
             delete newState[action.id];
+            console.log('2in reducer action', action.id)
+            console.log('the new state after reducer', newState)
             return newState;
         }
         default:
