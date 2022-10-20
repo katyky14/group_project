@@ -39,7 +39,7 @@ function SearchProducts() {
                                 </div>
                                 <div className="search-products-card-text-div">
                                     <p className="search-products-card-text-name">{result.name}</p>
-                                    <p className="search-products-card-text-price">${result.price}</p>
+                                    <p className="search-products-card-text-price">${result.price.toFixed(2)}</p>
                                 </div>
                             </div>
                         </Link>
