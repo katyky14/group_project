@@ -12,9 +12,9 @@ function NavBar({ loaded }) {
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
 
-    const loginButton = () => {
+    // const loginButton = () => {
 
-    }
+    // }
 
 
     return (

@@ -16,6 +16,7 @@ import {UpdateReviewForm} from './components/reviews/updateReviewForm';
 import CartForm from './components/ShoppingCart/CartForm';
 import GetCartItems from './components/ShoppingCart/ShoppingCart';
 import UpdatedProductForm from './components/products/EditProductForm';
+import SearchProducts from './components/products/searchProducts';
 
 
 
@@ -61,6 +62,9 @@ function App() {
         </ProtectedRoute>
         <Route path="/" exact={true}>
           <Products />
+        </Route>
+        <Route path='/search'>
+          <SearchProducts />
         </Route>
         <Route path="/products/:productId" exact={true}>
           <ProductDetail />
