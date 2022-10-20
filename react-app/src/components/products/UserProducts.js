@@ -15,8 +15,11 @@ function UserProducts() {
     const history = useHistory()
     const owner = useSelector(state => state.session.user.products)
     const ownerImages = useSelector(state => state.session.user.productsImages)
-    console.log('owner', owner)
-    console.log('images', ownerImages)
+
+
+    // console.log('the owner', owner)
+    // console.log('images owner', ownerImages)
+
 
     return (
         <>
@@ -26,13 +29,17 @@ function UserProducts() {
                 </div>
 
                 <div className="user-listings">
-                    {owner.map(({ id, name, price, quantity }) => (
+                    {owner.map(({ id, name, price, quantity, ownerId }) => (
                         <div key={id}>
                             <div className="listing-container" >
                                 <div>Product Id: {id} </div>
-                                <img
-                                    className="listing-img"
-                                    src={ownerImages[id]?.image_url.length ? ownerImages[id]?.image_url : "https://cdn.pixabay.com/photo/2016/11/29/03/07/crown-1866986_960_720.jpg"} alt="img"></img>
+                                <div> Owner id: {ownerId}</div>
+                                {
+
+                                    < img
+                                        className="listing-img"
+                                        src={ownerImages.find(image => image.productId === id).image_url } alt="img"></img>
+                                }
 
                                 <div className="listing-info-and-buttons">
                                     <div>

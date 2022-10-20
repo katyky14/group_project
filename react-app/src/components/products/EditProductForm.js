@@ -6,7 +6,7 @@ import { editProductThunk, getAProduct } from "../../store/product";
 
 import './editProduct.css'
 
-function EditProductForm({ setShowMModal, id}) {
+function EditProductForm({ setShowMModal}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
@@ -16,33 +16,29 @@ function EditProductForm({ setShowMModal, id}) {
 
     // const previewImg = productData?.images[0]?.image_url;
     // const additionalImg = productData?.images
-     console.log('productData', productData)
+    //  console.log('productData', productData)
     //  console.log(productData.id)
-     console.log('the id in edit for product', productData)
-    // // console.log('preview image', additionalImg)
+    //  console.log('the id in edit for product', productData)
+    // console.log('preview image', additionalImg)  ownerObj.productsImages[productId ].image_url || ""
 
-
-    // const [name, setName] = useState(productData?.name || "");
-    // const [price, setPrice] = useState(productData?.price || 0);
-    // const [description, setDescription] = useState(productData?.description || "");
-    // const [previewImage, setPreviewImage] = useState(previewImg || "");
-    // const [imageUrls, setImageUrls] = useState(additionalImg || []);
-    // const [quantity, setQuantity] = useState(productData?.quantity || 0);
-    // const [validationErrors, setValidationErrors] = useState([])
-    // const [hasSubmitted, setHasSubmitted] = useState(false);
-    // const [isLoaded, setIsLoaded] = useState(false)
 
     const ownerObj = useSelector(state => state.session.user)
-    const ownerProduct = ownerObj.products[productId]
-    const filter = ownerObj.products.filter(product => product.id === productId)
-    console.log('filter', filter)
+    const ownerProduct = ownerObj.products.find(product => product.id === Number(productId))
+    const ownerImages = ownerObj.productsImages.find(image => image.productId === Number(productId))
+
+    console.log('the ownerImages', ownerImages)
+
+
+    console.log('the owner obj', ownerObj)
+
+    console.log('the owner product', ownerProduct)
     console.log('the owner', ownerObj.productsImages[productId])
     console.log('the owner obj in edit product', ownerProduct)
 
     const [name, setName] = useState(ownerProduct.name || "");
     const [price, setPrice] = useState(ownerProduct.price || 0);
     const [description, setDescription] = useState(ownerProduct.description || "");
-    const [previewImage, setPreviewImage] = useState(ownerObj.productsImages[productId].image_url || "");
+    const [previewImage, setPreviewImage] = useState(ownerImages.image_url || "");
     const [imageUrls, setImageUrls] = useState([]);
     const [quantity, setQuantity] = useState(ownerProduct.quantity || 0);
     const [validationErrors, setValidationErrors] = useState([])
@@ -63,7 +59,7 @@ function EditProductForm({ setShowMModal, id}) {
 
 
         const productInformation = {
-            id:productId,
+            id: productId,
             owner_id: ownerObj.id,
             name,
             price,
