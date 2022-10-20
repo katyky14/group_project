@@ -89,10 +89,14 @@
 }
 
 .previewImage {
-    height: 442px;
+    /* height: 442px;
     width: 795px;
     border-radius: 6px;
-    margin-left: 87px;
+    margin-left: 87px; */
+    height: 412px;
+    width: 626px;
+    border-radius: 6px;
+    margin-left: 17px;
 }
 
 .stars {
