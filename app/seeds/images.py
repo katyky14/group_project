@@ -71,6 +71,34 @@ def seed_images():
        main_image = True,
        image_url = 'https://images.unsplash.com/photo-1520408222757-6f9f95d87d5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjF8fGNsYXklMjB2YXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
     )
+    image11 = Image(
+       user_id = 1,
+       product_id = 11,
+       review_id = None,
+       main_image = True,
+       image_url = 'https://images.unsplash.com/photo-1593998066526-65fcab3021a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80'
+    )
+    image12 = Image(
+       user_id = 1,
+       product_id = 12,
+       review_id = None,
+       main_image = True,
+       image_url = 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+    )
+    image13 = Image(
+       user_id = 1,
+       product_id = 13,
+       review_id = None,
+       main_image = True,
+       image_url = 'https://images.unsplash.com/photo-1587466280419-78d7adc6d4a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+    )
+    image14 = Image(
+       user_id = 1,
+       product_id = 14,
+       review_id = None,
+       main_image = True,
+       image_url = 'https://images.unsplash.com/photo-1587467063136-db173523594d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80'
+    )
 
 
     db.session.add(image1)
@@ -83,7 +111,10 @@ def seed_images():
     db.session.add(image8)
     db.session.add(image9)
     db.session.add(image10)
-
+    db.session.add(image11)
+    db.session.add(image12)
+    db.session.add(image13)
+    db.session.add(image14)
     db.session.commit()
 
 def undo_images():
