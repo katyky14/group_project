@@ -20,7 +20,7 @@ function ProductDetail() {
     let allProducts = useSelector(state => Object.values(state.productState));
     let user = useSelector(state => state.session.user);
     const product = allProducts.find(product => product.id === +productId)
-    console.log("PRODUCT DETAIL", product)
+    // console.log("PRODUCT DETAIL", product)
 
 
     useEffect(() => {
@@ -114,8 +114,8 @@ function ProductDetail() {
 
                                                     event.preventDefault()
                                                     await dispatch(deleteReview(e.id))
-                                                    await dispatch(loadProductReviews(productId))
-                                                    return history.push(`/products/${product.id}`)
+                                                    await dispatch(getAllProductsThunk())
+                                                    // return history.push(`/products/${product.id}`)
                                                 }}>
                                                 Delete Review
 
