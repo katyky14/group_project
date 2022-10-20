@@ -8,6 +8,7 @@ import './productDetail.css'
 import AddReviewModal from '../reviews/ReviewFormModal'
 import EditReviewFormModal from "../reviews/EditReviewFormModal";
 import CartForm from "../ShoppingCart/CartForm";
+import Footer from "../Footer/footer";
 
 const isUserReviewCreator = (review, user) => user && user.id === review.userId;
 
@@ -17,26 +18,14 @@ function ProductDetail() {
     const { productId } = useParams();
 
     let allProducts = useSelector(state => Object.values(state.productState));
-    // let allReviews = useSelector(state => Object.values(state.reviewState));
     let user = useSelector(state => state.session.user);
-    // const reviewofUser = allReviews.find(review => user && review.userId === user.id)
-    // console.log("reviewofUser", reviewofUser)
     const product = allProducts.find(product => product.id === +productId)
-    // let allReviewsArr = Object.values(allReviews)
     console.log("PRODUCT DETAIL", product)
-    // console.log("REVIEW ARR", allReviews)
 
 
-
-    // useEffect(() => {
-    //     dispatch(getAProduct(productId))
-    // }, [dispatch, productId])
     useEffect(() => {
         dispatch((getAllProductsThunk()))
-        // dispatch((loadProductReviews(productId)));
-
-
-    }, [dispatch,])// productId]);
+    }, [dispatch,])
 
     const avgRatingStars = (reviews) => {
         let sum = 0;
@@ -99,12 +88,6 @@ function ProductDetail() {
                 <img className="previewImage" src={product.images[0].image_url} />
                 <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>
                 <div className="reviewTag">Reviews for this item
-                    {/* {
-
-                        <button className="createButton" onClick={async () => {
-                            return history.push(`/${productId}/review/new`)
-                        }}>Create a Review</button>
-                    } */}
                     <AddReviewModal productId={+productId} />
                 </div>
 
@@ -142,9 +125,6 @@ function ProductDetail() {
                                         <span>
                                             {
                                                 <EditReviewFormModal productId={+productId} product={product} />
-                                                // <button className="updateButton" onClick={async () => {
-                                                //     return history.push(`/${productId}/review/${e.id}/update`)
-                                                // }}>Update a  Review</button>
                                             }
                                         </span>
                                     </div>}
@@ -153,10 +133,10 @@ function ProductDetail() {
 
                         })
                     }
+
                 </div>
 
                 }
-
 
 
 
@@ -172,7 +152,6 @@ function ProductDetail() {
                         <div className="Description">{product.description}</div>
                         <div className="Price">${product.price}</div>
                         <div>
-                            {/* <button className="AddToCartButton">Add to Cart</button> */}
                             <CartForm productId={+productId} />
                         </div>
                         <div className="truck"><i class="fa-solid fa-truck"></i>   Hooray! This item ships free to the US.</div>
@@ -185,7 +164,7 @@ function ProductDetail() {
             </div>
             {/* <footer>
                 <div className="footerSingle" >
-                    <p >© 2022 Ktsy, Inc.</p>
+                <p >© 2022 Ktsy, Inc.</p>
                 </div>
             </footer> */}
         </div>
