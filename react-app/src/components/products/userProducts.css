@@ -1,0 +1,46 @@
+.user-listing-main {
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
+    border: 1px solid red;
+    height: auto;
+}
+
+.h1-your-listing {
+    margin: 10px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.user-listing-container {
+    /* border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    flex-direction: column; */
+}
+
+.listing-img {
+
+    max-height: 245px;
+
+}
+
+.user-listings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.listing-container {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 300px;
+    height: 245px;
+    padding: 0 10px;
+}

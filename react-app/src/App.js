@@ -15,7 +15,7 @@ import { ReviewForm } from './components/reviews/reviewform';
 import {UpdateReviewForm} from './components/reviews/updateReviewForm';
 import CartForm from './components/ShoppingCart/CartForm';
 import GetCartItems from './components/ShoppingCart/ShoppingCart';
-import UpdatedProductForm from './components/products/EditProductForm';
+import EditProductForm from './components/products/EditProductForm';
 import UserProducts from './components/products/UserProducts';
 
 
@@ -45,14 +45,14 @@ function App() {
         <ProtectedRoute path='/products/new' exact={true}>
           <CreateProductForm />
         </ProtectedRoute>
-        <ProtectedRoute path='/products/:productId/review/:reviewId/update' exact={true}>
+        <ProtectedRoute path='/:productId/review/:reviewId/update' exact={true}>
           <UpdateReviewForm />
         </ProtectedRoute>
         <ProtectedRoute path='/products/:productId/review/new' exact={true}>
           <ReviewForm />
         </ProtectedRoute>
         <ProtectedRoute path='/products/:productId/edit'>
-          <UpdatedProductForm />
+          <EditProductForm />
         </ProtectedRoute>
         <ProtectedRoute path='/products/:productId/carts/new' exact={true}>
           <CartForm />
