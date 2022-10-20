@@ -50,7 +50,6 @@ export const getAllProductsThunk = () => async dispatch => {
     const response = await fetch('/api/products')
     if (response.ok) {
         const data = await response.json()
-        console.log('the get all product thunk data', data)
         dispatch(getAllProducts(data.products))
     }
 }
@@ -74,12 +73,8 @@ export const addProductThunk = (productData) => async (dispatch) => {
         body: JSON.stringify(productData)
     });
 
-
-
     if (response.ok) {
         const data = await response.json();
-        // console.log("THIS IS DATA: ", data)
-        // console.log("THIS IS DATA.product.id: ", data.product.id)
         // FETCH TO BACKEND TO ADD A PRODUCT IMAGE TO IMAGE TABLE IN DB
         const imageResponse = await fetch(`/api/products/${data.product.id}/images`, {
             method: 'POST',
@@ -99,9 +94,8 @@ export const addProductThunk = (productData) => async (dispatch) => {
                 })
             })
         }
-        //console.log('IMAGE ARRAY IN THUNK: ', [productData.previewImage, ...productData.imageUrls])
         const imageData = await imageResponse.json();
-        // console.log(imageData)
+
 
         dispatch(addOneProduct(data));
         return data;
@@ -111,10 +105,9 @@ export const addProductThunk = (productData) => async (dispatch) => {
 }
 
 export const editProductThunk = (productData) => async (dispatch) => {
-    console.log('here in edit thunk')
-    console.log("INSIDE THUNK SEEING PRODUCT DATA ID?????",productData.id)
+
     const response = await fetch(`/api/products/${productData.id}`, {
-       
+
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -123,12 +116,10 @@ export const editProductThunk = (productData) => async (dispatch) => {
             productData
         }),
     })
-    console.log('here 2')
-    console.log('the product data in editthunk see id here??????????', productData.id)
+
     if (response.ok) {
         const data = await response.json()
         dispatch(editProduct(data))
-        console.log('the data in thunk', data)
         // return { ...data }
         return data
     }
@@ -136,7 +127,7 @@ export const editProductThunk = (productData) => async (dispatch) => {
 
 // DELETE PRODUCT THUNK
 export const deleteProductThunk = (productId) => async dispatch => {
-    console.log("INSIDE DELETE Thunk",productId)
+
     const response = await fetch(`/api/products/${productId}`, {
         method: 'DELETE',
     });
@@ -167,21 +158,6 @@ const productReducer = (state = {}, action) => {
             return newState;
         }
 
-        // case ADD_PRODUCTS:
-        //     if (!state[action.payload.id]) {
-        //         const newStateForm = { ...state }
-        //         newStateForm[action.payload.id] = action.payload
-        //         return newStateForm
-        //     }
-
-        //     return {
-        //         ...state,
-        //         [action.payload.id]: {
-        //             ...state[action.payload.id],
-        //             ...action.payload
-        //         }
-        //     }
-
         case ADD_PRODUCTS: {
             const newProduct = {};
             newProduct[action.payload.id] = action.payload
@@ -191,7 +167,6 @@ const productReducer = (state = {}, action) => {
         case EDIT_PRODUCT: {
             const newState = { ...state };
             newState[action.payload.id] = action.payload
-            console.log('in reducer', action.payload)
             return newState;
         }
         case DELETE_PRODUCT: {

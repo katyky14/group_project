@@ -17,10 +17,6 @@ function UserProducts() {
     const ownerImages = useSelector(state => state.session.user.productsImages)
 
 
-    // console.log('the owner', owner)
-    // console.log('images owner', ownerImages)
-
-
     return (
         <>
             <div className="user-listing-main">
@@ -32,8 +28,8 @@ function UserProducts() {
                     {owner.map(({ id, name, price, quantity, ownerId }) => (
                         <div key={id}>
                             <div className="listing-container" >
-                                <div>Product Id: {id} </div>
-                                <div> Owner id: {ownerId}</div>
+                                {/* <div>Product Id: {id} </div>
+                                <div> Owner id: {ownerId}</div> */}
                                 {
 
                                     < img

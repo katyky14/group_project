@@ -6,11 +6,11 @@ import { editProductThunk, getAProduct } from "../../store/product";
 
 import './editProduct.css'
 
-function EditProductForm({ setShowMModal}) {
+function EditProductForm({ setShowMModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
-    console.log("PRODUCT ID *****************",productId)
+    // console.log("PRODUCT ID *****************",productId)
     const productData = useSelector(state => state.productState[productId])
 
 
@@ -26,14 +26,14 @@ function EditProductForm({ setShowMModal}) {
     const ownerProduct = ownerObj.products.find(product => product.id === Number(productId))
     const ownerImages = ownerObj.productsImages.find(image => image.productId === Number(productId))
 
-    console.log('the ownerImages', ownerImages)
+    // console.log('the ownerImages', ownerImages)
 
 
-    console.log('the owner obj', ownerObj)
+    // console.log('the owner obj', ownerObj)
 
-    console.log('the owner product', ownerProduct)
-    console.log('the owner', ownerObj.productsImages[productId])
-    console.log('the owner obj in edit product', ownerProduct)
+    // console.log('the owner product', ownerProduct)
+    // console.log('the owner', ownerObj.productsImages[productId])
+    // console.log('the owner obj in edit product', ownerProduct)
 
     const [name, setName] = useState(ownerProduct.name || "");
     const [price, setPrice] = useState(ownerProduct.price || 0);
@@ -51,7 +51,6 @@ function EditProductForm({ setShowMModal}) {
     }, [dispatch, productId])
 
     const handleSubmit = async (e) => {
-        console.log("REACHING HANDLESUBMIT %%%%%%")
         e.preventDefault();
         setHasSubmitted(true);
 
@@ -69,14 +68,8 @@ function EditProductForm({ setShowMModal}) {
             quantity,
         }
 
-
-        console.log("REACHING updated Product ^^^^^")
         let updatedProduct = await dispatch(editProductThunk(productInformation))
-        //console.log('the product', updatedProduct)
-          console.log("updateProduct function **********************",updatedProduct)
-          console.log("ProductInfo *********",productInformation)
         if (updatedProduct) {
-            console.log("REDIRECT *************************")
             history.push(`/products/${productId}`)
         }
 
@@ -110,7 +103,7 @@ function EditProductForm({ setShowMModal}) {
 
     // if (!productData) return null;
 
-    return  (
+    return (
         <div className="edit-main-container-product-form">
             <div className="edit-new-listing-div">
                 <h1 className="edit-h1-add-new-listing">Update Your Listing</h1>
@@ -315,8 +308,6 @@ function EditProductForm({ setShowMModal}) {
             </form>
         </div>
     )
-
-
 }
 
 
