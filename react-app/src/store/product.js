@@ -112,7 +112,9 @@ export const addProductThunk = (productData) => async (dispatch) => {
 
 export const editProductThunk = (productData) => async (dispatch) => {
     console.log('here in edit thunk')
+    console.log("INSIDE THUNK SEEING PRODUCT DATA ID?????",productData.id)
     const response = await fetch(`/api/products/${productData.id}`, {
+       
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -122,7 +124,7 @@ export const editProductThunk = (productData) => async (dispatch) => {
         }),
     })
     console.log('here 2')
-    console.log('the product data in editthunk', productData)
+    console.log('the product data in editthunk see id here??????????', productData.id)
     if (response.ok) {
         const data = await response.json()
         dispatch(editProduct(data))
@@ -134,6 +136,7 @@ export const editProductThunk = (productData) => async (dispatch) => {
 
 // DELETE PRODUCT THUNK
 export const deleteProductThunk = (productId) => async dispatch => {
+    console.log("INSIDE DELETE Thunk",productId)
     const response = await fetch(`/api/products/${productId}`, {
         method: 'DELETE',
     });

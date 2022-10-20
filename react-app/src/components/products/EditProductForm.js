@@ -10,12 +10,14 @@ function EditProductForm({ setShowMModal, id}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
+    console.log("PRODUCT ID *****************",productId)
     const productData = useSelector(state => state.productState[productId])
 
 
     // const previewImg = productData?.images[0]?.image_url;
     // const additionalImg = productData?.images
      console.log('productData', productData)
+    //  console.log(productData.id)
      console.log('the id in edit for product', productData)
     // // console.log('preview image', additionalImg)
 
@@ -53,6 +55,7 @@ function EditProductForm({ setShowMModal, id}) {
     }, [dispatch, productId])
 
     const handleSubmit = async (e) => {
+        console.log("REACHING HANDLESUBMIT %%%%%%")
         e.preventDefault();
         setHasSubmitted(true);
 
@@ -60,6 +63,7 @@ function EditProductForm({ setShowMModal, id}) {
 
 
         const productInformation = {
+            id:productId,
             owner_id: ownerObj.id,
             name,
             price,
@@ -70,12 +74,14 @@ function EditProductForm({ setShowMModal, id}) {
         }
 
 
-
+        console.log("REACHING updated Product ^^^^^")
         let updatedProduct = await dispatch(editProductThunk(productInformation))
         //console.log('the product', updatedProduct)
-
+          console.log("updateProduct function **********************",updatedProduct)
+          console.log("ProductInfo *********",productInformation)
         if (updatedProduct) {
-            history.push(`/products`)
+            console.log("REDIRECT *************************")
+            history.push(`/products/${productId}`)
         }
 
     }
