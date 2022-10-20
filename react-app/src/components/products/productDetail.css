@@ -143,6 +143,7 @@
     border-radius: 16px;
     color: white;
     background-color: #222222;
+    cursor: pointer;
 }
 
 .updateButton {

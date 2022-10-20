@@ -73,14 +73,13 @@ export const createReviews = (data) => async dispatch => {
         return newReview
     }
 }
-export const deleteReview = (product_id) => async dispatch => {
-    const response = await fetch(`/api/reviews/${product_id}`, {
+export const deleteReview = (reviewId) => async dispatch => {
+    const response = await fetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     });
     if (response.ok) {
-        //const {id:deletedItemId} = await response.json();
-        dispatch(remove(product_id));
-
+        const { id } = await response.json();
+        dispatch(remove(id));
     }
 }
 export const updateReview = (payload) => async (dispatch) => {

@@ -11,7 +11,7 @@ function Products() {
     const history = useHistory();
     const productObj = useSelector(state => state.productState)
     const productArr = Object.values(productObj)
-    const user = useSelector(state => state.session)
+    const user = useSelector(state => state.session.user)
 
 
     useEffect(() => {

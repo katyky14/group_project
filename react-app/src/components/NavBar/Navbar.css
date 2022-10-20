@@ -6,6 +6,7 @@
     margin: 8px 4%;
     font-family: "Montserrat", sans-serif;
     height: 64px;
+    max-width: 1400px;
 }
 
 li, a, button {
@@ -20,7 +21,7 @@ li, a, button {
 
 .user-auth-div {
     text-decoration: none;
-    border-radius: 24px;
+    border-radius: 30px;
     min-height: 36px;
     min-width: 36px;
     padding-top: 9px;
@@ -44,6 +45,12 @@ li, a, button {
 .nav-left {
     display: flex;
     align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    min-width: 168px;
+    justify-content: center;
 }
 
 .home-link {

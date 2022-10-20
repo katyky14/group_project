@@ -47,7 +47,7 @@ const deleteProduct = (id) => {
 // THUNK ACTION CREATOR
 // GET ALL PRODUCTS THUNK
 export const getAllProductsThunk = () => async dispatch => {
-    const response = await fetch('/api/products')
+    const response = await fetch('/api/products/')
     if (response.ok) {
         const data = await response.json()
         dispatch(getAllProducts(data.products))
@@ -73,12 +73,8 @@ export const addProductThunk = (productData) => async (dispatch) => {
         body: JSON.stringify(productData)
     });
 
-
-
     if (response.ok) {
         const data = await response.json();
-        console.log("THIS IS DATA: ", data)
-        console.log("THIS IS DATA.product.id: ", data.product.id)
         // FETCH TO BACKEND TO ADD A PRODUCT IMAGE TO IMAGE TABLE IN DB
         const imageResponse = await fetch(`/api/products/${data.product.id}/images`, {
             method: 'POST',
@@ -98,9 +94,8 @@ export const addProductThunk = (productData) => async (dispatch) => {
                 })
             })
         }
-        console.log('IMAGE ARRAY IN THUNK: ', [productData.previewImage, ...productData.imageUrls])
         const imageData = await imageResponse.json();
-        console.log(imageData)
+
 
         dispatch(addOneProduct(data));
         return data;
@@ -109,22 +104,30 @@ export const addProductThunk = (productData) => async (dispatch) => {
     // return response.json()
 }
 
-export const editProductThunk = productData => async (dispatch) => {
+export const editProductThunk = (productData) => async (dispatch) => {
+
     const response = await fetch(`/api/products/${productData.id}`, {
+
         method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
             productData
         }),
     })
+
     if (response.ok) {
         const data = await response.json()
         dispatch(editProduct(data))
-        return { ...data }
+        // return { ...data }
+        return data
     }
 }
 
 // DELETE PRODUCT THUNK
 export const deleteProductThunk = (productId) => async dispatch => {
+
     const response = await fetch(`/api/products/${productId}`, {
         method: 'DELETE',
     });
@@ -154,21 +157,6 @@ const productReducer = (state = {}, action) => {
             newState[action.payload.id] = action.payload
             return newState;
         }
-
-        // case ADD_PRODUCTS:
-        //     if (!state[action.payload.id]) {
-        //         const newStateForm = { ...state }
-        //         newStateForm[action.payload.id] = action.payload
-        //         return newStateForm
-        //     }
-
-        //     return {
-        //         ...state,
-        //         [action.payload.id]: {
-        //             ...state[action.payload.id],
-        //             ...action.payload
-        //         }
-        //     }
 
         case ADD_PRODUCTS: {
             const newProduct = {};

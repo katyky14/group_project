@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
+import { getSearchProductsThunk } from '../../store/search';
 import './Searchbar.css'
 
 function Searchbar() {
@@ -8,6 +9,7 @@ function Searchbar() {
     const [searchResults, setSearchResults] = useState([]);
     // const [showSearches, setShowSearches] = useState(false);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         let isSubscribed = true;
@@ -19,14 +21,13 @@ function Searchbar() {
                 body: JSON.stringify({ search })
             })
             const dataJson = await data.json()
-            // console.log(dataJson)
             if (isSubscribed) {
                 setSearchResults(dataJson.products)
             }
         };
 
         fetchData(search)
-        console.log('search results: ', searchResults)
+        // console.log('search results: ', searchResults)
         // if (search) {
         //     setShowSearches(true)
         // }
@@ -35,11 +36,17 @@ function Searchbar() {
         // }
 
         return () => isSubscribed = false;
-    }, [search, dispatch])
+    }, [search])
 
     const submitSearch = async (e) => {
         e.preventDefault();
-        // TODO: submitting search from button
+        if (search === '') return;
+        if (isEmptyObject(searchResults)) return;
+        const searchButton = await dispatch(getSearchProductsThunk(search))
+        if (searchButton) {
+            history.push(`/search/?searchbar=${search}`)
+        }
+        setSearch('')
     }
 
     const isEmptyObject = (obj) => {
@@ -71,7 +78,7 @@ function Searchbar() {
             )}
             {search && isEmptyObject(searchResults) && search.length > 0 && (
                 <ul className='search-results-container'>
-                    <li className='search-results-line'>No results found</li>
+                    <li className='search-results-line-none'>No results found</li>
                 </ul>
             )}
         </>

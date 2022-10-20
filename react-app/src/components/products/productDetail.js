@@ -20,7 +20,7 @@ function ProductDetail() {
     let allProducts = useSelector(state => Object.values(state.productState));
     let user = useSelector(state => state.session.user);
     const product = allProducts.find(product => product.id === +productId)
-    console.log("PRODUCT DETAIL", product)
+    // console.log("PRODUCT DETAIL", product)
 
 
     useEffect(() => {
@@ -83,7 +83,17 @@ function ProductDetail() {
     }
 
     return !!allProducts.length && (
-        <div id="product-detail-page">
+    //     <div id="product-detail-page">
+    //     dispatch(getAProduct(productId))
+    //     dispatch((loadProductReviews(productId)));
+
+
+    // }, [dispatch, productId]);
+
+    // if (!product) return null
+
+    // return (
+        <div>
             <div className="left">
                 <img className="previewImage" src={product.images[0].image_url} />
                 <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>
@@ -114,8 +124,8 @@ function ProductDetail() {
 
                                                     event.preventDefault()
                                                     await dispatch(deleteReview(e.id))
-                                                    await dispatch(loadProductReviews(productId))
-                                                    return history.push(`/products/${product.id}`)
+                                                    await dispatch(getAllProductsThunk())
+                                                    // return history.push(`/products/${product.id}`)
                                                 }}>
                                                 Delete Review
 
@@ -171,5 +181,5 @@ function ProductDetail() {
 
     )
 }
-
+// testing comment
 export default ProductDetail

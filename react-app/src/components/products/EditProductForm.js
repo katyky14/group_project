@@ -6,38 +6,48 @@ import { editProductThunk, getAProduct } from "../../store/product";
 
 import './editProduct.css'
 
-function UpdatedProductForm() {
+function EditProductForm({ setShowMModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
-    const user = useSelector(state => state.session)
-    console.log('the user', user)
-
-    const productObj = useSelector(state => state.productState)
-    // console.log('the obj', productObj)
-    const productArr = Object.values(productObj)
-    const productData = productArr.find(product => String(product.id) === productId)
-
-    const previewImg = productData?.images[0]?.image_url;
-    const additionalImg = productData?.images
-    console.log('productData', productData)
-    console.log('preview image', additionalImg)
+    // console.log("PRODUCT ID *****************",productId)
+    const productData = useSelector(state => state.productState[productId])
 
 
-    const [name, setName] = useState(productData?.name);
-    const [price, setPrice] = useState(productData?.price);
-    const [description, setDescription] = useState(productData?.description);
-    const [previewImage, setPreviewImage] = useState(previewImg);
+    // const previewImg = productData?.images[0]?.image_url;
+    // const additionalImg = productData?.images
+    //  console.log('productData', productData)
+    //  console.log(productData.id)
+    //  console.log('the id in edit for product', productData)
+    // console.log('preview image', additionalImg)  ownerObj.productsImages[productId ].image_url || ""
+
+
+    const ownerObj = useSelector(state => state.session.user)
+    const ownerProduct = ownerObj.products.find(product => product.id === Number(productId))
+    const ownerImages = ownerObj.productsImages.find(image => image.productId === Number(productId))
+
+    // console.log('the ownerImages', ownerImages)
+
+
+    // console.log('the owner obj', ownerObj)
+
+    // console.log('the owner product', ownerProduct)
+    // console.log('the owner', ownerObj.productsImages[productId])
+    // console.log('the owner obj in edit product', ownerProduct)
+
+    const [name, setName] = useState(ownerProduct.name || "");
+    const [price, setPrice] = useState(ownerProduct.price || 0);
+    const [description, setDescription] = useState(ownerProduct.description || "");
+    const [previewImage, setPreviewImage] = useState(ownerImages.image_url || "");
     const [imageUrls, setImageUrls] = useState([]);
-    const [quantity, setQuantity] = useState(productData?.quantity);
-    const [validationErrors, setValidationErrors] = useState(additionalImg)
+    const [quantity, setQuantity] = useState(ownerProduct.quantity || 0);
+    const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false)
 
-    const ownerObj = useSelector(state => state.session.user)
 
     useEffect(() => {
-        dispatch(getAProduct(productId)).then(() => setIsLoaded(true))
+        dispatch(getAProduct(+productId)).then(() => setIsLoaded(true))
     }, [dispatch, productId])
 
     const handleSubmit = async (e) => {
@@ -48,6 +58,7 @@ function UpdatedProductForm() {
 
 
         const productInformation = {
+            id: productId,
             owner_id: ownerObj.id,
             name,
             price,
@@ -57,13 +68,9 @@ function UpdatedProductForm() {
             quantity,
         }
 
-
-
         let updatedProduct = await dispatch(editProductThunk(productInformation))
-        //console.log('the product', updatedProduct)
-
         if (updatedProduct) {
-            history.push(`/products`)
+            history.push(`/products/${productId}`)
         }
 
     }
@@ -94,9 +101,9 @@ function UpdatedProductForm() {
         setImageUrls(newArr);
     }
 
-    if (productData == null) return null;
+    // if (!productData) return null;
 
-    return isLoaded && (
+    return (
         <div className="edit-main-container-product-form">
             <div className="edit-new-listing-div">
                 <h1 className="edit-h1-add-new-listing">Update Your Listing</h1>
@@ -301,9 +308,7 @@ function UpdatedProductForm() {
             </form>
         </div>
     )
-
-
 }
 
 
-export default UpdatedProductForm;
+export default EditProductForm;
