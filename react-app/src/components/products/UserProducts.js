@@ -26,7 +26,7 @@ function UserProducts() {
         dispatch(authenticate())
     }, [dispatch])
 
-    const FALLBACK_IMAGE = "https://cdn.pixabay.com/photo/2022/10/15/21/23/cat-7523894__340.jpg";
+    const FALLBACK_IMAGE = "https://demofree.sirv.com/nope-not-here.jpg";
     // const imageOnLoadHandler = (event) => {
     //     // console.log(
     //     //     `The image with url of ${event.currentTarget.src} has been loaded`
