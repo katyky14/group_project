@@ -82,8 +82,8 @@ function CreateProductForm() {
 
     const addImageUrls = index => e => {
         e.preventDefault()
-        console.log('index: ' + index);
-        console.log('property name: ' + e.target.value);
+        // console.log('index: ' + index);
+        // console.log('property name: ' + e.target.value);
         let newArr = [...imageUrls]; // copying the old datas array
         // a deep copy is not needed as we are overriding the whole object below, and not setting a property of it. this does not mutate the state.
         newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to

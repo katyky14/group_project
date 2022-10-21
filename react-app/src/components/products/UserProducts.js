@@ -19,12 +19,12 @@ function UserProducts() {
     const owner = useSelector(state => state.session.user?.products)
     const ownerImages = useSelector(state => state.session.user.productsImages)
     const product = useSelector(state => state.productState)
-    owner.map(({ id, name, price, quantity, ownerId }) => {
-        console.log('MAPPING')
-        console.log(id)
-        console.log(ownerImages.find(image => image.productId === id && image.mainImage === true).image_url)
-    })
-    console.log(ownerImages)
+    // owner.map(({ id, name, price, quantity, ownerId }) => {
+    //     console.log('MAPPING')
+    //     console.log(id)
+    //     console.log(ownerImages.find(image => image.productId === id && image.mainImage === true).image_url)
+    // })
+    // console.log(ownerImages)
 
     // console.log('the owner in user products', owner)
     useEffect(() => {

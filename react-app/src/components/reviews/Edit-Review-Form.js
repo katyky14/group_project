@@ -12,7 +12,7 @@ function EditReviewForm({ setShowModal, product }) {
     // let allReviews = useSelector(state => Object.values(state.reviewState));
     // const reviewData = allReviews.find(review => review.productId === productId)
     const productReview = product.reviews.find(review => review.userId === user.id)
-    console.log("THIS IS PRODUCT REVIEW: ", productReview)
+    //console.log("THIS IS PRODUCT REVIEW: ", productReview)
     const [review, setReview] = useState(productReview.comment);
     const [stars, setStars] = useState(productReview.rating);
     const [errors, setErrors] = useState([]);

@@ -25,12 +25,12 @@ export const UpdateReviewForm = () => {
   let allProducts = useSelector(state => Object.values(state.productState));
   // console.log("ALLPRODUCTS" ,allProducts)
   let allReviews = useSelector(state => Object.values(state.reviewState));
-  console.log("ALLREVIEWS", allReviews)
+  // console.log("ALLREVIEWS", allReviews)
   let user = useSelector(state => state.session.user);
 
   const reviewofUser = allReviews.find(review => user && review.userId === user.id)
   const product = allProducts.find(product => product.id === +productId)
-  console.log("PRODUCT", product)
+  // console.log("PRODUCT", product)
   /***************************************useEffect******************************************** */
   useEffect(() => {
     dispatch(getAProduct(productId))
@@ -59,8 +59,8 @@ export const UpdateReviewForm = () => {
     const payload = { id: reviewId, comment, rating };
     let newReview = await dispatch(updateReview(payload))
     dispatch(loadProductReviews(product.id))
-    console.log("NEW UPDATE REVIEW ", newReview)
-    console.log(payload.id.reviews, "PAYLOAD ID REVIEW")
+    // console.log("NEW UPDATE REVIEW ", newReview)
+    // console.log(payload.id.reviews, "PAYLOAD ID REVIEW")
     // if(newReview){
     //     onCancel()
     // }

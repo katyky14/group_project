@@ -112,11 +112,11 @@ export const editProductThunk = (productData, ownerImage) => async (dispatch) =>
         },
         body: JSON.stringify(productData)
     })
-    console.log(productData.image_url)
-    console.log(ownerImage)
-    console.log(ownerImage.userId)
-    console.log(ownerImage.productId)
-    console.log(typeof productData.image_url)
+    // console.log(productData.image_url)
+    // console.log(ownerImage)
+    // console.log(ownerImage.userId)
+    // console.log(ownerImage.productId)
+    // console.log(typeof productData.image_url)
     if (response.ok) {
         const data = await response.json()
         const imageResponse = await fetch(`/api/images/${ownerImage.id}`, {
@@ -187,11 +187,7 @@ const productReducer = (state = {}, action) => {
         }
         case DELETE_PRODUCT: {
             const newState = { ...state }
-            console.log('the new state', newState)
-            console.log('1in reducer action', action.id)
             delete newState[action.id];
-            console.log('2in reducer action', action.id)
-            console.log('the new state after reducer', newState)
             return newState;
         }
         default:
