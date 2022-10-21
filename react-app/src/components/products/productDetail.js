@@ -33,7 +33,7 @@ function ProductDetail() {
             `The image with url of ${event.currentTarget.src} has been loaded`
         );
         if (event.currentTarget.className !== "error") {
-            event.currentTarget.className = "success";
+            event.currentTarget.className = "previewImage";
         }
     };
 

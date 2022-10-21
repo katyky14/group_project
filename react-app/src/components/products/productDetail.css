@@ -3,11 +3,6 @@
 }
 
 .detail-main-container {
-    max-width: 1700px;
-    margin-top: 50px;
-}
-
-#product-detail-page {
     padding: 0 150px;
 }
 
@@ -25,7 +20,8 @@
     height: 400px;
 
 }
-.ProductName{
+
+.ProductName {
     /* font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif; */
     font-weight: 400;
     font-size: 16px;
@@ -59,7 +55,8 @@
     padding: 8px;
     cursor: pointer;
 }
-.cost{
+
+.cost {
     /* font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif; */
     font-weight: 400;
     font-size: 13px;
@@ -75,7 +72,8 @@
     padding: 8px;
 
 }
-.emission{
+
+.emission {
     /* font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif; */
     font-weight: 400;
     font-size: 13px;
@@ -94,19 +92,19 @@
 }
 
 .previewImage {
-    height: 442px;
+    /* height: 442px;
     width: 795px;
     border-radius: 6px;
-    margin-left: 87px;
-}
-
-.stars-review-main-div {
-    margin-left: 25px;
+    margin-left: 87px; */
+    height: 412px;
+    width: 626px;
+    border-radius: 6px;
+    margin-left: 17px;
 }
 
 .stars {
     padding-top: 50px;
-    margin-left: 25px;
+    margin-left: 15px;
     font-size: 22px;
 }
 
@@ -115,7 +113,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgb(221, 221, 221);
-    margin-left: 25px;
+    margin-left: 16px;
     margin-top: 17px;
     margin-bottom: 17px;
     width: 867px;
@@ -137,7 +135,6 @@
     display: flex;
     flex-direction: column;
     padding-bottom: 25px;
-    margin-left: 25px;
 }
 
 .delete-review {
@@ -179,7 +176,6 @@
     /* justify-content: center;
     /* padding-top: 27px; */
     /* color: black;
-
     border-top:  15px solid rgb(221, 221, 221); */
     position: fixed;
     left: 0;
