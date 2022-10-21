@@ -26,6 +26,22 @@ function UserProducts() {
         dispatch(authenticate())
     }, [dispatch])
 
+    const FALLBACK_IMAGE = "https://cdn.pixabay.com/photo/2022/10/15/21/23/cat-7523894__340.jpg";
+    // const imageOnLoadHandler = (event) => {
+    //     // console.log(
+    //     //     `The image with url of ${event.currentTarget.src} has been loaded`
+    //     // );
+    //     if (event.currentTarget.className !== "error") {
+    //         event.currentTarget.className = "success";
+    //     }
+    // };
+
+
+    const imageOnErrorHandler = (event) => {
+        event.currentTarget.src = FALLBACK_IMAGE;
+        event.currentTarget.className = "error";
+    };
+
     const logout = async(id) => {
         await dispatch(deleteProductThunk(id))
         await dispatch(getAllProductsThunk())
@@ -50,7 +66,9 @@ function UserProducts() {
 
                                     < img
                                         className="listing-img"
-                                        src={ownerImages.find(image => image.productId === id).image_url} alt="img"></img>
+                                        // onLoad={imageOnLoadHandler}
+                                        onError={imageOnErrorHandler}
+                                        src={ownerImages.find(image => image.productId === id)?.image_url} alt="img"></img>
                                 }
 
                                 <div className="listing-info-and-buttons">
