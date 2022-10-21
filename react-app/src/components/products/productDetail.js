@@ -195,7 +195,7 @@ function ProductDetail() {
                         <div className="truck"><i class="fa-solid fa-truck"></i>   Hooray! This item ships free to the US.</div>
                         <div className="cost">Cost to ship</div>
                         <div className="free">Free</div>
-                        <div className="emission">Etsy offsets carbon emissions from shipping and packaging on this purchase.</div>
+                        <div className="emission">Buy-Ktsy offsets carbon emissions from shipping and packaging on this purchase.</div>
 
                     </div>
                 }

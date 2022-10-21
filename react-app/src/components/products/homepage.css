@@ -22,7 +22,7 @@
     position: absolute;
     padding-top: 30px;
     font-size: 34px;
-    font-family: Cambria, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
 #white-space-div {
@@ -67,4 +67,3 @@
     bottom: 40px;
     left: 10px;
 }
-

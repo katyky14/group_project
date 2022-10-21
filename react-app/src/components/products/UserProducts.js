@@ -48,7 +48,7 @@ function UserProducts() {
         event.currentTarget.className = "error";
     };
 
-    const deleteProduct = async(id) => {
+    const deleteProduct = async (id) => {
         await dispatch(deleteProductThunk(id))
         await dispatch(getAllProductsThunk())
         await dispatch(authenticate())
@@ -60,7 +60,7 @@ function UserProducts() {
 
     if (!owner || isEmptyObject(owner)) return null
     return (
-        <>
+        <div id="outtest">
             <div className="user-listing-main">
                 <div className="h1-your-listing">
                     <h1> Manage Your Listings</h1>
@@ -107,7 +107,7 @@ function UserProducts() {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
