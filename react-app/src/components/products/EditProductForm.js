@@ -26,7 +26,7 @@ function EditProductForm({ setShowMModal, id }) {
 
     const ownerObj = useSelector(state => state.session.user)
     const ownerProduct = ownerObj.products.find(product => product.id === Number(productId))
-    const ownerImages = ownerObj.productsImages.find(image => image.productId === Number(productId))
+    const ownerImages = ownerObj.productsImages.find(image => image.productId === Number(productId) && image.mainImage === true)
 
     // console.log('the ownerImages', ownerImages)
 
