@@ -20,14 +20,14 @@ function ProductDetail() {
     const { productId } = useParams();
 
     let allProducts = useSelector(state => Object.values(state.productState));
-    console.log(allProducts,"*******allproducts")
+    console.log(allProducts, "*******allproducts")
     let user = useSelector(state => state.session.user);
     const product = allProducts.find(product => product.id === +productId)
     // console.log("PRODUCT DETAIL", product)
 
     let allReviews = useSelector(state => Object.values(state.reviewState));
-    const shouldshowbutton = product && product.reviews && product.reviews.find(review=> review.userId === user.id)
-    const isOwner = product && user && product.ownerId === user.id ;
+    const shouldshowbutton = product && product.reviews && product.reviews.find(review => review.userId === user.id)
+    const isOwner = product && user && product.ownerId === user.id;
 
 
     // console.log("REviewOF USER",shouldshowbutton)
@@ -109,7 +109,7 @@ function ProductDetail() {
     }
     if (!product) return null
 
-    return !!allProducts.length &&  (
+    return !!allProducts.length && (
 
         <div className="detail-main-container">
             <div className="left">
@@ -123,8 +123,8 @@ function ProductDetail() {
 
                     <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>
                     <div className="reviewTag">Reviews for this item
-                    { !shouldshowbutton && !isOwner &&<AddReviewModal productId={+productId} />}
-                        
+                        {!shouldshowbutton && !isOwner && <AddReviewModal productId={+productId} />}
+
                     </div>
                 </div>
 
@@ -144,7 +144,7 @@ function ProductDetail() {
                                         <i class="fa-solid fa-user" />{" "}
                                         {getDate(e.createdAt.slice(5, 17))}
                                     </div>
-                                    {isUserReviewCreator(e, user) && !isOwner &&<div className="buttons">
+                                    {isUserReviewCreator(e, user) && !isOwner && <div className="buttons">
                                         <span>
                                             <button className="delete-review"
                                                 onClick={async (event) => {
@@ -176,9 +176,6 @@ function ProductDetail() {
                 }
 
 
-
-
-
             </div>
             <div className="right">
                 {
@@ -188,9 +185,13 @@ function ProductDetail() {
                         {/* <div className="ReviewsLink">reviewsLink</div> */}
                         <div className="Description">{product.description}</div>
                         <div className="Price">${product.price}</div>
-                        <div>
-                            <CartForm productId={+productId} />
-                        </div>
+                        {
+                            user && user.id !== product.ownerId &&
+
+                            <div>
+                                <CartForm productId={+productId} />
+                            </div>
+                        }
                         <div className="truck"><i class="fa-solid fa-truck"></i>   Hooray! This item ships free to the US.</div>
                         <div className="cost">Cost to ship</div>
                         <div className="free">Free</div>

@@ -12,6 +12,7 @@ class Product(db.Model):
     owner = db.relationship('User', back_populates = 'products')
     images = db.relationship('Image', back_populates ='products')
     reviews = db.relationship('Review', back_populates = 'products')
+    carts = db.relationship("Cart", back_populates="products", cascade='all, delete')
 
 
     def to_dict_product(self):
