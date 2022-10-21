@@ -1,3 +1,8 @@
+#outtest {
+    display: flex;
+    justify-content: center;
+}
+
 .user-listing-main {
     display: flex;
     flex-direction: column;
@@ -6,12 +11,13 @@
     font-family: sans-serif;
     /* border: 1px solid red; */
     height: 600px;
+    width: 84%;
 }
 
 .h1-your-listing {
     display: flex;
     justify-content: center;
-    width: 84%;
+    width: 95%;
     border-bottom: 1px solid lightgray;
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -111,4 +117,4 @@
     max-height: 245px;
     height: 245px;
     border-radius: 5px;
- }
+}
