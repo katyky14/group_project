@@ -33,7 +33,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    height: 350px;
+    min-height: 350px;
     width: 1328px;
     gap: 15px;
     margin-bottom: 140px;
@@ -51,6 +51,8 @@
     height: 100%;
     width: 100%;
     border-radius: 15px;
+    min-width: 251px;
+    min-height: 167px;
 }
 
 #product-price {

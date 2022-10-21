@@ -27,6 +27,22 @@ function ProductDetail() {
         dispatch((getAllProductsThunk()))
     }, [dispatch,])
 
+    const FALLBACK_IMAGE = "https://cdn.pixabay.com/photo/2022/10/15/21/23/cat-7523894__340.jpg";
+    const imageOnLoadHandler = (event) => {
+        console.log(
+            `The image with url of ${event.currentTarget.src} has been loaded`
+        );
+        if (event.currentTarget.className !== "error") {
+            event.currentTarget.className = "success";
+        }
+    };
+
+
+    const imageOnErrorHandler = (event) => {
+        event.currentTarget.src = FALLBACK_IMAGE;
+        event.currentTarget.className = "error";
+    };
+
     const avgRatingStars = (reviews) => {
         let sum = 0;
         for (let i = 0; i < reviews.length; i++) {
@@ -81,24 +97,24 @@ function ProductDetail() {
             return `${month} ${day}, ${year}`
         }
     }
+    if (!product) return null
 
     return !!allProducts.length && (
-    //     <div id="product-detail-page">
-    //     dispatch(getAProduct(productId))
-    //     dispatch((loadProductReviews(productId)));
 
-
-    // }, [dispatch, productId]);
-
-    // if (!product) return null
-
-    // return (
-        <div>
+        <div className="detail-main-container">
             <div className="left">
-                <img className="previewImage" src={product.images[0].image_url} />
-                <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>
-                <div className="reviewTag">Reviews for this item
-                    <AddReviewModal productId={+productId} />
+                <img
+                    className="previewImage"
+                    src={product.images[0].image_url}
+                    onLoad={imageOnLoadHandler}
+                    onError={imageOnErrorHandler}
+                />
+                <div className="stars-review-main-div">
+
+                    <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>
+                    <div className="reviewTag">Reviews for this item
+                        <AddReviewModal productId={+productId} />
+                    </div>
                 </div>
 
                 {product && <div>

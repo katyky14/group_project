@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { addProductThunk } from "../../store/product";
+import { addProductThunk, getAllProductsThunk } from "../../store/product";
 
 import './productForm.css'
 
@@ -42,8 +42,8 @@ function CreateProductForm() {
 
 
         let createdProduct = await dispatch(addProductThunk(productInformation))
-        console.log('the product', createdProduct)
-
+        // console.log('the product', createdProduct)
+        await dispatch(getAllProductsThunk())
         if (createdProduct) {
             history.push(`/products/${createdProduct.product.id}`)
         }
@@ -99,7 +99,6 @@ function CreateProductForm() {
             <form className="form-product" onSubmit={handleSubmit}>
                 {/* {hasSubmitted && validationErrors.length > 0 && (
                     <ul>
-
                         {validationErrors.map((error, index) => <li key={index}>  {error}</li>)}
                     </ul>
                 )} */}
@@ -133,6 +132,7 @@ function CreateProductForm() {
                                     type="text"
                                     value={previewImage}
                                     onChange={(e) => setPreviewImage(e.target.value)}
+                                    required
                                 />
 
                                 {

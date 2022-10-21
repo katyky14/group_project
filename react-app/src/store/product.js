@@ -95,8 +95,6 @@ export const addProductThunk = (productData) => async (dispatch) => {
             })
         }
         const imageData = await imageResponse.json();
-
-
         dispatch(addOneProduct(data));
         return data;
     }
@@ -112,14 +110,12 @@ export const editProductThunk = (productData) => async (dispatch) => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            productData
-        }),
+        body: JSON.stringify(productData)
     })
 
     if (response.ok) {
         const data = await response.json()
-        dispatch(editProduct(data))
+        dispatch(addOneProduct(data))
         // return { ...data }
         return data
     }
@@ -127,14 +123,14 @@ export const editProductThunk = (productData) => async (dispatch) => {
 
 // DELETE PRODUCT THUNK
 export const deleteProductThunk = (productId) => async dispatch => {
-    console.log('the id in thunk', productId)
+    //console.log('the id in thunk', productId)
     const response = await fetch(`/api/products/${productId}`, {
         method: 'DELETE',
     });
 
     if (response.ok) {
         const data = await response.json();
-        console.log('the product', productId)
+        // console.log('the product', productId)
         dispatch(deleteProduct(productId));
         // return { ...data }
     };
