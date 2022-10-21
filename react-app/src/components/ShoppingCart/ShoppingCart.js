@@ -25,6 +25,22 @@ const GetCartItems = () => {
     dispatch(getAllProductsThunk()).then(() => setIsLoaded(true))
   }, [dispatch])
 
+
+  const FALLBACK_IMAGE = "https://demofree.sirv.com/nope-not-here.jpg";
+  const imageOnLoadHandler = (event) => {
+    // console.log(
+    //   `The image with url of ${event.currentTarget.src} has been loaded`
+    // );
+    if (event.currentTarget.className !== "error-cart") {
+      event.currentTarget.className = "cartItemImage";
+    }
+  };
+
+  const imageOnErrorHandler = (event) => {
+    event.currentTarget.src = FALLBACK_IMAGE;
+    event.currentTarget.className = "error-cart";
+  };
+
   const options = (max, amountCarted) => {
     let optionsArr = []
     for (let i = 1; i <= max; i++) {
@@ -63,7 +79,10 @@ const GetCartItems = () => {
           <div className="cartItemsContainer" key={item.id}>
             {productArr.filter(product => product.id === item.productId)?.map(product =>
               <div key={product.id} className="cartItemDescriptions">
-                <img className="cartItemImage" src={product.images[0]?.image_url} onClick={() => history.push(`/products/${product.id}`)} />
+                <img
+                  onLoad={imageOnLoadHandler}
+                  onError={imageOnErrorHandler}
+                  className="cartItemImage" src={product.images[0]?.image_url} onClick={() => history.push(`/products/${product.id}`)} />
                 <div id="itemNameContainer">
                   <div id="item-texts" onClick={() => history.push(`/products/${product.id}`)}>
                     {product.name}<br /><br />

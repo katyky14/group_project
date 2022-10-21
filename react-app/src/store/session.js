@@ -102,7 +102,7 @@ export const signUp = (username, email, password, firstname, lastname) => async 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
-      return { user: action.payload }
+      return { user: {...action.payload, products: [...action.payload.products], productsImages: [...action.payload.productsImages]} }
     case REMOVE_USER:
       return { user: null }
     default:

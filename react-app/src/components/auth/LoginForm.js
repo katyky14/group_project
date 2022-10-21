@@ -20,7 +20,7 @@ const LoginForm = ({ setShowLoginModal }) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      console.log(data)
+      // console.log(data)
       setErrors(data);
     }
   };

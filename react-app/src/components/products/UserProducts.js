@@ -19,6 +19,12 @@ function UserProducts() {
     const owner = useSelector(state => state.session.user?.products)
     const ownerImages = useSelector(state => state.session.user.productsImages)
     const product = useSelector(state => state.productState)
+    // owner.map(({ id, name, price, quantity, ownerId }) => {
+    //     console.log('MAPPING')
+    //     console.log(id)
+    //     console.log(ownerImages.find(image => image.productId === id && image.mainImage === true).image_url)
+    // })
+    // console.log(ownerImages)
 
     // console.log('the owner in user products', owner)
     useEffect(() => {
@@ -26,13 +32,33 @@ function UserProducts() {
         dispatch(authenticate())
     }, [dispatch])
 
-    const logout = async (id) => {
+    const FALLBACK_IMAGE = "https://demofree.sirv.com/nope-not-here.jpg";
+    // const imageOnLoadHandler = (event) => {
+    //     // console.log(
+    //     //     `The image with url of ${event.currentTarget.src} has been loaded`
+    //     // );
+    //     if (event.currentTarget.className !== "error") {
+    //         event.currentTarget.className = "success";
+    //     }
+    // };
+
+
+    const imageOnErrorHandler = (event) => {
+        event.currentTarget.src = FALLBACK_IMAGE;
+        event.currentTarget.className = "error";
+    };
+
+    const deleteProduct = async(id) => {
         await dispatch(deleteProductThunk(id))
         await dispatch(getAllProductsThunk())
         await dispatch(authenticate())
     }
 
-    if (!owner) return null
+    const isEmptyObject = (obj) => {
+        return JSON.stringify(obj) === '{}';
+    }
+
+    if (!owner || isEmptyObject(owner)) return null
     return (
         <>
             <div className="user-listing-main">
@@ -50,7 +76,9 @@ function UserProducts() {
 
                                     < img
                                         className="listing-img"
-                                        src={ownerImages.find(image => image.productId === id).image_url} alt="img"></img>
+                                        // onLoad={imageOnLoadHandler}
+                                        onError={imageOnErrorHandler}
+                                        src={ownerImages.find(image => image.productId === id && image.mainImage === true)?.image_url} alt="img"></img>
                                 }
 
                                 <div className="listing-info-and-buttons">
@@ -68,7 +96,7 @@ function UserProducts() {
                                         <button className="one-button-user" onClick={() => history.push(`/products/${id}/edit`)}><StyledNavLink3
                                             to={`/products/${id}/edit`}> Edit Listing</StyledNavLink3></button>
                                         {/* <button className="one-button-user" onClick={() => history.push(`/products/${id}/edit`)}><EditProductFormModal id={id}/></button> */}
-                                        <button className="one-button-user del-button-user" onClick={() => logout(id)}>Delete</button>
+                                        <button className="one-button-user del-button-user" onClick={() => deleteProduct(id)}>Delete</button>
                                     </div>
                                 </div>
                                 {/* {

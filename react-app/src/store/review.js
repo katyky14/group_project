@@ -51,14 +51,12 @@ export const loadProductReviews = (product_id) => async (dispatch) => {
 
     if (response.ok) {
         const list = await response.json();
-        console.log("LIST", list)
         dispatch(getProductReview(list.Reviews))
     }
     return response;
 }
 
 export const createReviews = (data) => async dispatch => {
-    console.log("CREATE REVIEWS DATA", data)
     const { productId } = data
     const response = await fetch(`/api/products/${productId}/reviews`, {
         method: 'POST',
@@ -83,7 +81,6 @@ export const deleteReview = (reviewId) => async dispatch => {
     }
 }
 export const updateReview = (payload) => async (dispatch) => {
-    console.log("PAYLOAD", payload)
     const { reviewId } = payload
     const response = await fetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',

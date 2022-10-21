@@ -102,7 +102,7 @@ export const addProductThunk = (productData) => async (dispatch) => {
     // return response.json()
 }
 
-export const editProductThunk = (productData) => async (dispatch) => {
+export const editProductThunk = (productData, ownerImage) => async (dispatch) => {
 
     const response = await fetch(`/api/products/${productData.id}`, {
 
@@ -112,9 +112,25 @@ export const editProductThunk = (productData) => async (dispatch) => {
         },
         body: JSON.stringify(productData)
     })
-
+    // console.log(productData.image_url)
+    // console.log(ownerImage)
+    // console.log(ownerImage.userId)
+    // console.log(ownerImage.productId)
+    // console.log(typeof productData.image_url)
     if (response.ok) {
         const data = await response.json()
+        const imageResponse = await fetch(`/api/images/${ownerImage.id}`, {
+            method: 'PUT',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                "user_id": ownerImage.userId,
+                "product_id": ownerImage.productId,
+                "review_id": ownerImage.reviewId,
+                "image_url": productData.image_url,
+                "main_image": true
+            })
+        })
+        const imageData = await imageResponse.json();
         dispatch(addOneProduct(data))
         // return { ...data }
         return data
@@ -171,11 +187,7 @@ const productReducer = (state = {}, action) => {
         }
         case DELETE_PRODUCT: {
             const newState = { ...state }
-            console.log('the new state', newState)
-            console.log('1in reducer action', action.id)
             delete newState[action.id];
-            console.log('2in reducer action', action.id)
-            console.log('the new state after reducer', newState)
             return newState;
         }
         default:
