@@ -26,7 +26,7 @@ function ProductDetail() {
     // console.log("PRODUCT DETAIL", product)
 
     let allReviews = useSelector(state => Object.values(state.reviewState));
-    const shouldshowbutton = product && product.reviews && product.reviews.find(review => review.userId === user.id)
+    const shouldshowbutton = user && product && product.reviews && product.reviews.find(review => review.userId === user.id)
     const isOwner = product && user && product.ownerId === user.id;
 
 
