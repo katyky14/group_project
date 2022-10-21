@@ -22,6 +22,10 @@ const CartForm = ({ productId }) => {
     //     <div> No items in the cart. Select items to purchase</div>
     // )
 
+    // console.log('the id product', idProduct)
+    // console.log('the user', user)
+    // console.log('the cart objk', cartObj)
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let newQuantity = idProduct?.quantity + 1
@@ -40,6 +44,7 @@ const CartForm = ({ productId }) => {
         // history.push('/shopping-carts')
 
     }
+
 
     //    console.log('the product Id', idProduct.quantity)
 

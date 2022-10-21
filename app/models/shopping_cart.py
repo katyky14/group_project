@@ -7,7 +7,7 @@ class Cart(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     users = db.relationship('User', back_populates = 'cart')
-
+    products = db.relationship('Product', back_populates="carts")
 
     def to_dict_cart(self):
         return {

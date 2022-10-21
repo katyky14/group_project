@@ -103,13 +103,14 @@
 }
 
 
-.success {
+/* .success {
 
-}
+} */
 
 .error-cart {
     width: 194px;
     height: 155px;
     border-radius: 15px;
     cursor: pointer;
+    margin: 0;
 }

@@ -23,6 +23,7 @@ function ProductDetail() {
     // console.log("PRODUCT DETAIL", product)
 
 
+
     useEffect(() => {
         dispatch((getAllProductsThunk()))
     }, [dispatch,])
@@ -177,9 +178,12 @@ function ProductDetail() {
                         {/* <div className="ReviewsLink">reviewsLink</div> */}
                         <div className="Description">{product.description}</div>
                         <div className="Price">${product.price}</div>
+                        {
+                        user.id !== product.ownerId && 
                         <div>
                             <CartForm productId={+productId} />
                         </div>
+                        }
                         <div className="truck"><i class="fa-solid fa-truck"></i>   Hooray! This item ships free to the US.</div>
                         <div className="cost">Cost to ship</div>
                         <div className="free">Free</div>
