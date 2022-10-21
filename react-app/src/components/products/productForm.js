@@ -42,11 +42,7 @@ function CreateProductForm() {
 
 
         let createdProduct = await dispatch(addProductThunk(productInformation))
-<<<<<<< HEAD
-        console.log('the product', createdProduct)
-=======
         // console.log('the product', createdProduct)
->>>>>>> product-bug
         await dispatch(getAllProductsThunk())
         if (createdProduct) {
             history.push(`/products/${createdProduct.product.id}`)
@@ -250,7 +246,7 @@ function CreateProductForm() {
                                                 onChange={(e) => setPrice(e.target.value)}
                                                 required
                                             />
-                                            {hasSubmitted && validationErrors.length > 0 && ( <p className="error-product-form">{validationErrors[0]}</p>)}
+                                            {hasSubmitted && validationErrors.length > 0 && (<p className="error-product-form">{validationErrors[0]}</p>)}
                                         </div>
                                         <div>
                                             <p className="listing-info1">Remember to factor in the costs of materials, labor, and other business expenses.</p>
@@ -276,7 +272,7 @@ function CreateProductForm() {
                                                 onChange={(e) => setQuantity(e.target.value)}
                                                 required
                                             />
-                                            { hasSubmitted && validationErrors.length > 0 && ( <p className="error-product-form">{validationErrors[1]}</p>)}
+                                            {hasSubmitted && validationErrors.length > 0 && (<p className="error-product-form">{validationErrors[1]}</p>)}
                                         </div>
                                         <div>
                                             <p className="listing-info1">Let your customers know how many of these you made. </p>

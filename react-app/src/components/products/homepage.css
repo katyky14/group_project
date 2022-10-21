@@ -33,12 +33,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-<<<<<<< HEAD
-    /* height: 350px; */
-    min-height: 408px;
-=======
     min-height: 350px;
->>>>>>> product-bug
     width: 1328px;
     gap: 15px;
     margin-bottom: 140px;

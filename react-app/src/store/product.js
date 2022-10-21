@@ -125,7 +125,7 @@ export const editProductThunk = (productData) => async (dispatch) => {
 export const deleteProductThunk = (productId) => async dispatch => {
     //console.log('the id in thunk', productId)
     const response = await fetch(`/api/products/${productId}`, {
-        headers:{
+        headers: {
             "Content-Type": "application/json"
         },
         method: 'DELETE',
@@ -133,10 +133,7 @@ export const deleteProductThunk = (productId) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-<<<<<<< HEAD
-=======
         // console.log('the product', productId)
->>>>>>> product-bug
         dispatch(deleteProduct(productId));
         // return { ...data }
     };
