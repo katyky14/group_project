@@ -58,9 +58,6 @@ function ProfileButton({ sessionUser }) {
                         <NavLink to='/products/owner' className='profilemenu-link'><div>My products</div></NavLink>
                     </li>
                     <li className="profile-details-li">
-                        <NavLink to='/products/owner' className='new-product-link'>My products</NavLink>
-                    </li>
-                    <li className="profile-details-li">
                         <div className="signout-div" onClick={loggingOut}>Sign out</div>
                     </li>
                 </ul>
