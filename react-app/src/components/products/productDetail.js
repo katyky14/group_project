@@ -11,6 +11,8 @@ import CartForm from "../ShoppingCart/CartForm";
 import Footer from "../Footer/footer";
 
 const isUserReviewCreator = (review, user) => user && user.id === review.userId;
+// user.id !== product.ownerId
+
 
 function ProductDetail() {
     const dispatch = useDispatch();
@@ -18,10 +20,18 @@ function ProductDetail() {
     const { productId } = useParams();
 
     let allProducts = useSelector(state => Object.values(state.productState));
+    console.log(allProducts,"*******allproducts")
     let user = useSelector(state => state.session.user);
     const product = allProducts.find(product => product.id === +productId)
     // console.log("PRODUCT DETAIL", product)
 
+    let allReviews = useSelector(state => Object.values(state.reviewState));
+    const shouldshowbutton = product && product.reviews && product.reviews.find(review=> review.userId === user.id)
+    const isOwner = product && user && product.ownerId === user.id ;
+
+
+    // console.log("REviewOF USER",shouldshowbutton)
+    // console.log("alreviews",allReviews)
 
     useEffect(() => {
         dispatch((getAllProductsThunk()))
@@ -99,7 +109,7 @@ function ProductDetail() {
     }
     if (!product) return null
 
-    return !!allProducts.length && (
+    return !!allProducts.length &&  (
 
         <div className="detail-main-container">
             <div className="left">
@@ -113,7 +123,8 @@ function ProductDetail() {
 
                     <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>
                     <div className="reviewTag">Reviews for this item
-                        <AddReviewModal productId={+productId} />
+                    { !shouldshowbutton && !isOwner &&<AddReviewModal productId={+productId} />}
+                        
                     </div>
                 </div>
 
@@ -133,7 +144,7 @@ function ProductDetail() {
                                         <i class="fa-solid fa-user" />{" "}
                                         {getDate(e.createdAt.slice(5, 17))}
                                     </div>
-                                    {isUserReviewCreator(e, user) && <div className="buttons">
+                                    {isUserReviewCreator(e, user) && !isOwner &&<div className="buttons">
                                         <span>
                                             <button className="delete-review"
                                                 onClick={async (event) => {
