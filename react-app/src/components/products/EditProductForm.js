@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
+
+import { authenticate } from "../../store/session";
 import { editProductThunk, getAProduct } from "../../store/product";
 
 import './editProduct.css'
 
-function EditProductForm({ setShowMModal }) {
+function EditProductForm({ setShowMModal, id }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
@@ -48,6 +50,7 @@ function EditProductForm({ setShowMModal }) {
 
     useEffect(() => {
         dispatch(getAProduct(+productId)).then(() => setIsLoaded(true))
+        dispatch(authenticate())
     }, [dispatch, productId])
 
     const handleSubmit = async (e) => {
@@ -67,6 +70,7 @@ function EditProductForm({ setShowMModal }) {
             imageUrls,
             quantity,
         }
+
 
         let updatedProduct = await dispatch(editProductThunk(productInformation))
         if (updatedProduct) {
@@ -139,15 +143,15 @@ function EditProductForm({ setShowMModal }) {
 
                             <div className="edit-img-input-container">
 
-                                <input
+                                {/* <input
                                     className="edit-product-img-preview edit-product-img"
                                     placeholder="Preview Image Url"
                                     type="text"
                                     value={previewImage}
                                     onChange={(e) => setPreviewImage(e.target.value)}
-                                />
+                                /> */}
 
-                                {
+                                {/* {
                                     imageUrls.length > 0 && imageUrls.map((data, i) => (
                                         <input
                                             className="edit-product-img-additionals edit-product-img"
@@ -159,11 +163,11 @@ function EditProductForm({ setShowMModal }) {
                                         />
                                     ))
                                 }
-                                <button className="edit-img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}>
-                                    <div className="edit-camera-icon-product">
+                                <button className="edit-img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}> */}
+                                {/* <div className="edit-camera-icon-product">
                                         <span className="edit-icon-fa-camera"> <i class="fa-solid fa-camera"></i></span> Add additional images
                                     </div>
-                                </button>
+                                </button> */}
                             </div>
                         </div>
 

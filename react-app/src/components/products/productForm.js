@@ -42,7 +42,11 @@ function CreateProductForm() {
 
 
         let createdProduct = await dispatch(addProductThunk(productInformation))
+<<<<<<< HEAD
         console.log('the product', createdProduct)
+=======
+        // console.log('the product', createdProduct)
+>>>>>>> product-bug
         await dispatch(getAllProductsThunk())
         if (createdProduct) {
             history.push(`/products/${createdProduct.product.id}`)
@@ -99,7 +103,6 @@ function CreateProductForm() {
             <form className="form-product" onSubmit={handleSubmit}>
                 {/* {hasSubmitted && validationErrors.length > 0 && (
                     <ul>
-
                         {validationErrors.map((error, index) => <li key={index}>  {error}</li>)}
                     </ul>
                 )} */}
@@ -133,6 +136,7 @@ function CreateProductForm() {
                                     type="text"
                                     value={previewImage}
                                     onChange={(e) => setPreviewImage(e.target.value)}
+                                    required
                                 />
 
                                 {

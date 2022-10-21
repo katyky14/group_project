@@ -64,13 +64,13 @@ def add_images_to_product(product_id):
     user = current_user.to_dict()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print("CONSOLE LOGS")
-        print("Form DATA:")
-        print(form.data)
-        print("image_url:")
-        print(form.data['image_url'])
-        print("additional_url:")
-        print(form.data['additional_urls'])
+        # print("CONSOLE LOGS")
+        # print("Form DATA:")
+        # print(form.data)
+        # print("image_url:")
+        # print(form.data['image_url'])
+        # print("additional_url:")
+        # print(form.data['additional_urls'])
         data = Image(
             user_id = user['id'],
             product_id = product_id,
@@ -94,18 +94,18 @@ def add_images_to_product(product_id):
         #     db.session.add(data)
         #     db.session.commit()
         #     return {"newImage": data.to_dict_images()}
-        if len(form.data['additional_urls']) >= 1:
-            for i in range(len(form.data['additional_urls'])):
-                imgList = [data.to_dict_images()]
-                data = Image(
-                        user_id = user['id'],
-                        product_id = product_id,
-                        review_id = None,
-                        main_image = False,
-                        image_url = form.data['additional_urls'][i]
-                    )
-                db.session.add(data)
-                imgList.append(data.to_dict_images())
+        # if len(form.data['additional_urls']) >= 1:
+        #     for i in range(len(form.data['additional_urls'])):
+        #         imgList = [data.to_dict_images()]
+        #         data = Image(
+        #                 user_id = user['id'],
+        #                 product_id = product_id,
+        #                 review_id = None,
+        #                 main_image = False,
+        #                 image_url = form.data['additional_urls'][i]
+        #             )
+        #         db.session.add(data)
+        #         imgList.append(data.to_dict_images())
                 # if i == 0:
                 #     data = Image(
                 #         user_id = user['id'],
@@ -127,7 +127,7 @@ def add_images_to_product(product_id):
                 #     db.session.add(data)
                 #     imgList.append(data.to_dict_images())
         db.session.commit()
-        return {"newImage": imgList}
+        # return {"newImage": imgList}
     return form.errors
 
 #Delete a product
@@ -137,8 +137,13 @@ def delete_product(id):
     if selected_product:
         db.session.delete(selected_product)
         db.session.commit()
+<<<<<<< HEAD
         return {"Message":"Product has been removed"}
     return {"Message" :"This product does not exist"}
+=======
+        return{"message": "Product has been removed"}
+    return { 'message': "This product does not exist"}
+>>>>>>> product-bug
 
 
 #Get comments for product
@@ -165,4 +170,3 @@ def add_comment(product_id):
         return {"Review": data.to_dict_reviews()}
     if form.errors:
         return form.errors
-

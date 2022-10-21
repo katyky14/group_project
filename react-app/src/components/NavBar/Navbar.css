@@ -6,10 +6,12 @@
     margin: 8px 4%;
     font-family: "Montserrat", sans-serif;
     height: 64px;
-    max-width: 1400px;
+    /* max-width: 1400px; */
 }
 
-li, a, button {
+li,
+a,
+button {
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
 }
@@ -63,6 +65,7 @@ li, a, button {
     width: 50%;
     position: relative;
 }
-.logo{
+
+.logo {
     height: 33px;
 }

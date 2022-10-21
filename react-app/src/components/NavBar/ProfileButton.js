@@ -39,7 +39,7 @@ function ProfileButton({ sessionUser }) {
                 <button onClick={openMenu} className="profile-dropdown">
                     <div className="icon-div">
                         <i className="fas fa-user-circle fa-2x" />
-                        <i className="fas fa-angle-down fa-2x"/>
+                        <i className="fas fa-angle-down fa-2x" />
                     </div>
                 </button>
             </div>
@@ -49,7 +49,13 @@ function ProfileButton({ sessionUser }) {
                         <div>{sessionUser.firstname}</div>
                     </li>
                     <li className="profile-details-li">
-                        <NavLink to='/products/new' className='new-product-link'>Sell on ktsy</NavLink>
+                        <NavLink to='/shopping-carts' className='profilemenu-link'><div>Cart</div></NavLink>
+                    </li>
+                    <li className="profile-details-li">
+                        <NavLink to='/products/new' className='profilemenu-link'><div>Sell on ktsy</div></NavLink>
+                    </li>
+                    <li className="profile-details-li">
+                        <NavLink to='/products/owner' className='profilemenu-link'><div>My products</div></NavLink>
                     </li>
                     <li className="profile-details-li">
                         <NavLink to='/products/owner' className='new-product-link'>My products</NavLink>
