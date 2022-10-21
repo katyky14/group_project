@@ -27,11 +27,11 @@ function ProductDetail() {
         dispatch((getAllProductsThunk()))
     }, [dispatch,])
 
-    const FALLBACK_IMAGE = "https://cdn.pixabay.com/photo/2022/10/15/21/23/cat-7523894__340.jpg";
+    const FALLBACK_IMAGE = "https://demofree.sirv.com/nope-not-here.jpg";
     const imageOnLoadHandler = (event) => {
-        console.log(
-            `The image with url of ${event.currentTarget.src} has been loaded`
-        );
+        // console.log(
+        //     `The image with url of ${event.currentTarget.src} has been loaded`
+        // );
         if (event.currentTarget.className !== "error") {
             event.currentTarget.className = "previewImage";
         }
@@ -40,7 +40,7 @@ function ProductDetail() {
 
     const imageOnErrorHandler = (event) => {
         event.currentTarget.src = FALLBACK_IMAGE;
-        event.currentTarget.className = "error";
+        event.currentTarget.className = "error-detail";
     };
 
     const avgRatingStars = (reviews) => {

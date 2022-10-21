@@ -185,3 +185,11 @@
     color: white;
     text-align: center;
 }
+
+
+.error-detail {
+    height: 412px;
+    width: 626px;
+    border-radius: 6px;
+    margin-left: 17px;
+}
