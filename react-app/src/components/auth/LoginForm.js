@@ -52,6 +52,7 @@ const LoginForm = ({ setShowLoginModal }) => {
             type='text'
             value={email}
             onChange={updateEmail}
+            required
           />
         </div>
         <div className='login-row'>
@@ -62,6 +63,7 @@ const LoginForm = ({ setShowLoginModal }) => {
             type='password'
             value={password}
             onChange={updatePassword}
+            required
           />
           <div className='login-button-container'>
             <button type='submit' className='login-submit-button'>Login</button>
