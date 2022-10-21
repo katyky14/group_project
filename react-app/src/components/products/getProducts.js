@@ -39,9 +39,9 @@ function Products() {
         <div id="homepage">
             <div id="header-container">
                 <div id="orange-banner"></div>
-                {user && (
+                {user ? (
                     <div id="Welcome">Welcome to Buy Ktsy {user.firstname}</div>
-                )}
+                ) : (<div id="Welcome">Welcome to Buy Ktsy</div>)}
                 <div id="white-space-div"></div>
             </div>
             <div id="product-container">
