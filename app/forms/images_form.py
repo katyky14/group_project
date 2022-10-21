@@ -9,7 +9,7 @@ class ImageForm(FlaskForm):
     # user_id = IntegerField("user_id")
     # product_id = IntegerField("product_id")
     # review_id = IntegerField("review_id")
-    # main_image = BooleanField("main_image")
+    main_image = BooleanField("main_image")
     image_url = StringField("image_url", validators=[DataRequired()])
     # additional_urls = FieldList(FormField(AddedImagesForm))
     # submit = SubmitField("Submit")
