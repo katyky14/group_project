@@ -37,16 +37,19 @@
 
 .profile-details-li {
     transition: all 0.3s ease-in 0s;
+    width: 100%;
 }
 
 .profile-details-li:hover {
     background-color: rgba(34, 34, 34, 0.075);
 }
 
-.new-product-link {
+.profilemenu-link {
     text-decoration: none;
     color: black;
     cursor: pointer;
+    padding: 0;
+    width: 100%;
 }
 
 .signout-div {
