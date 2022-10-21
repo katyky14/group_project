@@ -11,3 +11,4 @@ def delete_image(id):
         db.session.commit()
         return "Image deleted"
     return {"message": f"image with id:{id} does not exist"}
+

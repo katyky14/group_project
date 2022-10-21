@@ -71,6 +71,7 @@ const SignUpForm = ({ setShowSignUpModal }) => {
             name='username'
             onChange={updateUsername}
             value={username}
+            required
           ></input>
         </div>
         <div className='signup-row'>
@@ -81,6 +82,7 @@ const SignUpForm = ({ setShowSignUpModal }) => {
             name='email'
             onChange={updateEmail}
             value={email}
+            required
           ></input>
         </div>
         <div className='signup-row'>
@@ -91,6 +93,7 @@ const SignUpForm = ({ setShowSignUpModal }) => {
             name='firstname'
             onChange={(e) => setFirstname(e.target.value)}
             value={firstname}
+            required
           ></input>
         </div>
         <div className='signup-row'>
@@ -101,6 +104,7 @@ const SignUpForm = ({ setShowSignUpModal }) => {
             name='lastname'
             onChange={(e) => setLastname(e.target.value)}
             value={lastname}
+            required
           ></input>
         </div>
         <div className='signup-row'>
@@ -111,6 +115,7 @@ const SignUpForm = ({ setShowSignUpModal }) => {
             name='password'
             onChange={updatePassword}
             value={password}
+            required
           ></input>
         </div>
         <div className='signup-row'>

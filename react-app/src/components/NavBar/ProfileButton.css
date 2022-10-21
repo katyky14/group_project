@@ -1,16 +1,19 @@
 .profile-dropdown {
-    background-color: white;
     border-radius: 20px;
+    border: none;
+    background-color: white;
     display: flex;
     height: 42px;
     width: 76px;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    transition: all 0.3s ease-in 0s;
 }
 
 .profile-dropdown:hover {
     cursor: pointer;
+    background-color: rgba(34, 34, 34, 0.075);
 }
 
 .profile-details {
@@ -18,25 +21,58 @@
     list-style: none;
     background-color: white;
     border: 1px solid grey;
-    border-radius: 14px;
+    border: 1px rgba(34, 34, 34, 0.15) solid;
+    border-radius: 12px;
+    font-size: 16px;
+    min-width: 160px;
+    max-width: 300px;
+    max-height: 480px;
+    overflow: hidden;
     padding: 8px 8px;
+    margin: 0;
+    top: 46px;
+    right: 0px;
     z-index: 100;
 }
 
 .profile-details-li {
     transition: all 0.3s ease-in 0s;
+    width: 100%;
 }
 
 .profile-details-li:hover {
     background-color: rgba(34, 34, 34, 0.075);
 }
 
-.new-product-link {
+.profilemenu-link {
     text-decoration: none;
     color: black;
     cursor: pointer;
+    padding: 0;
+    width: 100%;
 }
 
 .signout-div {
     cursor: pointer;
+}
+
+/* .profile-button-container {
+    border-radius: 24px;
+    min-width: 48px;
+    min-height: 48px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.profile-button-container:hover {
+    background-color: rgba(34, 34, 34, 0.075);
+} */
+
+.icon-div {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.navright-profile-div {
+    position: relative;
 }

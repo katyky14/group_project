@@ -6,15 +6,16 @@ import LoginFormModal from './SignInModal';
 import ProfileButton from './ProfileButton';
 import Searchbar from './Searchbar';
 import './Navbar.css'
+import logo from './logo/Buy-Ktsy-logo.png'
 
 function NavBar({ loaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
 
-    const loginButton = () => {
+    // const loginButton = () => {
 
-    }
+    // }
 
 
     return (
@@ -22,7 +23,7 @@ function NavBar({ loaded }) {
             <div className='nav-left'>
                 <NavLink exact to="/" className='home-link'>
                     <div className='logo-div'>
-                        Logo goes here
+                    <img className="logo" src={logo} />
                     </div>
                 </NavLink>
             </div>
@@ -41,9 +42,7 @@ function NavBar({ loaded }) {
                     </div>
                 )}
                 {sessionUser && (
-                    <div>
-                        <ProfileButton sessionUser={sessionUser} />
-                    </div>
+                    <ProfileButton sessionUser={sessionUser} />
                 )}
             </div>
             <LoginFormModal showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} />

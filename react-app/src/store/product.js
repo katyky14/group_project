@@ -47,7 +47,7 @@ const deleteProduct = (id) => {
 // THUNK ACTION CREATOR
 // GET ALL PRODUCTS THUNK
 export const getAllProductsThunk = () => async dispatch => {
-    const response = await fetch('/api/products')
+    const response = await fetch('/api/products/')
     if (response.ok) {
         const data = await response.json()
         dispatch(getAllProducts(data.products))
@@ -73,12 +73,8 @@ export const addProductThunk = (productData) => async (dispatch) => {
         body: JSON.stringify(productData)
     });
 
-
-
     if (response.ok) {
         const data = await response.json();
-        console.log("THIS IS DATA: ", data)
-        console.log("THIS IS DATA.product.id: ", data.product.id)
         // FETCH TO BACKEND TO ADD A PRODUCT IMAGE TO IMAGE TABLE IN DB
         const imageResponse = await fetch(`/api/products/${data.product.id}/images`, {
             method: 'POST',
@@ -98,10 +94,7 @@ export const addProductThunk = (productData) => async (dispatch) => {
                 })
             })
         }
-        console.log('IMAGE ARRAY IN THUNK: ', [productData.previewImage, ...productData.imageUrls])
         const imageData = await imageResponse.json();
-        console.log(imageData)
-
         dispatch(addOneProduct(data));
         return data;
     }
@@ -109,30 +102,40 @@ export const addProductThunk = (productData) => async (dispatch) => {
     // return response.json()
 }
 
-export const editProductThunk = productData => async (dispatch) => {
+export const editProductThunk = (productData) => async (dispatch) => {
+
     const response = await fetch(`/api/products/${productData.id}`, {
+
         method: "PUT",
-        body: JSON.stringify({
-            productData
-        }),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(productData)
     })
+
     if (response.ok) {
         const data = await response.json()
-        dispatch(editProduct(data))
-        return { ...data }
+        dispatch(addOneProduct(data))
+        // return { ...data }
+        return data
     }
 }
 
 // DELETE PRODUCT THUNK
 export const deleteProductThunk = (productId) => async dispatch => {
+    //console.log('the id in thunk', productId)
     const response = await fetch(`/api/products/${productId}`, {
+        headers: {
+            "Content-Type": "application/json"
+        },
         method: 'DELETE',
     });
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(deleteProduct(data.id));
-        return { ...data }
+        // console.log('the product', productId)
+        dispatch(deleteProduct(productId));
+        // return { ...data }
     };
 }
 
@@ -155,21 +158,6 @@ const productReducer = (state = {}, action) => {
             return newState;
         }
 
-        // case ADD_PRODUCTS:
-        //     if (!state[action.payload.id]) {
-        //         const newStateForm = { ...state }
-        //         newStateForm[action.payload.id] = action.payload
-        //         return newStateForm
-        //     }
-
-        //     return {
-        //         ...state,
-        //         [action.payload.id]: {
-        //             ...state[action.payload.id],
-        //             ...action.payload
-        //         }
-        //     }
-
         case ADD_PRODUCTS: {
             const newProduct = {};
             newProduct[action.payload.id] = action.payload
@@ -183,7 +171,11 @@ const productReducer = (state = {}, action) => {
         }
         case DELETE_PRODUCT: {
             const newState = { ...state }
+            console.log('the new state', newState)
+            console.log('1in reducer action', action.id)
             delete newState[action.id];
+            console.log('2in reducer action', action.id)
+            console.log('the new state after reducer', newState)
             return newState;
         }
         default:

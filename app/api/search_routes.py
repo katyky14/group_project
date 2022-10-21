@@ -12,7 +12,7 @@ def search_products():
         query = searchForm.data['search']
         searchResult = Product.query.filter(Product.name.ilike(f'%{query}%')).all()
         if searchResult:
-            return {'products': [product.to_dict_product() for product in searchResult]}
+            return {'products': [product.to_dict_relationship() for product in searchResult]}
         else:
             return {'products': {}}
     return searchForm.errors

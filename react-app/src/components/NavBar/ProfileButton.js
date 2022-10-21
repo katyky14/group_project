@@ -27,33 +27,42 @@ function ProfileButton({ sessionUser }) {
     const loggingOut = async (e) => {
         e.preventDefault();
         let loggedOut = await dispatch(logout());
-        if (loggedOut) {
-            history.push('/')
-        };
+        // if (loggedOut) {
+        //     return history.push('/')
+        // };
+        return history.push('/')
     };
 
     return (
-        <>
-            <button onClick={openMenu} className="profile-dropdown">
-                <div>
-                    <i className="fas fa-user-circle" />
-                </div>
-                <div>profile button</div>
-            </button>
+        <div className="navright-profile-div">
+            <div className="profile-button-container">
+                <button onClick={openMenu} className="profile-dropdown">
+                    <div className="icon-div">
+                        <i className="fas fa-user-circle fa-2x" />
+                        <i className="fas fa-angle-down fa-2x" />
+                    </div>
+                </button>
+            </div>
             {showMenu && sessionUser && (
                 <ul className="profile-details">
                     <li className="profile-details-li">
                         <div>{sessionUser.firstname}</div>
                     </li>
                     <li className="profile-details-li">
-                        <NavLink to='/products/new' className='new-product-link'>Sell on ktsy</NavLink>
+                        <NavLink to='/shopping-carts' className='profilemenu-link'><div>Cart</div></NavLink>
+                    </li>
+                    <li className="profile-details-li">
+                        <NavLink to='/products/new' className='profilemenu-link'><div>Sell on ktsy</div></NavLink>
+                    </li>
+                    <li className="profile-details-li">
+                        <NavLink to='/products/owner' className='profilemenu-link'><div>My products</div></NavLink>
                     </li>
                     <li className="profile-details-li">
                         <div className="signout-div" onClick={loggingOut}>Sign out</div>
                     </li>
                 </ul>
             )}
-        </>
+        </div>
     )
 }
 

@@ -1,14 +1,12 @@
 .Add-Review {
     border: none;
-    height: 45px;
-    width: 35%;
-    color: white;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-family: sans-serif;
     cursor: pointer;
-    border-radius: 25px;
-    background-color: rgb(34, 34, 34);
-    font-weight: bold;
-    font-size: 15px;
+    width: 183px;
+    height: 30px;
+    border-radius: 16px;
+    color: white;
+    background-color: #222222;
 }
 
 .review-form {
@@ -57,12 +55,12 @@
     align-self: flex-start;
 }
 
-.star-inputs {
-    display: none;
+.star-inputs:checked~label {
+    color: rgb(255, 0, 0);
 }
 
-.star-inputs:checked~label {
-    color: rgb(34, 34, 34);
+.star-inputs {
+    display: none;
 }
 
 .star-label {
@@ -75,6 +73,7 @@
 }
 
 .review-textbox {
+    width: 100%;
     border-radius: 10px;
     border-color: lightgray;
 }

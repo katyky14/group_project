@@ -79,7 +79,34 @@ def seed_products():
         price = 15,
         quantity = 3
     )
-
+    product11 = Product(
+        owner_id = 1,
+        name = 'Watch',
+        description = "Made with metal and leather strap",
+        price = 150,
+        quantity = 3
+    )
+    product12 = Product(
+        owner_id = 1,
+        name = 'Shoe',
+        description = "Branded shoe from Nick",
+        price = 250,
+        quantity = 3
+    )
+    product13 = Product(
+        owner_id = 1,
+        name = 'Sun glasses',
+        description = "Light green shade sun glasses",
+        price = 220,
+        quantity = 3
+    )
+    product14 = Product(
+        owner_id = 1,
+        name = 'camera',
+        description = "Camera comes with stand",
+        price = 550,
+        quantity = 3
+    )
     db.session.add(product1)
     db.session.add(product2)
     db.session.add(product3)
@@ -90,7 +117,10 @@ def seed_products():
     db.session.add(product8)
     db.session.add(product9)
     db.session.add(product10)
-
+    db.session.add(product11)
+    db.session.add(product12)
+    db.session.add(product13)
+    db.session.add(product14)
     db.session.commit()
 
 def undo_products():
