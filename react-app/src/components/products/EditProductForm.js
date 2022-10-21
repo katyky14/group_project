@@ -143,13 +143,13 @@ function EditProductForm({ setShowMModal, id }) {
 
                             <div className="edit-img-input-container">
 
-                                <input
+                                {/* <input
                                     className="edit-product-img-preview edit-product-img"
                                     placeholder="Preview Image Url"
                                     type="text"
                                     value={previewImage}
                                     onChange={(e) => setPreviewImage(e.target.value)}
-                                />
+                                /> */}
 
                                 {/* {
                                     imageUrls.length > 0 && imageUrls.map((data, i) => (
@@ -164,7 +164,7 @@ function EditProductForm({ setShowMModal, id }) {
                                     ))
                                 }
                                 <button className="edit-img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}> */}
-                                    {/* <div className="edit-camera-icon-product">
+                                {/* <div className="edit-camera-icon-product">
                                         <span className="edit-icon-fa-camera"> <i class="fa-solid fa-camera"></i></span> Add additional images
                                     </div>
                                 </button> */}
