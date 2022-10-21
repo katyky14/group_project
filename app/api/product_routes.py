@@ -80,8 +80,9 @@ def add_images_to_product(product_id):
         )
         db.session.add(data)
         db.session.commit()
-        if len(form.data['additional_urls']) == 0:
-            return {"newImage": data.to_dict_images()}
+        # if len(form.data['additional_urls']) == 0:
+        #     return {"newImage": data.to_dict_images()}
+        return {"newImage": data.to_dict_images()}
         # return {"newImage": data.to_dict_images()}
         # if len(form.data['additional_urls']) == 1:
         #     data = Image(
@@ -126,7 +127,7 @@ def add_images_to_product(product_id):
                 #     )
                 #     db.session.add(data)
                 #     imgList.append(data.to_dict_images())
-        db.session.commit()
+        # db.session.commit()
         # return {"newImage": imgList}
     return form.errors
 

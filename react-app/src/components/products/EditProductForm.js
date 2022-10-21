@@ -26,7 +26,7 @@ function EditProductForm({ setShowMModal, id }) {
 
     const ownerObj = useSelector(state => state.session.user)
     const ownerProduct = ownerObj.products.find(product => product.id === Number(productId))
-    const ownerImages = ownerObj.productsImages.find(image => image.productId === Number(productId))
+    const ownerImages = ownerObj.productsImages.find(image => image.productId === Number(productId) && image.mainImage === true)
 
     // console.log('the ownerImages', ownerImages)
 
@@ -66,13 +66,13 @@ function EditProductForm({ setShowMModal, id }) {
             name,
             price,
             description,
-            previewImage,
+            image_url: previewImage,
             imageUrls,
             quantity,
         }
 
 
-        let updatedProduct = await dispatch(editProductThunk(productInformation))
+        let updatedProduct = await dispatch(editProductThunk(productInformation, ownerImages))
         if (updatedProduct) {
             history.push(`/products/${productId}`)
         }
@@ -143,13 +143,13 @@ function EditProductForm({ setShowMModal, id }) {
 
                             <div className="edit-img-input-container">
 
-                                {/* <input
+                                <input
                                     className="edit-product-img-preview edit-product-img"
                                     placeholder="Preview Image Url"
                                     type="text"
                                     value={previewImage}
                                     onChange={(e) => setPreviewImage(e.target.value)}
-                                /> */}
+                                />
 
                                 {/* {
                                     imageUrls.length > 0 && imageUrls.map((data, i) => (
