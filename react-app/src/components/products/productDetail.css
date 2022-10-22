@@ -21,6 +21,33 @@
 
 }
 
+#pic-container {
+    display: flex;
+}
+
+#multi-images {
+    width: 70px;
+    height: 412px;
+    display: flex;
+    align-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.image-container {
+    width: 100%;
+    height: 12.5%;
+}
+
+.imagess {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .ProductName {
     /* font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif; */
     font-weight: 400;

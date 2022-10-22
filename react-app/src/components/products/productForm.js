@@ -147,11 +147,14 @@ function CreateProductForm() {
                                         />
                                     ))
                                 }
-                                {/* <button className="img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}>
-                                    <div className="camera-icon-product">
-                                        <span className="icon-fa-camera"> <i class="fa-solid fa-camera"></i></span> Add additional images
-                                    </div>
-                                </button> */}
+                                {
+                                    imageUrls.length < 7 &&
+                                    <button className="img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}>
+                                        <div className="camera-icon-product">
+                                            <span className="icon-fa-camera"> <i class="fa-solid fa-camera"></i></span> Add additional images
+                                        </div>
+                                    </button>
+                                }
                             </div>
                         </div>
 
