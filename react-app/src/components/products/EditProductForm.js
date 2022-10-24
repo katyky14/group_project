@@ -36,15 +36,18 @@ function EditProductForm({ setShowMModal, id }) {
     // console.log('the owner product', ownerProduct)
     // console.log('the owner', ownerObj.productsImages[productId])
     // console.log('the owner obj in edit product', ownerProduct)
+    const nonMainImageArr = ownerObj.productsImages.filter(image => image.mainImage !== true)
+    const arrayUrls = nonMainImageArr.map(image => image.image_url)
 
     const [name, setName] = useState(ownerProduct.name || "");
     const [price, setPrice] = useState(ownerProduct.price || 0);
     const [description, setDescription] = useState(ownerProduct.description || "");
     const [previewImage, setPreviewImage] = useState(ownerImages.image_url || "");
-    const [imageUrls, setImageUrls] = useState([]);
+    const [imageUrls, setImageUrls] = useState(arrayUrls);
     const [quantity, setQuantity] = useState(ownerProduct.quantity || 0);
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [additionalUrls, setadditionalUrls] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
 
@@ -92,7 +95,7 @@ function EditProductForm({ setShowMModal, id }) {
     }, [price, quantity, imageUrls])
 
 
-
+    console.log('the image url in component', imageUrls)
 
     const addImageUrls = index => e => {
         e.preventDefault()
@@ -115,7 +118,6 @@ function EditProductForm({ setShowMModal, id }) {
             <form className="edit-form-product" onSubmit={handleSubmit}>
                 {/* {hasSubmitted && validationErrors.length > 0 && (
                     <ul>
-
                         {validationErrors.map((error, index) => <li key={index}>  {error}</li>)}
                     </ul>
                 )} */}
@@ -151,7 +153,7 @@ function EditProductForm({ setShowMModal, id }) {
                                     onChange={(e) => setPreviewImage(e.target.value)}
                                 />
 
-                                {/* {
+                                {
                                     imageUrls.length > 0 && imageUrls.map((data, i) => (
                                         <input
                                             className="edit-product-img-additionals edit-product-img"
@@ -163,11 +165,14 @@ function EditProductForm({ setShowMModal, id }) {
                                         />
                                     ))
                                 }
-                                <button className="edit-img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}> */}
-                                {/* <div className="edit-camera-icon-product">
-                                        <span className="edit-icon-fa-camera"> <i class="fa-solid fa-camera"></i></span> Add additional images
-                                    </div>
-                                </button> */}
+                                {
+                                    imageUrls.length < 7 &&
+                                    <button className="edit-img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}>
+                                        <div className="edit-camera-icon-product">
+                                            <span className="edit-icon-fa-camera"> <i class="fa-solid fa-camera"></i></span> Add additional images
+                                        </div>
+                                    </button>
+                                }
                             </div>
                         </div>
 

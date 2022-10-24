@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -29,6 +29,7 @@ function ProductDetail() {
     const shouldshowbutton = user && product && product.reviews && product.reviews.find(review => review.userId === user.id)
     const isOwner = product && user && product.ownerId === user.id;
 
+    const [previewImage, setPreviewImage] = useState(product?.images.find(image => image.mainImage === true)?.image_url)
 
     // console.log("REviewOF USER",shouldshowbutton)
     // console.log("alreviews",allReviews)
@@ -107,18 +108,36 @@ function ProductDetail() {
             return `${month} ${day}, ${year}`
         }
     }
+
     if (!product) return null
 
     return !!allProducts.length && (
 
         <div className="detail-main-container">
             <div className="left">
-                <img
-                    className="previewImage"
-                    src={product.images[0].image_url}
-                    onLoad={imageOnLoadHandler}
-                    onError={imageOnErrorHandler}
-                />
+                <div id="pic-container">
+                    <div id="multi-images">
+                        {
+                            product.images.map((image) => (
+                                <div className="image-container">
+                                    <img
+                                        onClick={() => setPreviewImage(image.image_url)}
+                                        className="imagess"
+                                        src={image.image_url}
+                                        // onLoad={imageOnLoadHandler}
+                                        // onError={imageOnErrorHandler}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <img
+                        className="previewImage"
+                        src={previewImage}
+                        onLoad={imageOnLoadHandler}
+                        onError={imageOnErrorHandler}
+                    />
+                </div>
                 <div className="stars-review-main-div">
 
                     <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>

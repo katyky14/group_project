@@ -103,6 +103,7 @@ export const addProductThunk = (productData) => async (dispatch) => {
 }
 
 export const editProductThunk = (productData, ownerImage) => async (dispatch) => {
+    console.log('the owner image', ownerImage)
 
     const response = await fetch(`/api/products/${productData.id}`, {
 
@@ -119,10 +120,12 @@ export const editProductThunk = (productData, ownerImage) => async (dispatch) =>
     // console.log(typeof productData.image_url)
     if (response.ok) {
         const data = await response.json()
+        console.log('the data in response', data)
         const imageResponse = await fetch(`/api/images/${ownerImage.id}`, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
+                "id": ownerImage.id,
                 "user_id": ownerImage.userId,
                 "product_id": ownerImage.productId,
                 "review_id": ownerImage.reviewId,
@@ -130,7 +133,10 @@ export const editProductThunk = (productData, ownerImage) => async (dispatch) =>
                 "main_image": true
             })
         })
+
+
         const imageData = await imageResponse.json();
+        console.log('the image Data in edit', imageData)
         dispatch(addOneProduct(data))
         // return { ...data }
         return data
@@ -174,12 +180,31 @@ const productReducer = (state = {}, action) => {
             return newState;
         }
 
-        case ADD_PRODUCTS: {
-            const newProduct = {};
-            newProduct[action.payload.id] = action.payload
-            const newStateForm = { ...state, ...newProduct };
-            return newStateForm;
-        }
+        // case ADD_PRODUCTS: {
+        //     const newProduct = {};
+        //     newProduct[action.payload.id] = action.payload
+        //     const newStateForm = { ...state, ...newProduct };
+        //     console.log('the new state form in reducer for add', newStateForm)
+        //     return newStateForm;
+        // } https://cdn.pixabay.com/photo/2016/04/09/09/22/pizza-1317699__340.jpg
+
+        case ADD_PRODUCTS:
+            if (!state[action.payload.id]) {
+                const newStateForm = { ...state };
+                newStateForm[action.payload.id] = action.payload
+                return newStateForm
+            }
+            console.log('in reducer', action.payload)
+
+            return {
+                ...state,
+                [action.payload.id]: {
+                    ...state[action.payload.id],
+                    ...action.payload
+                }
+            }
+
+
         case EDIT_PRODUCT: {
             const newState = { ...state };
             newState[action.payload.id] = action.payload
