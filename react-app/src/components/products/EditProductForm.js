@@ -38,6 +38,7 @@ function EditProductForm({ setShowMModal, id }) {
     // console.log('the owner obj in edit product', ownerProduct)
     const nonMainImageArr = ownerObj.productsImages.filter(image => image.mainImage !== true)
     const arrayUrls = nonMainImageArr.map(image => image.image_url)
+    const arrUrlsIDs = nonMainImageArr.map(image => image.id)
 
     const [name, setName] = useState(ownerProduct.name || "");
     const [price, setPrice] = useState(ownerProduct.price || 0);
@@ -48,6 +49,7 @@ function EditProductForm({ setShowMModal, id }) {
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [additionalUrls, setadditionalUrls] = useState([])
+    const [editUrlIds, setEditUrlIds] = useState(arrUrlsIDs)
     const [isLoaded, setIsLoaded] = useState(false)
 
 
@@ -71,6 +73,7 @@ function EditProductForm({ setShowMModal, id }) {
             description,
             image_url: previewImage,
             imageUrls,
+            editUrlIds,
             additionalUrls,
             quantity,
         }
