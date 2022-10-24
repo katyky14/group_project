@@ -130,6 +130,29 @@ export const editProductThunk = (productData, ownerImage) => async (dispatch) =>
                 "main_image": true
             })
         })
+        for (let i = 0; i < productData.imageUrls.length; i++) {
+            const editimageResponse = await fetch(`/api/images/${productData.imageUrls[i]}`, {
+                method: 'PUT',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    "user_id": ownerImage.userId,
+                    "product_id": ownerImage.productId,
+                    "review_id": ownerImage.reviewId,
+                    "image_url": productData.image_url,
+                    "main_image": true
+                })
+            })
+        }
+        for (let i = 0; i < productData.imageUrls.length; i++) {
+            let additionalImage = await fetch(`/api/products/${data.product.id}/images`, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    "image_url": productData.imageUrls[i],
+                    "main_image": false
+                })
+            })
+        }
         const imageData = await imageResponse.json();
         dispatch(addOneProduct(data))
         // return { ...data }

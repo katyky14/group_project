@@ -71,6 +71,7 @@ function EditProductForm({ setShowMModal, id }) {
             description,
             image_url: previewImage,
             imageUrls,
+            additionalUrls,
             quantity,
         }
 
@@ -106,6 +107,17 @@ function EditProductForm({ setShowMModal, id }) {
         newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to
 
         setImageUrls(newArr);
+    }
+
+    const addImageUrls2 = index => e => {
+        e.preventDefault()
+        // console.log('index: ' + index);
+        // console.log('property name: ' + e.target.value);
+        let newArr = [...additionalUrls]; // copying the old datas array
+        // a deep copy is not needed as we are overriding the whole object below, and not setting a property of it. this does not mutate the state.
+        newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to
+
+        setadditionalUrls(newArr);
     }
 
     // if (!productData) return null;
@@ -167,8 +179,20 @@ function EditProductForm({ setShowMModal, id }) {
                                     ))
                                 }
                                 {
-                                    imageUrls.length < 7 &&
-                                    <button className="edit-img-product-button" onClick={(e) => { e.preventDefault(); setImageUrls((preImageUrls) => [...preImageUrls, ""]) }}>
+                                    additionalUrls.length > 0 && additionalUrls.map((data, i) => (
+                                        <input
+                                            className="edit-product-img-additionals edit-product-img"
+                                            key={i}
+                                            placeholder="Additional Image Url"
+                                            type="text"
+                                            value={data}
+                                            onChange={addImageUrls2(i)}
+                                        />
+                                    ))
+                                }
+                                {
+                                    imageUrls.length + additionalUrls.length < 7 &&
+                                    <button className="edit-img-product-button" onClick={(e) => { e.preventDefault(); setadditionalUrls((preImageUrls) => [...preImageUrls, ""]) }}>
                                         <div className="edit-camera-icon-product">
                                             <span className="edit-icon-fa-camera"> <i class="fa-solid fa-camera"></i></span> Add additional images
                                         </div>

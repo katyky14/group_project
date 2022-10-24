@@ -140,7 +140,7 @@ function ProductDetail() {
 
                     <div className="stars">{product.reviews.length} reviews {avgRatingStars(product.reviews)}</div>
                     <div className="reviewTag">Reviews for this item
-                        {!shouldshowbutton && !isOwner && <AddReviewModal productId={+productId} />}
+                        {user && !shouldshowbutton && !isOwner && <AddReviewModal productId={+productId} />}
 
                     </div>
                 </div>
