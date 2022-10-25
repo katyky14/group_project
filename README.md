@@ -26,4 +26,8 @@ Buy Ktsy wiki directory:
 * Create the database in the app by running pipenv run flask db migrate, flask upgrade, and flask seed all.
 * Then enter the cammand pipenv flask run in the app folde, and npm start in the react-app folder.
 
+## Future Features
+* Adding categories for the products to have extra ways to filter the products in this page. 
+* Adding orders to the page so users can checkout their items in the cart and track what users are purchasing. 
+* Making the products to be likeable for additional ways users can interact with products they are interested in. 
 
